@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-09-14 06:18:07",
+  "deployment_ready": true,
+  "checks": {
+    "environment": true,
+    "binder_config": true,
+    "notebook_execution": true,
+    "memory_usage": true
+  },
+  "warnings": [],
+  "errors": [],
+  "mybinder_url": "https://mybinder.org/v2/gh/arcticoder/hts-coils/main",
+  "badge_markdown": "[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/arcticoder/hts-coils/main)"
+}
