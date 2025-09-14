@@ -34,7 +34,7 @@ Welcome to the HTS Coil Optimization educational project! This guide helps contr
 ### Development Setup
 ```bash
 # Clone the repository
-git clone https://github.com/arcticoder/hts-coils.git
+git clone https://github.com/DawsonInstitute/hts-coils.git
 cd hts-coils
 
 # Create development environment

@@ -1182,6 +1182,6 @@ This implementation ensures that the breakthrough results in laboratory-scale Le
 
 **Document Status**: Implementation Complete  
 **Validation**: All thresholds exceeded  
-**Repository**: https://github.com/arcticoder/hts-coils  
+**Repository**: https://github.com/DawsonInstitute/hts-coils  
 **Zenodo DOI**: 10.5281/zenodo.SOLITON-DATA-2025  
 **Docker Hub**: soliton-validation:latest

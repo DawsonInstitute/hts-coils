@@ -7,13 +7,13 @@ This repository provides interactive Jupyter notebooks for reproducing and explo
 ## 🚀 Quick Start
 
 ### Option 1: MyBinder (Recommended)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/your-username/hts-coils/main?urlpath=lab/tree/notebooks/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/)
 
 Click the badge above to launch the interactive environment. No installation required!
 
 ### Option 2: Local Installation
 ```bash
-git clone https://github.com/your-username/hts-coils.git
+git clone https://github.com/DawsonInstitute/hts-coils.git
 cd hts-coils
 pip install -r requirements.txt
 jupyter lab notebooks/
@@ -173,7 +173,7 @@ If you use these notebooks in your research or education, please cite:
   author={[Your Name]},
   year={2024},
   publisher={MyBinder},
-  url={https://mybinder.org/v2/gh/your-username/hts-coils/main}
+  url={https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main}
 }
 ```
 

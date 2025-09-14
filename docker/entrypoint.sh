@@ -181,7 +181,7 @@ Examples:
   # Interactive shell
   docker run -it soliton-validation:latest shell
 
-For more information, visit: https://github.com/arcticoder/hts-coils
+For more information, visit: https://github.com/DawsonInstitute/hts-coils
 EOF
 }
 

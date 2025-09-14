@@ -355,12 +355,12 @@ which yields approximately 30\% total uncertainty dominated by $J_c$ variations 
 
 \subsection{Computational Implementation and Reproducibility}
 
-All simulations employ deterministic parameters with specifications: Python 3.11, NumPy 1.24, SciPy 1.10. Complete source code is available at \url{https://github.com/arcticoder/hts-coils} with comprehensive reproduction documentation.
+All simulations employ deterministic parameters with specifications: Python 3.11, NumPy 1.24, SciPy 1.10. Complete source code is available at \url{https://github.com/DawsonInstitute/hts-coils} with comprehensive reproduction documentation.
 
 			\textbf{High-Field (7.07 T) Results Reproduction:} Explicit command sequence for reproducing all 7.07 T results:
 {\scriptsize\raggedright
 \begin{enumerate}
-\item \begin{minipage}[t]{\columnwidth}\ttfamily\detokenize{git clone https://github.com/arcticoder/hts-coils.git && cd hts-coils}\end{minipage}
+\item \begin{minipage}[t]{\columnwidth}\ttfamily\detokenize{git clone https://github.com/DawsonInstitute/hts-coils.git && cd hts-coils}\end{minipage}
 \item \begin{minipage}[t]{\columnwidth}\ttfamily\detokenize{python scripts/high_field_optimization.py --target-field 7.07 --max-tapes 100 --operating-temp 15 --output results/high_field_7T.json}\end{minipage}
 \item \begin{minipage}[t]{\columnwidth}\ttfamily\detokenize{python scripts/thermal_analysis.py --config results/high_field_7T.json --validate-margins --output results/thermal_7T.json}\end{minipage}
 \item \begin{minipage}[t]{\columnwidth}\ttfamily\detokenize{python scripts/stress_analysis.py --input results/high_field_7T.json --fea-backend auto --validate --output results/stress_7T.json}\end{minipage}

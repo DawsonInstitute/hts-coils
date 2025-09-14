@@ -28,7 +28,7 @@ This repository provides a comprehensive optimization framework for high-tempera
 
 **Launch immediately in your browser - no installation required!**
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/arcticoder/hts-coils/main)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main)
 
 Experience the complete HTS coil optimization framework through interactive Jupyter notebooks:
 
@@ -58,7 +58,7 @@ Experience the complete HTS coil optimization framework through interactive Jupy
 ### Basic Installation
 
 ```bash
-git clone https://github.com/arcticoder/hts-coils.git
+git clone https://github.com/DawsonInstitute/hts-coils.git
 cd hts-coils
 pip install -r requirements.txt
 ```
@@ -82,7 +82,7 @@ pip install -e .[opt]  # Includes Bayesian optimizer (scikit-optimize)
 
 ### Interactive Notebooks (MyBinder)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/your-username/hts-coils/main?urlpath=lab/tree/notebooks/)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/)
 
 Launch interactive Jupyter notebooks in your browser (no installation required):
 
@@ -358,7 +358,7 @@ If you use this framework in your research, please cite:
   author={[Author Name]},
   journal={IEEE Transactions on Applied Superconductivity},
   year={2025},
-  note={arXiv preprint available at: https://github.com/arcticoder/hts-coils}
+  note={arXiv preprint available at: https://github.com/DawsonInstitute/hts-coils}
 }
 ```
 

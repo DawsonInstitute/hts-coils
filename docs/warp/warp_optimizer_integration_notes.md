@@ -2,7 +2,7 @@
 
 **Date**: September 3, 2025  
 **Integration Status**: Successfully Completed  
-**Repository**: https://github.com/arcticoder/hts-coils  
+**Repository**: https://github.com/DawsonInstitute/hts-coils  
 
 ## Integration Overview
 

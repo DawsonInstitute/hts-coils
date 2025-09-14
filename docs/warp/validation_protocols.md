@@ -34,7 +34,7 @@ Windows 10/11 with WSL2
 #### 1.1.2 Software Dependencies Installation
 ```bash
 # Clone repository
-git clone https://github.com/arcticoder/hts-coils.git
+git clone https://github.com/DawsonInstitute/hts-coils.git
 cd hts-coils
 
 # Initialize warp-bubble-optimizer submodule

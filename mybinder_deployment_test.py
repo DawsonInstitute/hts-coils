@@ -189,7 +189,7 @@ def generate_mybinder_url():
     
     # Assuming GitHub repository
     # You'll need to update these with actual repo details
-    github_user = "arcticoder"  # Update with actual GitHub username
+    github_user = "DawsonInstitute"  # Update with actual GitHub username
     repo_name = "hts-coils"     # Update with actual repo name
     branch = "main"             # Update with actual branch name
     
@@ -263,7 +263,7 @@ def main():
     log_message("Starting MyBinder deployment test...")
     
     # Change to the correct directory
-    os.chdir("/home/sherri3/Code/asciimath/hts-coils")
+    os.chdir("~/Code/asciimath/hts-coils")
     
     # Run deployment tests
     report = create_deployment_report()
