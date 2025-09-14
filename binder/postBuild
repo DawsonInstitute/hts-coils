@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Enable JupyterLab extensions for better user experience
+jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
+jupyter labextension install --no-build plotlywidget
+jupyter labextension install --no-build jupyterlab-plotly
+
+# Build JupyterLab with all extensions
+jupyter lab build --dev-build=False --minimize=True
+
+# Enable classic notebook widgets
+jupyter nbextension enable --py widgetsnbextension --sys-prefix
+
+# Enable matplotlib widget for interactive plotting
+jupyter nbextension enable --py ipympl --sys-prefix
+
+echo "MyBinder post-build setup complete!"

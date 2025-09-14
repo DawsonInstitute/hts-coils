@@ -1,0 +1,38 @@
+# MyBinder Requirements for HTS Coils Educational Notebooks
+# Optimized for MyBinder resource constraints (1-2GB RAM, educational focus)
+
+# Core scientific computing
+numpy==1.24.3
+scipy==1.10.1
+matplotlib==3.7.1
+
+# Jupyter ecosystem
+jupyter==1.0.0
+jupyterlab==4.0.6
+ipywidgets==8.1.1
+plotly==5.16.1
+
+# Educational and interactive features
+sympy==1.12         # Symbolic mathematics for educational derivations
+ipympl==0.9.3       # Interactive matplotlib in Jupyter
+voila==0.4.2        # For dashboard-style presentations
+
+# Additional visualization
+seaborn==0.12.2     # Statistical plotting
+pandas==2.1.1       # Data handling for parameter studies
+
+# Basic optimization (lightweight alternative to full optimization suites)
+scikit-learn==1.3.0  # For some optimization algorithms
+
+# Documentation and presentation
+markdown==3.5.1
+jupyter-book==0.15.1
+
+# Performance (but lightweight)
+numba==0.58.1       # JIT compilation for performance-critical code
+
+# Note: Avoiding heavy dependencies like:
+# - fenics-dolfinx (too heavy for MyBinder)
+# - mpi4py (not needed for educational notebooks)
+# - petsc4py (too heavy for MyBinder)
+# - COMSOL-related packages (proprietary)
