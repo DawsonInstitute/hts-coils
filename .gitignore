@@ -50,3 +50,6 @@ papers/**/author_config.tex
 .env
 
 docs/warp/texput.log
+
+# Local conda environments created for development (avoid committing large env folders)
+envs/

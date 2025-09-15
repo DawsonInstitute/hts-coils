@@ -11,13 +11,38 @@ This repository provides interactive Jupyter notebooks for reproducing and explo
 
 Click the badge above to launch the interactive environment. No installation required!
 
-### Option 2: Local Installation
+### Option 2: Local Installation (recommended: conda)
+If you want to run the notebooks locally, the easiest, most reproducible approach is to use the conda environment we provide below (Python 3.11). A conda environment avoids build-from-source issues for pinned binary packages such as NumPy.
+
 ```bash
-git clone https://github.com/DawsonInstitute/hts-coils.git
-cd hts-coils
+# create a local conda environment (created locally at `./envs/hts-py311`)
+conda create -y -p ./envs/hts-py311 python=3.11
+
+# install the project's pinned packages (prefer using conda for large binary packages)
+conda activate ./envs/hts-py311
+conda install -y numpy=1.24.3 scipy=1.10.1 matplotlib=3.7.1 || true
+# fall back to pip for any remaining packages
+pip install -r requirements.txt
+
+# launch Jupyter Lab from the repository root
+jupyter lab notebooks/
+```
+
+Note: the conda environment path above points to `./envs/hts-py311` inside the repository. This directory is convenient for local development and avoids requiring sudo to install a system Python. If you prefer not to use conda, see the virtualenv alternative below.
+
+Virtualenv alternative (requires Python 3.11)
+```bash
+# Make sure Python 3.11 is available on your system. Then recreate a virtualenv named .venv:
+sudo apt-get install -y python3.11 python3.11-venv python3.11-dev  # system step (sudo)
+rm -rf .venv
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -U pip setuptools wheel
 pip install -r requirements.txt
 jupyter lab notebooks/
 ```
+
+If you run into a build error while installing (for example when pip attempts to build NumPy from source under Python 3.12), prefer the conda method above — it installs prebuilt binary packages and avoids build-time toolchain issues.
 
 ## 📚 Notebook Overview
 
