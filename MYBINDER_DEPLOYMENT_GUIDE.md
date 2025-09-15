@@ -28,6 +28,36 @@ pip install -r requirements.txt
 jupyter lab notebooks/
 ```
 
+Note: on some systems `conda activate ./envs/hts-py311` may not work directly when using a path-style environment. Use `conda activate` with the full environment path if needed:
+
+```bash
+# example if `conda activate ./envs/hts-py311` fails
+conda activate "$(pwd)/envs/hts-py311"
+```
+
+Kernel registration (one-time, inside the environment)
+```bash
+# Install kernel and any missing Python-only packages (run from within the env)
+pip install --upgrade pip setuptools wheel
+pip install plotly ipywidgets ipykernel
+
+# Register the kernel so JupyterLab can auto-select it
+python -m ipykernel install --user --name hts-py311 --display-name "HTS Coils (py3.11)"
+```
+
+Open notebooks in JupyterLab and verify the kernel
+- Launch JupyterLab from the repository root (see command above). In the notebook UI the kernel selector is usually at the top-right of the notebook page.
+- The kernel should show as: "HTS Coils (py3.11)". If it does not, open Kernel → Change Kernel and pick that kernel.
+
+Quick kernel-switch check from a terminal (optional):
+```bash
+# Print installed kernels and verify `hts-py311` is listed
+jupyter kernelspec list
+
+# Verify plotly is importable with the env python (replace path if you used an absolute env path)
+./envs/hts-py311/bin/python -c "import plotly; print('plotly', plotly.__version__)"
+```
+
 Note: the conda environment path above points to `./envs/hts-py311` inside the repository. This directory is convenient for local development and avoids requiring sudo to install a system Python. If you prefer not to use conda, see the virtualenv alternative below.
 
 Virtualenv alternative (requires Python 3.11)
