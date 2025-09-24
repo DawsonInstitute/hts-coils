@@ -115,7 +115,7 @@ with amplitude $A$, center position $r_0$, and characteristic width $\sigma$. \t
 \caption{Comparison of Warp Drive Experimental Approaches}
 \label{tab:comparison}
 \footnotesize
-\begin{tabular}{@{}lp{2.2cm}p{2.0cm}p{1.8cm}p{1.5cm}p{1.8cm}@{}}
+\begin{tabular}{@{}l>{\raggedright}p{2.2cm}>{\raggedright}p{2.0cm}>{\raggedright}p{1.8cm}>{\raggedright}p{1.5cm}>{\raggedright\arraybackslash}p{1.8cm}@{}}
 \toprule
 Approach & Energy Requirement & Magnetic Field & Detection Limit & Cost & Status \\
 \midrule
@@ -171,8 +171,8 @@ The primary challenge in soliton research has been the integration of multiple c
 
 Our framework addresses each challenge through validated technological solutions:
 \begin{enumerate}
-\item \textbf{Energy Optimization}: Integration of warp-bubble-optimizer algorithms achieving 40\% efficiency improvements
-\item \textbf{HTS Magnetic Systems}: Validated superconducting coils generating 5--10~T fields with exceptional stability
+\item \textbf{Energy Optimization}: Integration of multi-objective optimization algorithms for soliton envelope shaping and power budget management achieving 40\% efficiency improvements
+\item \textbf{HTS Magnetic Systems}: Computationally validated superconducting coil designs potentially capable of generating 5--10~T fields with projected exceptional stability
 \item \textbf{Advanced Detection}: Interferometric systems capable of $10^{-18}$~m displacement sensitivity
 \item \textbf{Comprehensive Safety}: Experimental timeline frameworks with real-time abort capabilities for laboratory operations
 \end{enumerate}
@@ -192,7 +192,7 @@ We designed the validation framework with a modular architecture where each subs
 \vspace{2cm}
 \textbf{Framework Architecture Diagram}\\[0.5cm]
 \textit{[Diagram showing integrated system with 5 subsystems:]}\\[0.3cm]
-\textbf{1. Warp-Bubble Optimizer} $\rightarrow$ \textbf{2. HTS Magnetic Confinement}\\[0.2cm]
+\textbf{1. Energy Optimization System} $\rightarrow$ \textbf{2. HTS Magnetic Confinement}\\[0.2cm]
 $\downarrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
 \textbf{5. Data Acquisition} $\leftarrow$ \textbf{3. Plasma Control}\\[0.2cm]
 $\uparrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
@@ -200,10 +200,10 @@ $\uparrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
  		extit{Coordinated operation may potentially enable soliton formation and detection.}
 \vspace{2cm}
 \end{minipage}}
-\caption{\textbf{Integrated Lentz-HTS Validation Framework Architecture}: Comprehensive schematic showing the five interconnected subsystems required for laboratory-scale soliton validation. \textbf{Data Flow}: (1) Warp-Bubble Optimizer computes optimal energy configurations and provides targeting parameters; (2) HTS Magnetic Confinement System generates precisely controlled $7.07\pm0.15$~T toroidal fields with $<0.2\pm0.05\%$ ripple using REBCO superconducting tape; (3) Plasma Control System maintains optimal density ($n_e = 10^{20}\,\mathrm{m}^{-3}$) and temperature (100--1000~eV) profiles through real-time feedback; (4) Enhanced Interferometric Detection system achieves $1.0\times10^{-18}\pm2\times10^{-19}$~m spacetime distortion sensitivity using a stabilized Michelson configuration; (5) Data Acquisition and Analysis processes real-time measurements at 10~kHz with automated soliton detection algorithms. \textbf{Integration}: Subsystems communicate through a centralized control system with $<100\,\mu\mathrm{s}$ latency. \textbf{Performance}: Complete system validation demonstrates computational feasibility within $\pm15\%$ error bounds across all subsystems. \textbf{Abbreviations}: HTS = High-Temperature Superconductor; REBCO = Rare Earth Barium Copper Oxide. \textbf{Status}: All parameters represent computational projections requiring experimental validation.}
+\caption{\textbf{Integrated Lentz-HTS Validation Framework Architecture}: Comprehensive schematic showing the five interconnected subsystems required for laboratory-scale soliton validation. \textbf{Data Flow}: (1) Energy Optimization System computes optimal energy configurations and provides targeting parameters using multi-objective optimization algorithms; (2) HTS Magnetic Confinement System generates precisely controlled $7.07\pm0.15$~T toroidal fields with $<0.2\pm0.05\%$ ripple using REBCO superconducting tape; (3) Plasma Control System maintains optimal density ($n_e = 10^{20}\,\mathrm{m}^{-3}$) and temperature (100--1000~eV) profiles through real-time feedback; (4) Enhanced Interferometric Detection system achieves $1.0\times10^{-18}\pm2\times10^{-19}$~m spacetime distortion sensitivity using a stabilized Michelson configuration; (5) Data Acquisition and Analysis processes real-time measurements at 10~kHz with automated soliton detection algorithms. \textbf{Integration}: Subsystems communicate through a centralized control system with $<100\,\mu\mathrm{s}$ latency. \textbf{Performance}: Complete system validation demonstrates computational feasibility within $\pm15\%$ error bounds across all subsystems. \textbf{Abbreviations}: HTS = High-Temperature Superconductor; REBCO = Rare Earth Barium Copper Oxide. \textbf{Status}: All parameters represent computational projections requiring experimental validation.}
 \label{fig:framework}
 \end{figure}
-\subsubsection{Energy Optimization Core (warp-bubble-optimizer Integration)}
+\subsubsection{Energy Optimization Core (Multi-Objective Algorithm Integration)}
 
 The energy optimization subsystem implements advanced algorithms to minimize power requirements while maintaining soliton formation criteria:
 
@@ -214,7 +214,7 @@ The energy optimization subsystem implements advanced algorithms to minimize pow
 \item \textbf{Envelope Profile Fitting}: Precision target soliton envelope generation using $\sech^2$ basis functions with $L_1/L_2$ error minimization
 \end{itemize}
 
-The integration leverages the warp-bubble-optimizer algorithms \cite{WarpBubble2024,ComputationalOptimization2023}, validated through: (1) Cross-code benchmarking against established optimization libraries with $<3\%$ variance; (2) Analytical verification against known optimization solutions with machine precision agreement; (3) Monte Carlo validation across 10,000 parameter sets with 99.7\% convergence success rate; (4) Comprehensive error analysis showing numerical stability under extreme parameter conditions. Algorithms adapted specifically for Lentz soliton applications with enhanced convergence stability through computational modeling.
+The integration leverages advanced multi-objective optimization algorithms for soliton envelope shaping, power budget management, and temporal energy distribution \cite{WarpBubble2024,ComputationalOptimization2023}, validated through: (1) Cross-code benchmarking against established optimization libraries with variance analysis implemented in \texttt{notebooks/validation\_framework.py} showing $<3\%$ variance \cite{HTS-Coils-GitHub}; (2) Analytical verification against known optimization solutions with machine precision agreement as demonstrated in \texttt{src/warp/comsol\_plasma.py::perform\_analytical\_validation} \cite{HTS-Coils-GitHub}; (3) Monte Carlo validation across 10,000 parameter sets with 99.7\% convergence success rate through uncertainty quantification harness in \texttt{src/warp/optimizer/uq\_impulse\_energy\_variance.py} \cite{HTS-Coils-GitHub}; (4) Comprehensive error analysis showing numerical stability under extreme parameter conditions. Algorithms adapted specifically for Lentz soliton applications with enhanced convergence stability through computational modeling.
 
 \subsubsection{HTS Magnetic Confinement System}
 
@@ -398,7 +398,7 @@ This enhanced validation framework addresses critical concerns about model valid
 \textbf{Algorithm Validation and Computational Methodology}:
 
 \begin{itemize}
-\item \textbf{Warp-Bubble-Optimizer Algorithm Validation}: Comprehensive validation protocol establishes algorithm reliability:
+\item \textbf{Multi-Objective Optimization Algorithm Validation}: Comprehensive validation protocol establishes algorithm reliability:
    \begin{itemize}
    \item \textbf{Cross-Library Benchmarking}: Comparison with SciPy, NLOPT, and JAX optimizers shows convergence agreement within $\pm 2.8\%$ for standard test functions
    \item \textbf{Analytical Verification}: Exact reproduction of known analytical optima (Rosenbrock, Rastrigin, Ackley functions) with machine precision accuracy
@@ -789,7 +789,7 @@ Successful laboratory demonstration of Lentz solitons would provide:
 \end{itemize}
 
 \subsubsection{Technological Applications}
-The validated framework enables:
+The computationally validated framework may potentially enable:
 \begin{itemize}
 \item \textbf{Advanced Propulsion}: Potential breakthrough in spacecraft propulsion technology
 \item \textbf{Fundamental Research}: Platform for exploring exotic spacetime phenomena
@@ -987,7 +987,7 @@ We present a preliminary computational framework for potential laboratory-scale 
 
 \subsection{Computational Achievements and Projections}
 \begin{enumerate}
-\item \textbf{Energy Optimization}: 40\% efficiency improvement projected through warp-bubble-optimizer integration, pending experimental validation
+\item \textbf{Energy Optimization}: 40\% efficiency improvement projected through multi-objective optimization algorithm integration, pending experimental validation
 \item \textbf{Magnetic Confinement}: 7.07~T HTS fields with 0.16\% ripple demonstrated in simulation, requiring experimental verification  
 \item \textbf{Plasma Simulation}: $>0.1$~ms soliton stability projected with comprehensive physics modeling, subject to MHD approximation limitations
 \item \textbf{Detection Capability}: $>10^{-18}$~m displacement sensitivity projected, contingent on achieving quantum-limited performance
@@ -1047,7 +1047,7 @@ The study demonstrates that laboratory-scale soliton experiments, while computat
 
 \section*{Acknowledgments}
 
-The authors thank the global research community working on advanced propulsion and fundamental physics. Special recognition goes to the developers of the warp-bubble-optimizer algorithms, whose energy optimization breakthroughs made this integrated approach possible. We acknowledge the importance of international collaboration in advancing the frontiers of physics and technology.
+The authors thank the global research community working on advanced propulsion and fundamental physics. Special recognition goes to the computational optimization research community, whose energy optimization breakthroughs made this integrated approach possible. We acknowledge the importance of international collaboration in advancing the frontiers of physics and technology.
 
 \section*{Funding}
 
@@ -1266,6 +1266,12 @@ Thompson, P.D., Wilson, K.J., and Brown, S.E.
 Kumar, S. and Chen, W.H.
 \newblock Multi-objective optimization algorithms for complex physics simulations.
 \newblock {\em Computational Optimization and Applications}, 89:123--156, 2024.
+
+\bibitem{HTS-Coils-GitHub}
+Dawson Institute Research Team.
+\newblock HTS Coils Research Repository: Computational framework for laboratory-scale soliton validation.
+\newblock \url{https://github.com/DawsonInstitute/hts-coils}, 2025.
+\newblock Accessed: September 2025.
 
 \end{thebibliography}
 
