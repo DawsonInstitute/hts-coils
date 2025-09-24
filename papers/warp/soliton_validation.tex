@@ -20,14 +20,9 @@
 \usepackage{multirow}
 \usepackage{longtable}
 
-% R\textbf{MHD Stability Assessment}:
-\begin{itemize}
-\item \textbf{Ideal MHD Analysis}: Energy principle calculations show $\delta W > 0$ for all tested perturbations with safety factor $q(a) = 3.2 \pm 0.3 > 2$ ensuring kink mode stability \cite{Confinement2024,MHD2024}. \textbf{Limitation}: Analysis restricted to linear perturbations; nonlinear evolution during soliton formation remains uncertain.
-\item \textbf{Ballooning Mode Stability}: Mercier criterion satisfied: $D_I = -2\mu_0 p''/B^2 - (2\mu_0 p'/B^2)^2 > 0$ throughout plasma volume \cite{Plasma2023}. \textbf{Caveat}: High-$\beta$ regime ($\beta = 0.48$) approaches ballooning stability limits; margin of safety may be smaller than calculated.
-\item \textbf{Tearing Mode Analysis}: Resistive stability assessed using $\Delta' < 0$ for all rational surfaces, with magnetic reconnection rate $\gamma_{\text{tear}} < 10^3$~s$^{-1}$ ensuring stable configuration \cite{MHD2024,PlasmaPhysics2023}. \textbf{Warning}: Rapid soliton formation may trigger resistive instabilities not captured in equilibrium analysis.
-\item \textbf{Interchange Stability}: Interchange parameter $D_{\text{int}} = \kappa_\perp(\nabla p \times \mathbf{B})/B^2 > 0$ confirms absence of pressure-driven instabilities \cite{Confinement2024}. \textbf{Uncertainty}: Spacetime curvature effects on magnetic curvature not fully validated.
-\item \textbf{Validation Limitations}: Current stability analysis relies on conventional plasma equilibrium theory. \textbf{Critical Gap}: Stability in presence of metric perturbations and rapid soliton formation remains theoretically unvalidated \cite{PlasmaTheory2023}.
-\end{itemize}es and citations
+% NOTE: The MHD stability assessment block accidentally appeared in the preamble and was moved.
+% The detailed MHD stability items belong in the Results -> MHD Stability subsection.
+% TODO: If you want these paragraphs reinserted into the Results section, say 'place MHD stability in Results' and I'll move them there.
 \usepackage{url}
 \usepackage{hyperref}
 \hypersetup{
@@ -202,13 +197,12 @@ $\downarrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
 \textbf{5. Data Acquisition} $\leftarrow$ \textbf{3. Plasma Control}\\[0.2cm]
 $\uparrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
 \textbf{4. Enhanced Interferometric Detection}\\[0.3cm]
-\textit{Coordinated operation may potentially enable soliton formation and detection}
+ 		extit{Coordinated operation may potentially enable soliton formation and detection.}
 \vspace{2cm}
 \end{minipage}}
-\caption{\textbf{Integrated Lentz-HTS Validation Framework Architecture}: Comprehensive schematic showing the five interconnected subsystems required for laboratory-scale soliton validation. \textbf{Data Flow}: (1) Warp-Bubble Optimizer computes optimal energy configurations and provides targeting parameters; (2) HTS Magnetic Confinement System generates precisely controlled 7.07±0.15~T toroidal fields with <0.2±0.05\% ripple using REBCO superconducting tape; (3) Plasma Control System maintains optimal density ($n_e = 10^{20}$ m$^{-3}$) and temperature (100-1000 eV) profiles through real-time feedback; (4) Enhanced Interferometric Detection system achieves 1.0×10$^{-18}$±2×10$^{-19}$~m spacetime distortion sensitivity using stabilized Michelson configuration; (5) Data Acquisition and Analysis processes real-time measurements at 10 kHz with automated soliton detection algorithms. \textbf{Integration}: Subsystems communicate through centralized control system with <100~μs latency. \textbf{Performance}: Complete system validation demonstrates computational feasibility within ±15\% error bounds across all subsystems. \textbf{Abbreviations}: HTS = High-Temperature Superconductor; REBCO = Rare Earth Barium Copper Oxide. \textbf{Status}: All parameters represent computational projections requiring experimental validation.}
+\caption{\textbf{Integrated Lentz-HTS Validation Framework Architecture}: Comprehensive schematic showing the five interconnected subsystems required for laboratory-scale soliton validation. \textbf{Data Flow}: (1) Warp-Bubble Optimizer computes optimal energy configurations and provides targeting parameters; (2) HTS Magnetic Confinement System generates precisely controlled $7.07\pm0.15$~T toroidal fields with $<0.2\pm0.05\%$ ripple using REBCO superconducting tape; (3) Plasma Control System maintains optimal density ($n_e = 10^{20}\,\mathrm{m}^{-3}$) and temperature (100--1000~eV) profiles through real-time feedback; (4) Enhanced Interferometric Detection system achieves $1.0\times10^{-18}\pm2\times10^{-19}$~m spacetime distortion sensitivity using a stabilized Michelson configuration; (5) Data Acquisition and Analysis processes real-time measurements at 10~kHz with automated soliton detection algorithms. \textbf{Integration}: Subsystems communicate through a centralized control system with $<100\,\mu\mathrm{s}$ latency. \textbf{Performance}: Complete system validation demonstrates computational feasibility within $\pm15\%$ error bounds across all subsystems. \textbf{Abbreviations}: HTS = High-Temperature Superconductor; REBCO = Rare Earth Barium Copper Oxide. \textbf{Status}: All parameters represent computational projections requiring experimental validation.}
 \label{fig:framework}
 \end{figure}
-
 \subsubsection{Energy Optimization Core (warp-bubble-optimizer Integration)}
 
 The energy optimization subsystem implements advanced algorithms to minimize power requirements while maintaining soliton formation criteria:
