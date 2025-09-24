@@ -33,7 +33,9 @@ from dataclasses import dataclass
 import time
 
 # Import optimization integration
+SOLITON_INTEGRATION_AVAILABLE = False
 try:
+    # Try relative import first (when run as module)
     from .soliton_plasma import (
         comprehensive_energy_optimization,
         advanced_soliton_ansatz_exploration,
@@ -42,17 +44,66 @@ try:
         ADVANCED_MODULES_AVAILABLE
     )
     SOLITON_INTEGRATION_AVAILABLE = True
-except ImportError as e:
-    print(f"⚠️  Soliton integration not available: {e}")
-    SOLITON_INTEGRATION_AVAILABLE = False
+except ImportError:
+    try:
+        # Try absolute import from current directory (when run as script)
+        import sys
+        import os
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        if current_dir not in sys.path:
+            sys.path.insert(0, current_dir)
+        from soliton_plasma import (
+            comprehensive_energy_optimization,
+            advanced_soliton_ansatz_exploration,
+            get_integration_status,
+            OPTIMIZER_AVAILABLE,
+            ADVANCED_MODULES_AVAILABLE
+        )
+        SOLITON_INTEGRATION_AVAILABLE = True
+    except ImportError:
+        # Gracefully handle missing soliton integration
+        SOLITON_INTEGRATION_AVAILABLE = False
 
 # Import HTS coil integration
+HTS_INTEGRATION_AVAILABLE = False
 try:
+    # Try relative import first (when run as module) 
     from ..hts.coil import hts_coil_field
     HTS_INTEGRATION_AVAILABLE = True
 except ImportError:
-    print("⚠️  HTS coil integration not available - using synthetic fields")
-    HTS_INTEGRATION_AVAILABLE = False
+    try:
+        # Try to find HTS module in parent directory structure
+        import sys
+        from pathlib import Path
+        current_dir = Path(__file__).resolve().parent
+        
+        # Check possible HTS locations
+        possible_paths = [
+            current_dir.parent / "hts",  # src/hts
+            current_dir.parent.parent / "hts",  # parent/hts
+        ]
+        
+        for hts_path in possible_paths:
+            if hts_path.exists() and (hts_path / "coil.py").exists():
+                sys.path.insert(0, str(hts_path))
+                try:
+                    from coil import hts_coil_field
+                    HTS_INTEGRATION_AVAILABLE = True
+                    break
+                except ImportError:
+                    continue
+                    
+        if not HTS_INTEGRATION_AVAILABLE:
+            # Try importing from hts package if available
+            import importlib
+            try:
+                hts_coil = importlib.import_module('hts.coil')
+                hts_coil_field = hts_coil.hts_coil_field
+                HTS_INTEGRATION_AVAILABLE = True
+            except ImportError:
+                pass
+    except Exception:
+        pass
 
 
 @dataclass

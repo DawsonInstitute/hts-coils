@@ -37,61 +37,82 @@ from dataclasses import dataclass
 import logging
 
 # Import existing components
+PLASMA_INTEGRATION_AVAILABLE = False
 try:
+    # Try relative import first (when run as module)
     from .plasma_simulation import PlasmaParameters, SimulationState, PlasmaSimulation
     PLASMA_INTEGRATION_AVAILABLE = True
-except ImportError as e:
+except ImportError:
     try:
-        # Fallback to check if we can find the module in current directory
+        # Try absolute import from current directory (when run as script)
         import sys
         import os
-        current_dir = os.path.dirname(__file__)
-        if os.path.exists(os.path.join(current_dir, 'plasma_simulation.py')):
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        if current_dir not in sys.path:
             sys.path.insert(0, current_dir)
-            from plasma_simulation import PlasmaParameters, SimulationState, PlasmaSimulation
-            PLASMA_INTEGRATION_AVAILABLE = True
-        else:
-            raise ImportError("plasma_simulation module not found")
+        from plasma_simulation import PlasmaParameters, SimulationState, PlasmaSimulation
+        PLASMA_INTEGRATION_AVAILABLE = True
     except ImportError:
-        print(f"⚠️  Soliton integration not available: attempted relative import with no known parent package")
-        PLASMA_INTEGRATION_AVAILABLE = False
-        # Define placeholder classes
-        class PlasmaParameters:
-            def __init__(self, **kwargs):
-                for key, value in kwargs.items():
-                    setattr(self, key, value)
+        # Try searching in parent directory structure
+        try:
+            parent_dir = os.path.dirname(current_dir)
+            warp_dir = os.path.join(parent_dir, 'warp')
+            if os.path.exists(os.path.join(warp_dir, 'plasma_simulation.py')) and warp_dir not in sys.path:
+                sys.path.insert(0, warp_dir)
+                from plasma_simulation import PlasmaParameters, SimulationState, PlasmaSimulation
+                PLASMA_INTEGRATION_AVAILABLE = True
+        except ImportError:
+            pass
+
+if not PLASMA_INTEGRATION_AVAILABLE:
+    # Define placeholder classes
+    class PlasmaParameters:
+        def __init__(self, **kwargs):
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
 # Try to import COMSOL FEA components
 COMSOL_FEA_AVAILABLE = False
 try:
-    # Try different import strategies
+    # Try direct import first (when run as module)
+    from hts.comsol_fea import COMSOLServerConfig, COMSOLServerManager
+    COMSOL_FEA_AVAILABLE = True
+except ImportError:
     try:
-        from hts.comsol_fea import COMSOLServerConfig, COMSOLServerManager
-        COMSOL_FEA_AVAILABLE = True
-    except ImportError:
-        try:
-            import sys
-            from pathlib import Path
-            # Check multiple possible paths for HTS module
-            possible_paths = [
-                Path(__file__).parent.parent / "hts",
-                Path(__file__).parent.parent.parent / "hts",
-                Path(__file__).parent / "hts"
-            ]
-            
-            for hts_path in possible_paths:
-                if hts_path.exists():
-                    sys.path.insert(0, str(hts_path))
-                    try:
-                        from comsol_fea import COMSOLServerConfig, COMSOLServerManager
-                        COMSOL_FEA_AVAILABLE = True
-                        break
-                    except ImportError:
-                        continue
-        except ImportError:
-            pass
-except Exception:
-    pass
+        # Try to find and import HTS COMSOL FEA module
+        import sys
+        from pathlib import Path
+        current_dir = Path(__file__).resolve().parent
+        
+        # Check multiple possible paths for HTS module
+        possible_paths = [
+            current_dir.parent / "hts",  # src/hts
+            current_dir.parent.parent / "hts",  # parent/hts
+            current_dir / "hts"  # warp/hts
+        ]
+        
+        for hts_path in possible_paths:
+            if hts_path.exists() and (hts_path / "comsol_fea.py").exists():
+                sys.path.insert(0, str(hts_path))
+                try:
+                    from comsol_fea import COMSOLServerConfig, COMSOLServerManager
+                    COMSOL_FEA_AVAILABLE = True
+                    break
+                except ImportError:
+                    continue
+                    
+        if not COMSOL_FEA_AVAILABLE:
+            # Try importing from hts package if available in Python path
+            import importlib
+            try:
+                hts_comsol = importlib.import_module('hts.comsol_fea')
+                COMSOLServerConfig = hts_comsol.COMSOLServerConfig
+                COMSOLServerManager = hts_comsol.COMSOLServerManager
+                COMSOL_FEA_AVAILABLE = True
+            except ImportError:
+                pass
+    except Exception:
+        pass
 
 if not COMSOL_FEA_AVAILABLE:
     print("⚠️  COMSOL FEA integration not available - using placeholders")
@@ -125,32 +146,44 @@ if not COMSOL_FEA_AVAILABLE:
 # Import HTS integration 
 HTS_INTEGRATION_AVAILABLE = False
 try:
+    # Try direct import first (when run as module)
+    from hts.coil import hts_coil_field
+    HTS_INTEGRATION_AVAILABLE = True
+except ImportError:
     try:
-        # Try direct import first
-        from hts.coil import hts_coil_field
-        HTS_INTEGRATION_AVAILABLE = True
-    except ImportError:
-        try:
-            # Try relative import
-            import sys
-            from pathlib import Path
-            # Look for HTS module in parent directories
-            hts_path = Path(__file__).parent.parent / "hts"
-            if hts_path.exists():
+        # Try to find and import HTS module
+        import sys
+        from pathlib import Path
+        current_dir = Path(__file__).resolve().parent
+        
+        # Check multiple possible locations for HTS module
+        possible_paths = [
+            current_dir.parent / "hts",  # src/hts
+            current_dir.parent.parent / "hts",  # parent/hts
+            current_dir / "hts"  # warp/hts
+        ]
+        
+        for hts_path in possible_paths:
+            if hts_path.exists() and (hts_path / "coil.py").exists():
                 sys.path.insert(0, str(hts_path))
-                from coil import hts_coil_field
-                HTS_INTEGRATION_AVAILABLE = True
-            else:
-                # Check for src/hts directory
-                src_hts_path = Path(__file__).parent.parent.parent / "hts"
-                if src_hts_path.exists():
-                    sys.path.insert(0, str(src_hts_path))
+                try:
                     from coil import hts_coil_field
                     HTS_INTEGRATION_AVAILABLE = True
-        except ImportError:
-            pass
-except Exception:
-    pass
+                    break
+                except ImportError:
+                    continue
+                    
+        if not HTS_INTEGRATION_AVAILABLE:
+            # Try importing from hts package if available in Python path
+            import importlib
+            try:
+                hts_coil = importlib.import_module('hts.coil')
+                hts_coil_field = hts_coil.hts_coil_field
+                HTS_INTEGRATION_AVAILABLE = True
+            except ImportError:
+                pass
+    except Exception:
+        pass
 
 if not HTS_INTEGRATION_AVAILABLE:
     print("⚠️  HTS coil integration not available - using synthetic fields")
