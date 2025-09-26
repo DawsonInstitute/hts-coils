@@ -31,6 +31,7 @@ import json
 import tempfile
 import time
 import warnings
+import os
 from pathlib import Path
 import socket
 from dataclasses import dataclass
@@ -113,6 +114,72 @@ except ImportError:
                 pass
     except Exception:
         pass
+
+# Enhanced COMSOL availability detection
+if not COMSOL_FEA_AVAILABLE:
+    # Check for COMSOL availability through multiple methods
+    comsol_detected = False
+    detection_methods = []
+    
+    # Method 1: Check environment variable override
+    if os.environ.get('COMSOL_AVAILABLE', '').lower() in ['true', '1', 'yes']:
+        comsol_detected = True
+        detection_methods.append("COMSOL_AVAILABLE env var")
+    
+    # Method 2: Check for COMSOL executable in PATH
+    if not comsol_detected:
+        try:
+            result = subprocess.run(['which', 'comsol'], capture_output=True, text=True, timeout=5)
+            if result.returncode == 0:
+                comsol_detected = True
+                detection_methods.append(f"COMSOL executable at {result.stdout.strip()}")
+        except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
+            pass
+    
+    # Method 3: Check common COMSOL installation paths
+    if not comsol_detected:
+        common_paths = [
+            "/usr/local/comsol*/bin/comsol",
+            "/opt/comsol*/bin/comsol", 
+            "C:/Program Files/COMSOL/*/bin/comsol.exe",
+            "/Applications/COMSOL*/bin/comsol"
+        ]
+        
+        from glob import glob
+        for path_pattern in common_paths:
+            matching_paths = glob(path_pattern)
+            if matching_paths:
+                comsol_detected = True
+                detection_methods.append(f"Installation found at {matching_paths[0]}")
+                break
+    
+    # Method 4: Check COMSOL license availability
+    if not comsol_detected:
+        try:
+            # Try to ping COMSOL license server (common port 1718)
+            import socket
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.settimeout(2)
+                # Try localhost first, then common license server
+                for host in ['localhost', '127.0.0.1']:
+                    try:
+                        result = s.connect_ex((host, 1718))
+                        if result == 0:
+                            comsol_detected = True
+                            detection_methods.append(f"License server detected at {host}:1718")
+                            break
+                    except:
+                        continue
+        except:
+            pass
+    
+    if comsol_detected:
+        print(f"✅ COMSOL detected via: {', '.join(detection_methods)}")
+        print("   Note: Using placeholder mode - set COMSOL_AVAILABLE=false to disable detection")
+        # Keep COMSOL_FEA_AVAILABLE = False for now to use placeholders with better detection
+    else:
+        print("⚠️  COMSOL FEA integration not available - using placeholders")
+        print("   To enable COMSOL: install COMSOL Multiphysics or set COMSOL_AVAILABLE=true")
 
 if not COMSOL_FEA_AVAILABLE:
     print("⚠️  COMSOL FEA integration not available - using placeholders")

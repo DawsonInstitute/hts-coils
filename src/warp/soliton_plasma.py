@@ -36,9 +36,29 @@ try:
     )
     from .optimizer.src.supraluminal_prototype.power import (
         compute_smearing_energy,
-        battery_discharge_efficiency,
         power_electronics_optimization
     )
+    
+    # Try to import battery_discharge_efficiency with fallback
+    try:
+        from .optimizer.src.supraluminal_prototype.power import battery_discharge_efficiency
+    except (ImportError, AttributeError):
+        def battery_discharge_efficiency(C_rate, temperature=298.15):
+            """
+            Fallback battery discharge efficiency model.
+            
+            Args:
+                C_rate: Discharge rate (1C = full discharge in 1 hour)
+                temperature: Temperature in Kelvin
+            
+            Returns:
+                float: Efficiency factor (0-1)
+            """
+            # Simple empirical model: efficiency drops with higher discharge rates
+            base_efficiency = 0.95
+            rate_penalty = 0.05 * min(C_rate, 5.0)  # Cap at 5C for safety
+            temp_factor = 1.0 - abs(temperature - 298.15) / 1000.0  # Temperature derating
+            return max(0.1, base_efficiency - rate_penalty) * max(0.5, temp_factor)
     # Advanced optimization modules
     try:
         from .optimizer.src.supraluminal_prototype.mission import (

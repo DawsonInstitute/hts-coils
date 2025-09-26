@@ -386,7 +386,11 @@ class EnvironmentValidator:
         for category, results in self.validation_results.items():
             print(f"\n{category.upper()}:")
             if isinstance(results, dict):
-                for item, status in results.items():
+                # Handle both nested dict format and direct status format
+                if 'status' in results:
+                    # Direct status format (like python_version)
+                    item = category
+                    status = results
                     total_checks += 1
                     if status['status'] == 'PASS':
                         passed_checks += 1
@@ -397,6 +401,24 @@ class EnvironmentValidator:
                     elif status['status'] == 'WARNING':
                         warning_checks += 1
                         print(f"  ⚠ {item}: {status.get('warning', 'Unknown warning')}")
+                else:
+                    # Nested dict format (like dependencies, hardware)
+                    for item, status in results.items():
+                        total_checks += 1
+                        if isinstance(status, dict) and 'status' in status:
+                            if status['status'] == 'PASS':
+                                passed_checks += 1
+                                print(f"  ✓ {item}")
+                            elif status['status'] == 'FAIL':
+                                failed_checks += 1
+                                print(f"  ✗ {item}: {status.get('error', 'Unknown error')}")
+                            elif status['status'] == 'WARNING':
+                                warning_checks += 1
+                                print(f"  ⚠ {item}: {status.get('warning', 'Unknown warning')}")
+                        else:
+                            # Handle malformed status entries
+                            warning_checks += 1
+                            print(f"  ⚠ {item}: Invalid status format")
         
         print(f"\nSUMMARY:")
         print(f"  Total checks: {total_checks}")
