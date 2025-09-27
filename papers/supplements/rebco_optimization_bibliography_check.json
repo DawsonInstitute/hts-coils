@@ -16,15 +16,15 @@
       "journal": "National Science Review",
       "year": 2023,
       "local_path": "downloads/zhou_2023_review_of_progress.pdf",
-      "status": "downloaded"
+      "status": "found"
     },
-    "superpower2022": {
-      "citation_key": "superpower2022", 
+    "abraimov2022": {
+      "citation_key": "abraimov2022", 
       "expected_text": "D. Abraimov et al., \"Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,\" Superconductor Science and Technology, vol. 35, 065001, 2022.",
       "journal": "Superconductor Science and Technology",
       "year": 2022,
       "local_path": "downloads/Abraimov_2015_double_disordered_rebco.pdf",
-      "status": "downloaded",
+      "status": "found",
       "notes": "Industrial REBCO conductor research"
     },
     "hahn2019": {
@@ -33,7 +33,7 @@
       "journal": "Nature",
       "year": 2019,
       "local_path": "downloads/hahn_2019_45_5_tesla.pdf",
-      "status": "downloaded"
+      "status": "found"
     },
     "alpha2023": {
       "citation_key": "alpha2023",
@@ -41,7 +41,7 @@
       "journal": "Nature",
       "year": 2023,
       "local_path": "downloads/Anderson_2023_observation.pdf",
-      "status": "downloaded"
+      "status": "found"
     },
     "aegis2018": {
       "citation_key": "aegis2018",
@@ -58,16 +58,16 @@
       "journal": "Journal of Plasma Physics", 
       "year": 2020,
       "local_path": "downloads/creely_2020_sparc_tokamak.pdf",
-      "status": "downloaded"
+      "status": "found"
     },
-    "superpower2023": {
-      "citation_key": "superpower2023",
-      "expected_text": "SuperPower Inc., \"2G HTS Wire Platform Technical Specifications,\" SuperPower Technical Bulletin SP-TB-2023-HTS-001, 2023.",
+    "superpower2022": {
+      "citation_key": "superpower2022",
+      "expected_text": "SuperPower Inc., \"2G HTS Wire Platform Technical Specifications,\" SuperPower Technical Bulletin SP-TB-2022-HTS-001, 2022.",
       "type": "technical_report",
       "organization": "SuperPower Inc.",
       "year": 2022,
       "local_path": "downloads/superpower_2022_2g_hts_wire_platform.pdf",
-      "status": "downloaded"
+      "status": "found"
     },
     "zhai2020": {
       "citation_key": "zhai2020",
@@ -102,7 +102,7 @@
       "journal": "Journal of Physics D: Applied Physics",
       "year": 1970,
       "local_path": "downloads/Norris_1970_Calculation_of_hysteresis_losses.pdf",
-      "status": "downloaded"
+      "status": "found"
     },
     "brandt1995": {
       "citation_key": "brandt1995",

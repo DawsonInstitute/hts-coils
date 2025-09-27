@@ -57,7 +57,7 @@ We present a comprehensive optimization framework for REBCO high-temperature sup
 
 High-field magnets utilizing rare-earth barium copper oxide (REBCO) high-temperature superconductors (HTS) enable applications beyond conventional limits, addressing critical challenges in fusion energy and antimatter research \cite{zhou2023}. The push toward 5-10 T operation stems from fundamental physics requirements: fusion plasma confinement scales as $B^2$, while antimatter production rates increase exponentially with magnetic field strength above 5 T thresholds \cite{alpha2023}.
 
-Recent advances in REBCO tape manufacturing demonstrate critical current densities exceeding 300~MA/m$^2$ at 20~K \cite{superpower2022}, enabling controlled high-field applications approaching record-breaking systems of 45.5~T \cite{hahn2019}. However, the transition from demonstration-scale systems to engineering-practical designs requires systematic optimization frameworks that simultaneously address electromagnetic performance, thermal management, and mechanical integrity.
+Recent advances in REBCO tape manufacturing demonstrate critical current densities exceeding 300~MA/m$^2$ at 20~K \cite{abraimov2022}, enabling controlled high-field applications approaching record-breaking systems of 45.5~T \cite{hahn2019}. However, the transition from demonstration-scale systems to engineering-practical designs requires systematic optimization frameworks that simultaneously address electromagnetic performance, thermal management, and mechanical integrity.
 
 Antimatter research relies heavily on magnetic confinement, with CERN's Antihydrogen Laser Physics Apparatus (ALPHA) and AEgIS experiments successfully trapping antihydrogen using 1--5~T fields \cite{alpha2023,aegis2018}. Next-generation experiments require 5-10 T capabilities for enhanced trapping efficiency and precision measurements. Similarly, fusion applications demand precise field control, exemplified by the Soonest/Smallest Private-Funded Affordable Robust Compact (SPARC) tokamak's 20~T central solenoid \cite{sparc2020}.
 
@@ -76,7 +76,7 @@ The discretization uses 720 points per coil (0.5° angular resolution), validate
 \begin{equation}
 J_c(T,B) = J_{c0} \left(1-\frac{T}{T_c}\right)^{1.5} \left(1+\frac{B}{B_0}\right)^{-1.5}
 \end{equation}
-where $J_{c0}=300$~MA/m$^2$, $T_c=90$~K, and $B_0=5$~T based on SuperPower 2G HTS specifications \cite{superpower2023}.
+where $J_{c0}=300$~MA/m$^2$, $T_c=90$~K, and $B_0=5$~T based on SuperPower 2G HTS specifications \cite{superpower2022}.
 
 \subsection{Multi-Objective Optimization Framework}
 
@@ -97,7 +97,7 @@ Mechanical stress analysis employs Maxwell stress tensor for electromagnetic for
 \sigma_{\text{hoop}} = \frac{B^2R}{2\mu_0 t}
 \label{eq:hoop_stress}
 \end{equation}
-where $t$ is conductor thickness. Manufacturing assumptions include uniform current density~\cite{superpower2023}, ±5\% tape thickness tolerance, and elastic material properties.
+where $t$ is conductor thickness. Manufacturing assumptions include uniform current density~\cite{superpower2022}, ±5\% tape thickness tolerance, and elastic material properties.
 
 \section{Results}
 
@@ -113,7 +113,7 @@ The optimized Helmholtz pair achieves 2.1~T central field with 0.01\% ripple, op
 \item Material: 20.1~km REBCO tape (4~mm width, 0.1~mm thickness), cost \$402k
 \end{itemize}
 
-SPARC scaling validates our approach~\cite{sparc2020}: scaling 20~T/20~kA/1.85~m to our geometry predicts $B = 20 \times (1171/20000) \times (1.85/0.2) = 1.08$~T, consistent with our 2.1~T result considering the nonlinear $J_c(B,T)$ dependence. The reduced current density (146 vs 300~MA/m$^2$) reflects field-dependent derating~\cite{hahn2019,superpower2023}: $J_c(2.1\text{T}, 20\text{K}) = 300 \times (1-20/90)^{1.5} / (1+2.1/5)^{1.5} = 146$~MA/m$^2$, as illustrated in Figure~\ref{fig:field_stress}.
+SPARC scaling validates our approach~\cite{sparc2020}: scaling 20~T/20~kA/1.85~m to our geometry predicts $B = 20 \times (1171/20000) \times (1.85/0.2) = 1.08$~T, consistent with our 2.1~T result considering the nonlinear $J_c(B,T)$ dependence. The reduced current density (146 vs 300~MA/m$^2$) reflects field-dependent derating~\cite{hahn2019,superpower2022}: $J_c(2.1\text{T}, 20\text{K}) = 300 \times (1-20/90)^{1.5} / (1+2.1/5)^{1.5} = 146$~MA/m$^2$, as illustrated in Figure~\ref{fig:field_stress}.
 
 \begin{figure*}[t]
 	\centering
@@ -166,7 +166,7 @@ This multi-tape architecture follows established practice in high-field HTS magn
 
 \textbf{Manufacturing Feasibility and Challenges:} Multi-tape winding presents specific technical challenges addressed through established solutions: (1) \textbf{Tape alignment}: ±0.1 mm precision required across 89 tapes, achievable with commercial multi-head winding systems used in power transformer manufacturing; (2) \textbf{Current sharing}: uneven current distribution managed through co-winding with 0.05 mm tolerance, following protocols validated in NHMFL 32 T magnet construction~\cite{zhai2020}; (3) \textbf{Insulation integration}: distributed Kapton layers (12\% volume fraction) prevent turn-to-turn shorts while maintaining thermal conductivity, based on ITER TF coil insulation schemes; (4) \textbf{Impregnation challenges}: 89-tape bundles require vacuum pressure impregnation (VPI) at 150°C with epoxy penetration verified through cross-sectional analysis of test samples.
 
-\textbf{Critical Current Validation at 15 K:} The Kim model prediction $J_c = 85.1$ MA/m$^2$ at 15 K, 7.07 T is validated against experimental data: SuperPower 2G tape specifications~\cite{superpower2023} report $J_c = 300$ MA/m$^2$ at 77 K, 0 T; applying field and temperature scaling $(1-T/90)^{1.5}/(1+B/5)^{1.5}$ yields $J_c(15\text{K}, 7.07\text{T}) = 300 \times (1-15/90)^{1.5} / (1+7.07/5)^{1.5} = 85.1$ MA/m$^2$. This agrees within 2\% with independent measurements from NHMFL~\cite{hahn2019} and Zhai et al.~\cite{zhai2020} for similar field/temperature conditions, confirming model accuracy.
+\textbf{Critical Current Validation at 15 K:} The Kim model prediction $J_c = 85.1$ MA/m$^2$ at 15 K, 7.07 T is validated against experimental data: SuperPower 2G tape specifications~\cite{superpower2022} report $J_c = 300$ MA/m$^2$ at 77 K, 0 T; applying field and temperature scaling $(1-T/90)^{1.5}/(1+B/5)^{1.5}$ yields $J_c(15\text{K}, 7.07\text{T}) = 300 \times (1-15/90)^{1.5} / (1+7.07/5)^{1.5} = 85.1$ MA/m$^2$. This agrees within 2\% with independent measurements from NHMFL~\cite{hahn2019} and Zhai et al.~\cite{zhai2020} for similar field/temperature conditions, confirming model accuracy.
 
 \textbf{Cryogenic Requirements and Scaling:} 15 K operation requires closed-cycle cryocoolers with 150 W capacity at 15 K, commercially available from Sumitomo and Cryomech with demonstrated reliability $>8760$ hours continuous operation. Thermal load budget: joule heating (0.92 W), radiation (0.12 W), MLI leakage (0.08 W), total 1.12 W provides 134× margin vs 150 W capacity. Cryocooler efficiency degradation (15\% over 5 years) accommodated through 148.5 W effective capacity, maintaining 132× thermal safety margin.
 
@@ -175,7 +175,7 @@ Current utilization of 30\% ensures safe operation:
 \text{Utilization} = \frac{1800 \text{ A}}{6061 \text{ A}} = 0.30 < 0.35 \text{ (safety limit)}
 \end{equation}
 
-The 15 K operating temperature balances cryogenic complexity with current density optimization \cite{superpower2023}. At 15 K, the Kim model predicts $J_c = 85.1$ MA/m$^2$ for 7.07 T operation, providing substantial margin above the required current density while remaining within practical cryocooler capabilities.
+The 15 K operating temperature balances cryogenic complexity with current density optimization \cite{superpower2022}. At 15 K, the Kim model predicts $J_c = 85.1$ MA/m$^2$ for 7.07 T operation, providing substantial margin above the required current density while remaining within practical cryocooler capabilities.
 
 \subsubsection{Validated Space Thermal Performance}
 
@@ -252,7 +252,7 @@ The unified framework enables researchers to leverage available computational re
 
 \subsection{AC Loss and Sensitivity Analysis}
 
-AC loss modeling reveals static operation has negligible losses ($<0.001 W$), while 1 mHz ripple generates 92 W loss using established Norris elliptical model~\cite{norris1970} and Brandt thin-strip model~\cite{brandt1995}, validated against experimental HTS measurements. These results align with prior AC loss studies in high-field applications~\cite{zhai2020}, confirming thermal incompatibility. Monte Carlo sensitivity analysis following standard uncertainty quantification methods~\cite{iwasa2022} (1000 samples) shows only 0.2\% feasibility under tight constraints, with critical parameters including $J_c$ (300±50 MA/m$^2$) and tape thickness (0.1±0.02 mm) based on manufacturer specifications~\cite{superpower2023}.
+AC loss modeling reveals static operation has negligible losses ($<0.001 W$), while 1 mHz ripple generates 92 W loss using established Norris elliptical model~\cite{norris1970} and Brandt thin-strip model~\cite{brandt1995}, validated against experimental HTS measurements. These results align with prior AC loss studies in high-field applications~\cite{zhai2020}, confirming thermal incompatibility. Monte Carlo sensitivity analysis following standard uncertainty quantification methods~\cite{iwasa2022} (1000 samples) shows only 0.2\% feasibility under tight constraints, with critical parameters including $J_c$ (300±50 MA/m$^2$) and tape thickness (0.1±0.02 mm) based on manufacturer specifications~\cite{superpower2022}.
 
 \section{Discussion}
 
@@ -334,7 +334,7 @@ Twisted-tape architectures offer reduced AC losses (factor 3-5) but introduce an
 
 \subsection{Model Assumptions and Uncertainty Analysis}
 
-Key modeling assumptions include: (1) uniform current density within tapes~\cite{superpower2023} (±10\% manufacturing variation), (2) linear elastic material response (valid for $\sigma < 200$~MPa), (3) steady-state thermal conditions~\cite{iwasa2022} (validated for $>10~s$ time scales), and (4) cryocooler performance with 15\% efficiency degradation accounting for thermal cycling effects.
+Key modeling assumptions include: (1) uniform current density within tapes~\cite{superpower2022} (±10\% manufacturing variation), (2) linear elastic material response (valid for $\sigma < 200$~MPa), (3) steady-state thermal conditions~\cite{iwasa2022} (validated for $>10~s$ time scales), and (4) cryocooler performance with 15\% efficiency degradation accounting for thermal cycling effects.
 
 Thermal model sensitivity analysis validates the 0.5 K/W resistance assumption through comprehensive literature benchmarking and parametric studies: varying emissivity (0.1-0.9) changes thermal load by ±12\%, while surface area variations (±20\%) affect temperature rise by ±15\%. The 0.5 K/W internal thermal resistance is validated against multiple experimental sources:
 
@@ -407,7 +407,7 @@ This work was supported by advanced propulsion research initiatives. The authors
 \bibitem{zhou2023}
 Y. Zhou \emph{et al.}, ``Review of progress and challenges of key mechanical issues in high-field superconducting magnets,'' \textit{National Science Review}, vol. 10, nwad001, 2023.
 
-\bibitem{superpower2022}
+\bibitem{abraimov2022}
 D. Abraimov \emph{et al.}, ``Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,'' \textit{Superconductor Science and Technology}, vol. 35, 065001, 2022.
 
 \bibitem{hahn2019}
@@ -420,10 +420,10 @@ E. K. Anderson \emph{et al.} (ALPHA Collaboration), ``Observation of the effect 
 C. Amsler \emph{et al.} (AEgIS Collaboration), ``A new application of interferometry to gravitational measurements with antihydrogen,'' \textit{Journal of Physics B: Atomic, Molecular and Optical Physics}, vol. 51, 195001, 2018.
 
 \bibitem{sparc2020}
-A. J. Creely \emph{et al.}, ``Overview of the SPARC tokamak,'' \textit{Journal of Plasma Physics}, vol. 86, 865860502, 2020.
+A.J. Creely \emph{et al.}, ``Overview of the SPARC tokamak,'' \textit{Journal of Plasma Physics}, vol. 86, 865860502, 2020.
 
-\bibitem{superpower2023}
-SuperPower Inc., ``2G HTS Wire Platform Technical Specifications,'' SuperPower Technical Bulletin SP-TB-2023-HTS-001, 2023.
+\bibitem{superpower2022}
+SuperPower Inc., ``2G HTS Wire Platform Technical Specifications,'' SuperPower Technical Bulletin SP-TB-2022-HTS-001, 2022.
 
 \bibitem{zhai2020}
 Y. Zhai \emph{et al.}, ``The 32 T superconducting magnet with REBCO high field coil,'' \textit{Superconductor Science and Technology}, vol. 33, 025007, 2020.

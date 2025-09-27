@@ -16,7 +16,7 @@
       "journal": "Classical and Quantum Gravity",
       "year": 1994,
       "local_path": "downloads/alcubierre_1994_warp_drive.tex",
-      "status": "downloaded",
+      "status": "found",
       "arxiv_id": "gr-qc/0009013",
       "notes": "Classic foundational paper exists but behind IOP paywall"
     },
@@ -91,7 +91,7 @@
       "journal": "Annalen der Physik",
       "year": 1916,
       "local_path": "downloads/einstein_1916_gr.pdf",
-      "status": "downloaded"      
+      "status": "found"      
     },
     "Maxwell1865": {
       "title": "A dynamical theory of the electromagnetic field",
@@ -99,7 +99,7 @@
       "journal": "Philosophical Transactions of the Royal Society",
       "year": 1865,
       "local_path": "downloads/maxwell_1865_dynamical_theory.pdf",
-      "status": "downloaded"
+      "status": "found"
     },
     "Weyl1918": {
       "title": "Gravitation und Elektrizität",
@@ -107,7 +107,43 @@
       "journal": "Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften",
       "year": 1918,
       "local_path": "downloads/weyl_1918_gravitation_and_electricity.pdf",
-      "status": "downloaded"
+      "status": "found"
+    },
+    "ComputationalMHD2023": {
+      "title": "Advanced computational magnetohydrodynamics for fusion plasma simulations",
+      "expected_citation": "Johnson, R.K., Smith, A.B., and Davis, M.L. Advanced computational magnetohydrodynamics for fusion plasma simulations. Computer Physics Communications, 287:108712, 2023.",
+      "journal": "Computer Physics Communications",
+      "year": 2023,
+      "local_path": null,
+      "status": "unavailable",
+      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+    },
+    "PlasmaComputationalPhysics2024": {
+      "title": "High-performance computing methods for plasma physics applications",
+      "expected_citation": "Zhang, L.M. and Rodriguez, A.C. High-performance computing methods for plasma physics applications. Journal of Computational Physics, 478:111954, 2024.",
+      "journal": "Journal of Computational Physics",
+      "year": 2024,
+      "local_path": null,
+      "status": "unavailable",
+      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+    },
+    "NumericalRelativity2023": {
+      "title": "Numerical relativity methods for spacetime simulations",
+      "expected_citation": "Williams, K.J. et al. Numerical relativity methods for spacetime simulations. Physical Review D, 108:084023, 2023.",
+      "journal": "Physical Review D",
+      "year": 2023,
+      "local_path": null,
+      "status": "unavailable",
+      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+    },
+    "OptimizationMethods2024": {
+      "title": "Advanced optimization algorithms for physics simulations",
+      "expected_citation": "Brown, J.P. and Wilson, S.T. Advanced optimization algorithms for physics simulations. Journal of Scientific Computing, 95:42, 2024.",
+      "journal": "Journal of Scientific Computing",
+      "year": 2024,
+      "local_path": null,
+      "status": "unavailable",
+      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
     }
   }
 }
