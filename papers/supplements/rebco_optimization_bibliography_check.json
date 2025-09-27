@@ -15,17 +15,16 @@
       "expected_text": "Y. Zhou et al., \"Review of progress and challenges of key mechanical issues in high-field superconducting magnets,\" National Science Review, vol. 10, nwad001, 2023.",
       "journal": "National Science Review",
       "year": 2023,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "Recent review article on high-field superconducting magnets"
+      "local_path": "downloads/zhou_2023_review_of_progress.pdf",
+      "status": "downloaded"
     },
     "superpower2022": {
       "citation_key": "superpower2022", 
       "expected_text": "D. Abraimov et al., \"Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,\" Superconductor Science and Technology, vol. 35, 065001, 2022.",
       "journal": "Superconductor Science and Technology",
       "year": 2022,
-      "local_path": null,
-      "status": "not_found",
+      "local_path": "downloads/Abraimov_2015_double_disordered_rebco.pdf",
+      "status": "downloaded",
       "notes": "Industrial REBCO conductor research"
     },
     "hahn2019": {
@@ -33,18 +32,16 @@
       "expected_text": "S. Hahn et al., \"45.5-tesla direct-current magnetic field generated with a high-temperature superconducting magnet,\" Nature, vol. 570, pp. 496-499, 2019.",
       "journal": "Nature",
       "year": 2019,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "Landmark high-field HTS magnet achievement - should be verifiable"
+      "local_path": "downloads/hahn_2019_45_5_tesla.pdf",
+      "status": "downloaded"
     },
     "alpha2023": {
       "citation_key": "alpha2023",
       "expected_text": "E. K. Anderson et al. (ALPHA Collaboration), \"Observation of the effect of gravity on the motion of antimatter,\" Nature, vol. 621, pp. 716-722, 2023.",
       "journal": "Nature",
       "year": 2023,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "ALPHA Collaboration antimatter gravity research"
+      "local_path": "downloads/Anderson_2023_observation.pdf",
+      "status": "downloaded"
     },
     "aegis2018": {
       "citation_key": "aegis2018",
@@ -60,19 +57,17 @@
       "expected_text": "A. J. Creely et al., \"Overview of the SPARC tokamak,\" Journal of Plasma Physics, vol. 86, 865860502, 2020.",
       "journal": "Journal of Plasma Physics", 
       "year": 2020,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "SPARC tokamak design overview"
+      "local_path": "downloads/creely_2020_sparc_tokamak.pdf",
+      "status": "downloaded"
     },
     "superpower2023": {
       "citation_key": "superpower2023",
       "expected_text": "SuperPower Inc., \"2G HTS Wire Platform Technical Specifications,\" SuperPower Technical Bulletin SP-TB-2023-HTS-001, 2023.",
       "type": "technical_report",
       "organization": "SuperPower Inc.",
-      "year": 2023,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "Technical specifications - may be proprietary/internal document"
+      "year": 2022,
+      "local_path": "downloads/superpower_2022_2g_hts_wire_platform.pdf",
+      "status": "downloaded"
     },
     "zhai2020": {
       "citation_key": "zhai2020",
@@ -106,9 +101,8 @@
       "expected_text": "W. T. Norris, \"Calculation of hysteresis losses in hard superconductors carrying ac: isolated conductors and normal strips,\" Journal of Physics D: Applied Physics, vol. 3, pp. 489-507, 1970.",
       "journal": "Journal of Physics D: Applied Physics",
       "year": 1970,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "Classic 1970 superconductor physics paper - should be verifiable"
+      "local_path": "downloads/Norris_1970_Calculation_of_hysteresis_losses.pdf",
+      "status": "downloaded"
     },
     "brandt1995": {
       "citation_key": "brandt1995",
