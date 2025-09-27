@@ -109,9 +109,8 @@
       "expected_text": "E. H. Brandt and M. Indenbom, \"Type-II-superconductor strip with current in a perpendicular magnetic field,\" Physical Review B, vol. 48, pp. 12893-12906, 1995.",
       "journal": "Physical Review B",
       "year": 1995,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "Classic type-II superconductor theory - should be verifiable"
+      "local_path": "downloads/brandt_1993_type_ii_superconductor_strip.pdf",
+      "status": "downloaded"
     },
     "cfs2021": {
       "citation_key": "cfs2021",
@@ -146,9 +145,8 @@
       "expected_text": "Larbalestier, D.C., Jiang, J., Trociewitz, U.P., et al. Isotropic round-wire multifilament cuprate superconductor for generation of magnetic fields above 30 T. Nature Materials, 13:375-381, 2014.", 
       "journal": "Nature Materials",
       "year": 2014,
-      "local_path": null,
-      "status": "found",
-      "notes": "replacement for zhai2020 - legitimate high-field REBCO superconductor development above 30T"
+      "local_path": "downloads/Larbalestier_2014_Isotropic_round-wire_multifilament.pdf",
+      "status": "downloaded"
     },
     "iwasa2009cryogenic": {
       "citation_key": "iwasa2009cryogenic",
@@ -156,25 +154,16 @@
       "type": "book",
       "publisher": "Springer",
       "year": 2009,
-      "local_path": null,
-      "status": "found",
-      "notes": "replacement for iwasa2022 - standard reference on superconducting magnet thermal and engineering issues"
+      "local_path": "downloads/Iwasa_2009_Case_Studies_in_Superconducting_Magnets_2e.pdf",
+      "status": "downloaded"
     },
     "vanderLaan2010mechanical": {
       "citation_key": "vanderLaan2010mechanical",
       "expected_text": "van der Laan, D.C., Ekin, J.W., Clickner, C.C., and Stauffer, T.C. Delamination strength of YBCO coated conductors under transverse tensile stress. Superconductor Science and Technology, 20:765-770, 2007.",
       "journal": "Superconductor Science and Technology",
       "year": 2007,
-      "local_path": null,
-      "status": "found", 
-      "notes": "replacement for vanderlaan2019 - established work on REBCO tape mechanical characterization and stress limits"
+      "local_path": "downloads/van_der_Laan_2007_Delamination_strength.pdf",
+      "status": "downloaded"
     }
-  },
-  "validation_notes": [
-    "Bibliography extracted from lines 407-451 of rebco_hts_coil_optimization_fusion_antimatter.tex",
-    "Several entries marked as 'placeholder entries for locally-cited keys' in the source",
-    "Mix of legitimate research papers and potentially placeholder/fabricated entries",
-    "Technical reports may require institutional access for verification",
-    "Classic papers (Norris 1970, Brandt 1995) should be publicly verifiable"
-  ]
+  }
 }
