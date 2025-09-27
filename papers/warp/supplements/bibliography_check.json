@@ -1,0 +1,122 @@
+{
+  "metadata": {
+    "created": "2025-09-25",
+    "purpose": "Reference validation and local archival for soliton_validation.tex",
+    "status": "partially_validated",
+    "total_references": 11,
+    "verified_count": 1,
+    "downloaded_count": 1,
+    "missing_count": 10,
+    "last_updated": "2025-09-25"
+  },
+  "references": {
+    "Alcubierre1994": {
+      "title": "The warp drive: hyper-fast travel within general relativity",
+      "expected_citation": "Alcubierre, Miguel. The warp drive: hyper-fast travel within general relativity. Classical and Quantum Gravity, 11(5):L73-L77, 1994.",
+      "journal": "Classical and Quantum Gravity",
+      "year": 1994,
+      "local_path": null,
+      "status": "paywall_blocked",
+      "notes": "Classic foundational paper exists but behind IOP paywall"
+    },
+    "Lentz2021": {
+      "title": "Breaking the warp barrier: hyper-fast solitons in Einstein-Maxwell-plasma theory",
+      "expected_citation": "Lentz, Erik W. Breaking the warp barrier: hyper-fast solitons in Einstein-Maxwell-plasma theory. Classical and Quantum Gravity, 38(7):075015, 2021.",
+      "journal": "Classical and Quantum Gravity", 
+      "year": 2021,
+      "local_path": "downloads/lentz_2021_warp_solitons.tex",
+      "status": "downloaded",
+      "arxiv_id": "2006.07125",
+      "notes": "Successfully downloaded from arXiv - legitimate paper"
+    },
+    "Applied2025": {
+      "title": "Theoretical foundations of applied warp field physics",
+      "expected_citation": "Singh, Rajesh K, et al. Theoretical foundations of applied warp field physics. Applied Physics Reviews, 12(1):011302, 2025.",
+      "journal": "Applied Physics Reviews",
+      "year": 2025,
+      "local_path": null,
+      "status": "fabricated",
+      "notes": "Future dated paper - confirmed fabricated reference"
+    },
+    "NASA2024": {
+      "title": "Advanced space propulsion concepts: Annual progress report 2024",
+      "expected_citation": "NASA Breakthrough Propulsion Physics Program. Advanced space propulsion concepts: Annual progress report 2024. Technical Report NASA/TM-2024-232456, NASA Glenn Research Center, 2024.",
+      "type": "technical_report",
+      "institution": "NASA Glenn Research Center",
+      "year": 2024,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "NASA technical report - check official archives"
+    },
+    "ComputationalOptimization2023": {
+      "title": "Machine learning approaches to energy optimization in complex physical systems",
+      "expected_citation": "Rodriguez, Miguel A, Chen, Wei-Ming, and Patel, Neha K. Machine learning approaches to energy optimization in complex physical systems. Nature Computational Science, 3(8):642-651, 2023.",
+      "journal": "Nature Computational Science",
+      "year": 2023,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "High-profile journal - verify existence"
+    },
+    "WarpBubble2024": {
+      "title": "Energy requirements for laboratory-scale warp field generation",
+      "expected_citation": "Johnson, Andrew P and Martinez-Lopez, Carmen. Energy requirements for laboratory-scale warp field generation. Physical Review D, 110(4):044032, 2024.",
+      "journal": "Physical Review D",
+      "year": 2024,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Recent PRD paper - check APS archives"
+    },
+    "SuperconductorPhysics2024": {
+      "title": "Fundamentals of high-temperature superconductivity: From theory to applications",
+      "expected_citation": "Yamamoto, Hiroshi, et al. Fundamentals of high-temperature superconductivity: From theory to applications. Reviews of Modern Physics, 96(1):015003, 2024.",
+      "journal": "Reviews of Modern Physics",
+      "year": 2024,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "RMP - high quality journal, verify"
+    },
+    "PlasmaTheory2023": {
+      "title": "Advanced theoretical methods in magnetohydrodynamics and plasma stability",
+      "expected_citation": "Foster, Rachel P, et al. Advanced theoretical methods in magnetohydrodynamics and plasma stability. Physics Reports, 1012:1-84, 2023.",
+      "journal": "Physics Reports",
+      "year": 2023,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Physics Reports review article - verify"
+    },
+    "Einstein1915": {
+      "title": "Die Grundlage der allgemeinen Relativitätstheorie",
+      "expected_citation": "Einstein, Albert. Die Grundlage der allgemeinen Relativitätstheorie. Annalen der Physik, 49(7):769-822, 1916.",
+      "journal": "Annalen der Physik",
+      "year": 1916,
+      "local_path": null,
+      "status": "verified_exists",
+      "notes": "Historic Einstein paper exists but accessing full text requires institutional access"
+    },
+    "Maxwell1865": {
+      "title": "A dynamical theory of the electromagnetic field",
+      "expected_citation": "Maxwell, James Clerk. A dynamical theory of the electromagnetic field. Philosophical Transactions of the Royal Society, 155:459-512, 1865.",
+      "journal": "Philosophical Transactions of the Royal Society",
+      "year": 1865,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Historic Maxwell paper - public domain"
+    },
+    "Weyl1918": {
+      "title": "Gravitation und Elektrizität",
+      "expected_citation": "Weyl, Hermann. Gravitation und Elektrizität. Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften, 26:465-480, 1918.",
+      "journal": "Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften",
+      "year": 1918,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Historic Weyl paper - public domain"
+    }
+  },
+  "validation_notes": [
+    "This is a skeleton file containing the main references from soliton_validation.tex",
+    "Many references appear to be future-dated (2024-2025) or potentially fabricated",
+    "Historical references (Einstein, Maxwell, Weyl) should be verifiable",
+    "NASA technical reports require checking official archives",
+    "Journal articles need DOI verification for authenticity"
+  ]
+}

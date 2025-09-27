@@ -74,20 +74,57 @@ pip install -r requirements-fea.txt
 
 ### Development Installation
 
+**Complete development setup with virtual environment:**
+
 ```bash
+# Clone repository
+git clone https://github.com/DawsonInstitute/hts-coils.git
+cd hts-coils
+
+# Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Initialize submodules for advanced optimizations (optional)
+git submodule update --init --recursive
+
+# Run validation tests
+python scripts/validate_environment.py
+pytest tests/ -v
+
+# Install in development mode (optional)
 pip install -e .[opt]  # Includes Bayesian optimizer (scikit-optimize)
+```
+
+**Quick validation check:**
+```bash
+# Test core functionality
+python -m src.warp.comsol_plasma
+python -m src.warp.fenics_plasma
+
+# Run comprehensive validation
+pytest tests/ --tb=short
 ```
 
 ## Quick Start
 
 ### Interactive Notebooks (MyBinder)
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/)
+**Launch Complete Environment**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/)
+
+**Individual Notebook Launchers** (faster build times):
+- **Validation & Results**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/08_validation_report.ipynb)
+- **REBCO Paper Reproduction**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/09_rebco_paper_reproduction.ipynb)
+- **Optimization Workflow**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/06_optimization_workflow.ipynb)
 
 Launch interactive Jupyter notebooks in your browser (no installation required):
 
+- **08_validation_report.ipynb**: Comprehensive validation framework reproducing soliton_validation.tex results
 - **09_rebco_paper_reproduction.ipynb**: Complete reproduction of REBCO paper results with validation
-- **01-08_educational_sequence.ipynb**: Comprehensive tutorial covering HTS physics, electromagnetic modeling, thermal analysis, and mechanical stress
+- **01-07_educational_sequence.ipynb**: Comprehensive tutorial covering HTS physics, electromagnetic modeling, thermal analysis, and mechanical stress
 
 ### REBCO Paper Results Reproduction
 
