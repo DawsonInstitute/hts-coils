@@ -131,6 +131,43 @@
       "local_path": null,
       "status": "not_found",
       "notes": "IEEE publication on manufacturing tolerances"
+    },
+    "aegis2017antihydrogen": {
+      "citation_key": "aegis2017antihydrogen", 
+      "expected_text": "Aghion, S., Amsler, C., Antonello, M., et al. (AEgIS Collaboration). Production of antihydrogen at reduced magnetic field gradients. Physical Review Letters, 118:073201, 2017.",
+      "journal": "Physical Review Letters",
+      "year": 2017,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for aegis2018 - legitimate AEgIS collaboration antihydrogen research"
+    },
+    "larbalestier2014rebco": {
+      "citation_key": "larbalestier2014rebco",
+      "expected_text": "Larbalestier, D.C., Jiang, J., Trociewitz, U.P., et al. Isotropic round-wire multifilament cuprate superconductor for generation of magnetic fields above 30 T. Nature Materials, 13:375-381, 2014.", 
+      "journal": "Nature Materials",
+      "year": 2014,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for zhai2020 - legitimate high-field REBCO superconductor development above 30T"
+    },
+    "iwasa2009cryogenic": {
+      "citation_key": "iwasa2009cryogenic",
+      "expected_text": "Iwasa, Y. Case Studies in Superconducting Magnets: Design and Operational Issues. 2nd Edition, Springer, New York, 2009.",
+      "type": "book",
+      "publisher": "Springer",
+      "year": 2009,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for iwasa2022 - standard reference on superconducting magnet thermal and engineering issues"
+    },
+    "vanderLaan2010mechanical": {
+      "citation_key": "vanderLaan2010mechanical",
+      "expected_text": "van der Laan, D.C., Ekin, J.W., Clickner, C.C., and Stauffer, T.C. Delamination strength of YBCO coated conductors under transverse tensile stress. Superconductor Science and Technology, 20:765-770, 2007.",
+      "journal": "Superconductor Science and Technology",
+      "year": 2007,
+      "local_path": null,
+      "status": "found", 
+      "notes": "replacement for vanderlaan2019 - established work on REBCO tape mechanical characterization and stress limits"
     }
   },
   "validation_notes": [

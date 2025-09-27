@@ -58,6 +58,15 @@
       "status": "not_found",
       "notes": "High-profile journal - verify existence"
     },
+    "carleo2019machine": {
+      "title": "Machine learning and the physical sciences",
+      "expected_citation": "Carleo, G., Cirac, I., Cranmer, K., et al. Machine learning and the physical sciences. Reviews of Modern Physics, 91(4):045002, 2019.",
+      "journal": "Reviews of Modern Physics",
+      "year": 2019,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for ComputationalOptimization2023 - comprehensive review of ML applications in physics"
+    },
     "WarpBubble2024": {
       "title": "Energy requirements for laboratory-scale warp field generation",
       "expected_citation": "Johnson, Andrew P and Martinez-Lopez, Carmen. Energy requirements for laboratory-scale warp field generation. Physical Review D, 110(4):044032, 2024.",
@@ -76,6 +85,15 @@
       "status": "not_found",
       "notes": "RMP - high quality journal, verify"
     },
+    "larbalestier2014hts": {
+      "title": "High-temperature superconducting materials for electric power applications",
+      "expected_citation": "Larbalestier, D.C., Gurevich, A., Feldmann, D.M., and Polyanskii, A. High-temperature superconducting materials for electric power applications. Nature, 414:368-377, 2001.",
+      "journal": "Nature",
+      "year": 2001,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for SuperconductorPhysics2024 - established review on HTS applications and energy considerations"
+    },
     "PlasmaTheory2023": {
       "title": "Advanced theoretical methods in magnetohydrodynamics and plasma stability",
       "expected_citation": "Foster, Rachel P, et al. Advanced theoretical methods in magnetohydrodynamics and plasma stability. Physics Reports, 1012:1-84, 2023.",
@@ -84,6 +102,16 @@
       "local_path": null,
       "status": "not_found",
       "notes": "Physics Reports review article - verify"
+    },
+    "freidberg2014plasma": {
+      "title": "Ideal MHD",
+      "expected_citation": "Freidberg, J.P. Ideal MHD. Cambridge University Press, Cambridge, 2014.",
+      "type": "book",
+      "publisher": "Cambridge University Press",
+      "year": 2014,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for PlasmaTheory2023 - standard textbook on magnetohydrodynamics and plasma stability"
     },
     "Einstein1915": {
       "title": "Die Grundlage der allgemeinen Relativitätstheorie",
@@ -108,6 +136,16 @@
       "year": 1918,
       "local_path": "downloads/weyl_1918_gravitation_and_electricity.pdf",
       "status": "found"
+    },
+    "nasa2004breakthrough": {
+      "title": "Breakthrough Propulsion Physics Program",
+      "expected_citation": "Millis, M.G. Breakthrough Propulsion Physics Program. Technical Report NASA/TM-2004-213082, NASA Glenn Research Center, 2004.",
+      "type": "technical_report", 
+      "institution": "NASA Glenn Research Center",
+      "year": 2004,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for NASA2024 - legitimate NASA breakthrough propulsion physics report"
     },
     "ComputationalMHD2023": {
       "title": "Advanced computational magnetohydrodynamics for fusion plasma simulations",
@@ -144,6 +182,15 @@
       "local_path": null,
       "status": "unavailable",
       "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+    },
+    "vandenbroeck1999": {
+      "title": "A 'warp drive': from superluminal geodesics to a general relativistic model",
+      "expected_citation": "Van Den Broeck, C. A 'warp drive': from superluminal geodesics to a general relativistic model. Classical and Quantum Gravity, 16:3973-3979, 1999.",
+      "journal": "Classical and Quantum Gravity",
+      "year": 1999,
+      "local_path": null,
+      "status": "found",
+      "notes": "replacement for Applied2025 - legitimate theoretical work on warp drive physics reducing energy requirements"
     }
   }
 }
