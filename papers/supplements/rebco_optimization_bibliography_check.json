@@ -1,0 +1,149 @@
+{
+  "metadata": {
+    "created": "2025-09-26",
+    "purpose": "Reference validation and local archival for rebco_hts_coil_optimization_fusion_antimatter.tex lines 407-451",
+    "source_file": "papers/rebco_hts_coil_optimization_fusion_antimatter.tex",
+    "line_range": "407-451",
+    "status": "bibliography_indexed",
+    "total_references": 14,
+    "verified_count": 0,
+    "last_updated": "2025-09-26"
+  },
+  "references": {
+    "zhou2023": {
+      "citation_key": "zhou2023",
+      "expected_text": "Y. Zhou et al., \"Review of progress and challenges of key mechanical issues in high-field superconducting magnets,\" National Science Review, vol. 10, nwad001, 2023.",
+      "journal": "National Science Review",
+      "year": 2023,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Recent review article on high-field superconducting magnets"
+    },
+    "superpower2022": {
+      "citation_key": "superpower2022", 
+      "expected_text": "D. Abraimov et al., \"Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,\" Superconductor Science and Technology, vol. 35, 065001, 2022.",
+      "journal": "Superconductor Science and Technology",
+      "year": 2022,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Industrial REBCO conductor research"
+    },
+    "hahn2019": {
+      "citation_key": "hahn2019",
+      "expected_text": "S. Hahn et al., \"45.5-tesla direct-current magnetic field generated with a high-temperature superconducting magnet,\" Nature, vol. 570, pp. 496-499, 2019.",
+      "journal": "Nature",
+      "year": 2019,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Landmark high-field HTS magnet achievement - should be verifiable"
+    },
+    "alpha2023": {
+      "citation_key": "alpha2023",
+      "expected_text": "E. K. Anderson et al. (ALPHA Collaboration), \"Observation of the effect of gravity on the motion of antimatter,\" Nature, vol. 621, pp. 716-722, 2023.",
+      "journal": "Nature",
+      "year": 2023,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "ALPHA Collaboration antimatter gravity research"
+    },
+    "aegis2018": {
+      "citation_key": "aegis2018",
+      "expected_text": "C. Amsler et al. (AEgIS Collaboration), \"A new application of interferometry to gravitational measurements with antihydrogen,\" Journal of Physics B: Atomic, Molecular and Optical Physics, vol. 51, 195001, 2018.",
+      "journal": "Journal of Physics B: Atomic, Molecular and Optical Physics",
+      "year": 2018,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "AEgIS Collaboration antihydrogen research"
+    },
+    "sparc2020": {
+      "citation_key": "sparc2020",
+      "expected_text": "A. J. Creely et al., \"Overview of the SPARC tokamak,\" Journal of Plasma Physics, vol. 86, 865860502, 2020.",
+      "journal": "Journal of Plasma Physics", 
+      "year": 2020,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "SPARC tokamak design overview"
+    },
+    "superpower2023": {
+      "citation_key": "superpower2023",
+      "expected_text": "SuperPower Inc., \"2G HTS Wire Platform Technical Specifications,\" SuperPower Technical Bulletin SP-TB-2023-HTS-001, 2023.",
+      "type": "technical_report",
+      "organization": "SuperPower Inc.",
+      "year": 2023,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Technical specifications - may be proprietary/internal document"
+    },
+    "zhai2020": {
+      "citation_key": "zhai2020",
+      "expected_text": "Y. Zhai et al., \"The 32 T superconducting magnet with REBCO high field coil,\" Superconductor Science and Technology, vol. 33, 025007, 2020.",
+      "journal": "Superconductor Science and Technology",
+      "year": 2020,
+      "local_path": null,
+      "status": "not_found", 
+      "notes": "32T superconducting magnet development"
+    },
+    "iwasa2022": {
+      "citation_key": "iwasa2022",
+      "expected_text": "M. Ichiro and K. Wasa, \"Practical magnet engineering and thermal management,\" Journal of Cryogenics Engineering, vol. 48, pp. 123-137, 2022.",
+      "journal": "Journal of Cryogenics Engineering",
+      "year": 2022,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Placeholder entry noted in manuscript"
+    },
+    "vanderlaan2019": {
+      "citation_key": "vanderlaan2019",
+      "expected_text": "P. van der Laan, \"Mechanical limits of REBCO tapes under hoop stress,\" Superconducting Materials Letters, vol. 12, no. 4, pp. 45-53, 2019.",
+      "journal": "Superconducting Materials Letters",
+      "year": 2019,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Placeholder entry noted in manuscript"
+    },
+    "norris1970": {
+      "citation_key": "norris1970",
+      "expected_text": "W. T. Norris, \"Calculation of hysteresis losses in hard superconductors carrying ac: isolated conductors and normal strips,\" Journal of Physics D: Applied Physics, vol. 3, pp. 489-507, 1970.",
+      "journal": "Journal of Physics D: Applied Physics",
+      "year": 1970,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Classic 1970 superconductor physics paper - should be verifiable"
+    },
+    "brandt1995": {
+      "citation_key": "brandt1995",
+      "expected_text": "E. H. Brandt and M. Indenbom, \"Type-II-superconductor strip with current in a perpendicular magnetic field,\" Physical Review B, vol. 48, pp. 12893-12906, 1995.",
+      "journal": "Physical Review B",
+      "year": 1995,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Classic type-II superconductor theory - should be verifiable"
+    },
+    "cfs2021": {
+      "citation_key": "cfs2021",
+      "expected_text": "Center for Fusion Systems, \"Comparative cost study of superconducting magnet technologies,\" CFS Technical Report TR-2021-07, 2021.",
+      "type": "technical_report",
+      "organization": "Center for Fusion Systems",
+      "year": 2021,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "Technical report - may require institutional access"
+    },
+    "deissler2014": {
+      "citation_key": "deissler2014",
+      "expected_text": "R. Deissler, \"Manufacturing tolerances and their impact on superconducting magnet feasibility,\" IEEE Transactions on Applied Superconductivity, vol. 24, no. 3, pp. 1-8, 2014.",
+      "journal": "IEEE Transactions on Applied Superconductivity", 
+      "year": 2014,
+      "local_path": null,
+      "status": "not_found",
+      "notes": "IEEE publication on manufacturing tolerances"
+    }
+  },
+  "validation_notes": [
+    "Bibliography extracted from lines 407-451 of rebco_hts_coil_optimization_fusion_antimatter.tex",
+    "Several entries marked as 'placeholder entries for locally-cited keys' in the source",
+    "Mix of legitimate research papers and potentially placeholder/fabricated entries",
+    "Technical reports may require institutional access for verification",
+    "Classic papers (Norris 1970, Brandt 1995) should be publicly verifiable"
+  ]
+}

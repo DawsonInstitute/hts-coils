@@ -15,8 +15,9 @@
       "expected_citation": "Alcubierre, Miguel. The warp drive: hyper-fast travel within general relativity. Classical and Quantum Gravity, 11(5):L73-L77, 1994.",
       "journal": "Classical and Quantum Gravity",
       "year": 1994,
-      "local_path": null,
-      "status": "paywall_blocked",
+      "local_path": "downloads/alcubierre_1994_warp_drive.tex",
+      "status": "downloaded",
+      "arxiv_id": "gr-qc/0009013",
       "notes": "Classic foundational paper exists but behind IOP paywall"
     },
     "Lentz2021": {

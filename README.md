@@ -88,6 +88,9 @@ source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 # Install dependencies
 pip install -r requirements.txt
 
+# Install package in editable mode (required for tests)
+pip install -e .
+
 # Initialize submodules for advanced optimizations (optional)
 git submodule update --init --recursive
 
@@ -97,6 +100,24 @@ pytest tests/ -v
 
 # Install in development mode (optional)
 pip install -e .[opt]  # Includes Bayesian optimizer (scikit-optimize)
+```
+
+### Optional: FEniCSx Installation
+
+For full finite element analysis capabilities, install FEniCSx:
+
+```bash
+# Option 1: Conda (recommended for FEniCSx)
+conda create -n fenics python=3.11
+conda activate fenics
+conda install -c conda-forge fenics-dolfinx mpich pyvista
+
+# Option 2: Docker (most reliable)
+docker pull dolfinx/dolfinx:stable
+docker run -ti -v $(pwd):/home/fenics/shared dolfinx/dolfinx:stable
+
+# Option 3: pip (may require system dependencies)
+pip install fenics-dolfinx[all]
 ```
 
 **Quick validation check:**

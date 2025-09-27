@@ -29,9 +29,30 @@ from typing import Dict, List, Tuple, Optional, Any, Union
 import json
 import time
 import warnings
+import os
 from pathlib import Path
 from dataclasses import dataclass
 import logging
+
+# Import psutil for memory monitoring
+try:
+    import psutil
+    PSUTIL_AVAILABLE = True
+except ImportError:
+    PSUTIL_AVAILABLE = False
+
+
+def get_memory_usage_gb() -> float:
+    """Get current process memory usage in GB."""
+    if PSUTIL_AVAILABLE:
+        try:
+            process = psutil.Process(os.getpid())
+            memory_bytes = process.memory_info().rss
+            return memory_bytes / (1024**3)  # Convert to GB
+        except Exception:
+            pass
+    return 0.0
+
 
 # Check for FEniCSx availability
 FENICS_AVAILABLE = False
@@ -420,7 +441,7 @@ class FEniCSPlasmaSimulator:
             'execution_time_s': execution_time,
             'mesh_nodes': self.mesh_data['nodes'],
             'mesh_elements': self.mesh_data['elements'],
-            'memory_usage_GB': 0.0,  # Placeholder
+            'memory_usage_GB': get_memory_usage_gb(),
             'analytical_comparison': {
                 'fenics_simulation': self.fenics_available,
                 'max_error': validation_results['max_error'],
@@ -434,7 +455,8 @@ class FEniCSPlasmaSimulator:
         }
         
         # Print results
-        print(f"✅ FEniCSx plasma analysis completed in {execution_time:.1f}s")
+        mode_label = "synthetic" if not self.fenics_available else "FEniCSx"
+        print(f"✅ FEniCSx plasma analysis completed in {execution_time:.3f}s ({mode_label} mode)")
         print(f"✅ Parsed FEniCSx plasma results:")
         print(f"   Mesh: {self.mesh_data['nodes']} nodes, {self.mesh_data['elements']} elements")
         print(f"   Validation error: {validation_results['error_percentage']:.2f}%")
@@ -443,7 +465,7 @@ class FEniCSPlasmaSimulator:
         print(f"✅ FEniCSx simulation completed:")
         print(f"   Validation error: {validation_results['error_percentage']:.2f}%")
         print(f"   Threshold: <{self.config.error_tolerance*100:.1f}%")
-        print(f"   Execution time: {execution_time:.1f}s")
+        print(f"   Execution time: {execution_time:.3f}s ({mode_label} mode)")
         print(f"   Overall success: {'✓' if final_results['overall_success'] else '✗'}")
         
         if final_results['overall_success']:

@@ -33,6 +33,13 @@ import time
 import warnings
 import os
 from pathlib import Path
+
+# Import psutil for memory monitoring
+try:
+    import psutil
+    PSUTIL_AVAILABLE = True
+except ImportError:
+    PSUTIL_AVAILABLE = False
 import socket
 from dataclasses import dataclass
 import logging
@@ -337,6 +344,18 @@ class COMSOLPlasmaResults:
     def __post_init__(self):
         if self.analytical_comparison is None:
             self.analytical_comparison = {}
+
+
+def get_memory_usage_gb() -> float:
+    """Get current process memory usage in GB."""
+    if PSUTIL_AVAILABLE:
+        try:
+            process = psutil.Process(os.getpid())
+            memory_bytes = process.memory_info().rss
+            return memory_bytes / (1024**3)  # Convert to GB
+        except Exception:
+            pass
+    return 0.0
 
 
 class COMSOLPlasmaSimulator:
@@ -877,7 +896,7 @@ public class PlasmaEMSolitonAnalysis {{
         
         # Synthetic plasma density and temperature
         plasma_density = 1e19 * np.exp(-0.1 * theta**2)  # Gaussian profile
-        plasma_temp = 100.0 * np.ones_like(theta)  # 100 eV uniform
+        plasma_temp = 100.0 * np.ones_like(theta)  # 100 eV uniform (moderate plasma temperature)
         
         # Synthetic current density
         Jx = 1e6 * np.sin(theta)  # 1 MA/m^2
@@ -925,6 +944,9 @@ public class PlasmaEMSolitonAnalysis {{
             Parsed simulation results
         """
         results = COMSOLPlasmaResults()
+        
+        # Measure current memory usage
+        results.memory_usage_GB = get_memory_usage_gb()
         
         try:
             # Load main field data

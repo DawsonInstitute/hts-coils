@@ -1,0 +1,133 @@
+{
+  "timestamp": "2025-09-26 21:51:34.646390",
+  "platform": {
+    "system": "Linux",
+    "release": "6.6.87.2-microsoft-standard-WSL2",
+    "machine": "x86_64",
+    "processor": "x86_64"
+  },
+  "validation_results": {
+    "python_version": {
+      "status": "PASS",
+      "current": "3.13",
+      "required": "3.9"
+    },
+    "dependencies": {
+      "numpy": {
+        "status": "PASS",
+        "version": "2.3.3",
+        "required": "1.24.0"
+      },
+      "scipy": {
+        "status": "PASS",
+        "version": "1.16.2",
+        "required": "1.11.0"
+      },
+      "matplotlib": {
+        "status": "PASS",
+        "version": "3.10.6",
+        "required": "3.7.0"
+      },
+      "pandas": {
+        "status": "PASS",
+        "version": "2.3.2",
+        "required": "2.0.0"
+      },
+      "h5py": {
+        "status": "FAIL",
+        "version": "not installed",
+        "required": "3.9.0",
+        "error": "h5py is not installed"
+      },
+      "jax": {
+        "status": "FAIL",
+        "version": "not installed",
+        "required": "0.4.10",
+        "error": "jax is not installed"
+      },
+      "numba": {
+        "status": "FAIL",
+        "version": "not installed",
+        "required": "0.57.0",
+        "error": "numba is not installed"
+      },
+      "pytest": {
+        "status": "PASS",
+        "version": "8.4.2",
+        "required": "7.4.0"
+      }
+    },
+    "hardware": {
+      "cpu": {
+        "status": "PASS",
+        "cores": 6,
+        "required": 4
+      },
+      "memory": {
+        "status": "FAIL",
+        "total_gb": 15.6,
+        "required_gb": 16,
+        "error": "Memory 15.6 GB < 16 GB required"
+      },
+      "gpu": {
+        "status": "WARNING",
+        "error": "GPU check failed: No module named 'jax'"
+      }
+    },
+    "system": {
+      "git": {
+        "status": "PASS",
+        "path": "/usr/bin/git"
+      },
+      "cmake": {
+        "status": "PASS",
+        "path": "/usr/bin/cmake"
+      },
+      "gcc": {
+        "status": "PASS",
+        "path": "/usr/bin/gcc"
+      }
+    },
+    "data": {
+      "data/": {
+        "status": "PASS",
+        "exists": true
+      },
+      "configs/": {
+        "status": "PASS",
+        "exists": true
+      },
+      "src/": {
+        "status": "PASS",
+        "exists": true
+      },
+      "tests/": {
+        "status": "PASS",
+        "exists": true
+      },
+      "scripts/": {
+        "status": "PASS",
+        "exists": true
+      },
+      "requirements_validation.txt": {
+        "status": "PASS",
+        "exists": true
+      },
+      "pyproject.toml": {
+        "status": "PASS",
+        "exists": true
+      }
+    }
+  },
+  "errors": [
+    "h5py is not installed",
+    "jax is not installed",
+    "numba is not installed",
+    "Memory 15.6 GB < 16 GB required"
+  ],
+  "warnings": [
+    "GPU check failed: No module named 'jax'"
+  ],
+  "strict_mode": false,
+  "container_mode": false
+}
