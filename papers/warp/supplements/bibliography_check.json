@@ -63,8 +63,8 @@
       "expected_citation": "Carleo, G., Cirac, I., Cranmer, K., et al. Machine learning and the physical sciences. Reviews of Modern Physics, 91(4):045002, 2019.",
       "journal": "Reviews of Modern Physics",
       "year": 2019,
-      "local_path": null,
-      "status": "found",
+      "local_path": "downloads/Carleo_2019_Machine_learning.pdf",
+      "status": "downloaded",
       "notes": "replacement for ComputationalOptimization2023 - comprehensive review of ML applications in physics"
     },
     "WarpBubble2024": {
@@ -90,9 +90,8 @@
       "expected_citation": "Larbalestier, D.C., Gurevich, A., Feldmann, D.M., and Polyanskii, A. High-temperature superconducting materials for electric power applications. Nature, 414:368-377, 2001.",
       "journal": "Nature",
       "year": 2001,
-      "local_path": null,
-      "status": "found",
-      "notes": "replacement for SuperconductorPhysics2024 - established review on HTS applications and energy considerations"
+      "local_path": "downloads/Larbalestier_2001_High-temperature_superconducting_materials.pdf",
+      "status": "downloaded"
     },
     "PlasmaTheory2023": {
       "title": "Advanced theoretical methods in magnetohydrodynamics and plasma stability",
