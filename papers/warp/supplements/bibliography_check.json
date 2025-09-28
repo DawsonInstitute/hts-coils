@@ -27,8 +27,7 @@
       "year": 2021,
       "local_path": "downloads/lentz_2021_warp_solitons.tex",
       "status": "referenced",
-      "arxiv_id": "2006.07125",
-      "notes": "Successfully downloaded from arXiv - legitimate paper"
+      "arxiv_id": "2006.07125"
     },
     "carleo2019machine": {
       "title": "Machine learning and the physical sciences",
@@ -36,8 +35,7 @@
       "journal": "Reviews of Modern Physics",
       "year": 2019,
       "local_path": "downloads/Carleo_2019_Machine_learning.pdf",
-      "status": "found",
-      "notes": "replacement for ComputationalOptimization2023 - comprehensive review of ML applications in physics"
+      "status": "found"
     },
     "alcubierre2000superluminal": {
       "title": "The Alcubierre Warp Drive: On the Matter of Matter",
@@ -63,9 +61,8 @@
       "type": "book",
       "publisher": "Cambridge University Press",
       "year": 2014,
-      "local_path": null,
-      "status": "found",
-      "notes": "replacement for PlasmaTheory2023 - standard textbook on magnetohydrodynamics and plasma stability"
+      "local_path": "downloads/freidberg_2014_ideal_mhd.pdf",
+      "status": "downloaded"
     },
     "Einstein1915": {
       "title": "Die Grundlage der allgemeinen Relativitätstheorie",
@@ -98,8 +95,7 @@
       "institution": "NASA Glenn Research Center",
       "year": 2004,
       "local_path": "downloads/Millis_2004_Breakthrough_Propulsion_Physics.pdf",
-      "status": "found",
-      "notes": "replacement for NASA2024 - legitimate NASA breakthrough propulsion physics report"
+      "status": "found"
     },
     "biskamp2003nonlinear": {
       "title": "Nonlinear Magnetohydrodynamics",
@@ -107,9 +103,8 @@
       "type": "book",
       "publisher": "Cambridge University Press",
       "year": 1993,
-      "local_path": null,
-      "status": "found",
-      "notes": "replacement for ComputationalMHD2023 - standard textbook on nonlinear MHD"
+      "local_path": "downloads/Biskamp_1993_Nonlinear_Magnetohydrodynamics.pdf",
+      "status": "found"
     },
     "birdsall2005plasma": {
       "title": "Plasma Physics via Computer Simulation",
@@ -117,9 +112,8 @@
       "type": "book",
       "publisher": "Institute of Physics Publishing",
       "year": 2005,
-      "local_path": null,
-      "status": "found",
-      "notes": "replacement for PlasmaComputationalPhysics2024 - standard textbook on computational plasma physics"
+      "local_path": "downloads/Birdsall_2004_Computer_Simulation.djvu",
+      "status": "downloaded"
     },
     "baumgarte2010numerical": {
       "title": "Numerical Relativity: Solving Einstein's Equations on the Computer",
@@ -127,8 +121,8 @@
       "type": "book",
       "publisher": "Cambridge University Press", 
       "year": 2010,
-      "local_path": null,
-      "status": "found",
+      "local_path": "downloads/Baumgarte_2010_Numerical_Relativity.pdf",
+      "status": "downloaded",
       "notes": "replacement for NumericalRelativity2023 - standard textbook on numerical relativity methods"
     },
     "nocedal2006numerical": {
@@ -137,8 +131,8 @@
       "type": "book",
       "publisher": "Springer-Verlag",
       "year": 2006,
-      "local_path": null,
-      "status": "found",
+      "local_path": "downloads/Nocedal_2006_Numerical_Optimization.pdf",
+      "status": "downloaded",
       "notes": "replacement for OptimizationMethods2024 - standard textbook on numerical optimization methods"
     },
     "vandenbroeck1999": {
