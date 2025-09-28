@@ -16,7 +16,7 @@
       "journal": "Classical and Quantum Gravity",
       "year": 1994,
       "local_path": "downloads/alcubierre_1994_warp_drive.tex",
-      "status": "found",
+      "status": "referenced",
       "arxiv_id": "gr-qc/0009013",
       "notes": "Classic foundational paper exists but behind IOP paywall"
     },
@@ -35,7 +35,7 @@
       "journal": "Reviews of Modern Physics",
       "year": 2019,
       "local_path": "downloads/Carleo_2019_Machine_learning.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "alcubierre2000superluminal": {
       "title": "The Alcubierre Warp Drive: On the Matter of Matter",
@@ -53,7 +53,7 @@
       "journal": "Nature",
       "year": 2001,
       "local_path": "downloads/Larbalestier_2001_High-temperature_superconducting_materials.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "freidberg2014plasma": {
       "title": "Ideal MHD",
@@ -62,7 +62,7 @@
       "publisher": "Cambridge University Press",
       "year": 2014,
       "local_path": "downloads/freidberg_2014_ideal_mhd.pdf",
-      "status": "downloaded"
+      "status": "referenced"
     },
     "Einstein1915": {
       "title": "Die Grundlage der allgemeinen Relativitätstheorie",
@@ -70,7 +70,7 @@
       "journal": "Annalen der Physik",
       "year": 1916,
       "local_path": "downloads/einstein_1916_gr.pdf",
-      "status": "found"      
+      "status": "referenced"      
     },
     "Maxwell1865": {
       "title": "A dynamical theory of the electromagnetic field",
@@ -78,7 +78,7 @@
       "journal": "Philosophical Transactions of the Royal Society",
       "year": 1865,
       "local_path": "downloads/maxwell_1865_dynamical_theory.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "Weyl1918": {
       "title": "Gravitation und Elektrizität",
@@ -86,7 +86,7 @@
       "journal": "Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften",
       "year": 1918,
       "local_path": "downloads/weyl_1918_gravitation_and_electricity.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "nasa2004breakthrough": {
       "title": "Breakthrough Propulsion Physics Program",
@@ -95,7 +95,7 @@
       "institution": "NASA Glenn Research Center",
       "year": 2004,
       "local_path": "downloads/Millis_2004_Breakthrough_Propulsion_Physics.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "biskamp2003nonlinear": {
       "title": "Nonlinear Magnetohydrodynamics",
@@ -104,16 +104,17 @@
       "publisher": "Cambridge University Press",
       "year": 1993,
       "local_path": "downloads/Biskamp_1993_Nonlinear_Magnetohydrodynamics.pdf",
-      "status": "found"
+      "status": "referenced"
     },
-    "birdsall2005plasma": {
+    "birdsall2004plasma": {
       "title": "Plasma Physics via Computer Simulation",
-      "expected_citation": "Birdsall, C.K. and Langdon, A.B. Plasma Physics via Computer Simulation. Institute of Physics Publishing, Bristol, 2005.",
+      "expected_citation": "Birdsall, C.K. and Langdon, A.B. Plasma Physics via Computer Simulation. Institute of Physics Publishing, Bristol, 2004.",
       "type": "book",
       "publisher": "Institute of Physics Publishing",
-      "year": 2005,
+      "year": 2004,
       "local_path": "downloads/Birdsall_2004_Computer_Simulation.djvu",
-      "status": "downloaded"
+      "status": "fixed",
+      "notes": "Corrected year from 2005 to 2004 to match actual publication date"
     },
     "baumgarte2010numerical": {
       "title": "Numerical Relativity: Solving Einstein's Equations on the Computer",
@@ -122,7 +123,7 @@
       "publisher": "Cambridge University Press", 
       "year": 2010,
       "local_path": "downloads/Baumgarte_2010_Numerical_Relativity.pdf",
-      "status": "downloaded",
+      "status": "referenced",
       "notes": "replacement for NumericalRelativity2023 - standard textbook on numerical relativity methods"
     },
     "nocedal2006numerical": {
@@ -132,7 +133,7 @@
       "publisher": "Springer-Verlag",
       "year": 2006,
       "local_path": "downloads/Nocedal_2006_Numerical_Optimization.pdf",
-      "status": "downloaded",
+      "status": "referenced",
       "notes": "replacement for OptimizationMethods2024 - standard textbook on numerical optimization methods"
     },
     "vandenbroeck1999": {

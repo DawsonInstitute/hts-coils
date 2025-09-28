@@ -16,7 +16,7 @@
       "journal": "National Science Review",
       "year": 2023,
       "local_path": "downloads/zhou_2023_review_of_progress.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "abraimov2022": {
       "citation_key": "abraimov2022", 
@@ -24,7 +24,7 @@
       "journal": "Superconductor Science and Technology",
       "year": 2022,
       "local_path": "downloads/Abraimov_2015_double_disordered_rebco.pdf",
-      "status": "found",
+      "status": "referenced",
       "notes": "Industrial REBCO conductor research"
     },
     "hahn2019": {
@@ -33,7 +33,7 @@
       "journal": "Nature",
       "year": 2019,
       "local_path": "downloads/hahn_2019_45_5_tesla.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "alpha2023": {
       "citation_key": "alpha2023",
