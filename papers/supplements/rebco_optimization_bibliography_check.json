@@ -120,7 +120,7 @@
       "year": 2015,
       "doi": "10.1109/TASC.2014.2382177",
       "local_path": null,
-      "status": "found",
+      "status": "hallucinated",
       "notes": "replacement for cfs2021 - verifiable IEEE paper on REBCO cost analysis"
     },
     "IEEE_TAS_2011_tolerances": {
@@ -130,7 +130,7 @@
       "year": 2011,
       "doi": "10.1109/TASC.2011.2107491",
       "local_path": null,
-      "status": "found",
+      "status": "hallucinated",
       "notes": "replacement for deissler201 - verifiable IEEE paper on manufacturing tolerance control"
     },
     "aegis2016antihydrogen": {
@@ -139,8 +139,8 @@
       "journal": "Communications Physics",
       "year": 2021,
       "doi": "10.1038/s42005-020-00494-z",
-      "local_path": null,
-      "status": "found",
+      "local_path": "downloads/Amsler_2021_Pulsed_production_of_antihydrogen.pdf",
+      "status": "downloaded",
       "notes": "replacement for aegis2017antihydrogen - verifiable Nature Communications Physics paper on antihydrogen production"
     },
     "larbalestier2014rebco": {
