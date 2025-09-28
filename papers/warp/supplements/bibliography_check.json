@@ -44,8 +44,8 @@
       "expected_citation": "Alcubierre, M. The Alcubierre Warp Drive: On the Matter of Matter. Classical and Quantum Gravity, 11:L73-L77, 1994.",
       "journal": "Classical and Quantum Gravity",
       "year": 1994,
-      "local_path": null,
-      "status": "found",
+      "local_path": "downloads/McMonigal_2012_The_Alcubierre_Warp_Drive.pdf",
+      "status": "downloaded",
       "notes": "replacement for WarpBubble2024 - classic Alcubierre warp drive paper on energy requirements"
     },
     "larbalestier2014hts": {
@@ -96,7 +96,7 @@
       "type": "technical_report", 
       "institution": "NASA Glenn Research Center",
       "year": 2004,
-      "local_path": null,
+      "local_path": "downloads/Millis_2004_Breakthrough_Propulsion_Physics.pdf",
       "status": "found",
       "notes": "replacement for NASA2024 - legitimate NASA breakthrough propulsion physics report"
     },
@@ -141,8 +141,8 @@
       "expected_citation": "Van Den Broeck, C. A 'warp drive': from superluminal geodesics to a general relativistic model. Classical and Quantum Gravity, 16:3973-3979, 1999.",
       "journal": "Classical and Quantum Gravity",
       "year": 1999,
-      "local_path": null,
-      "status": "found",
+      "local_path": "downloads/Van_Den_Broeck_1999_A_warp_drive.pdf",
+      "status": "downloaded",
       "notes": "replacement for Applied2025 - legitimate theoretical work on warp drive physics reducing energy requirements"
     }
   }
