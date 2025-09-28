@@ -41,7 +41,7 @@
       "journal": "Nature",
       "year": 2023,
       "local_path": "downloads/Anderson_2023_observation.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "aegis2018": {
       "citation_key": "aegis2018",
@@ -58,7 +58,7 @@
       "journal": "Journal of Plasma Physics", 
       "year": 2020,
       "local_path": "downloads/creely_2020_sparc_tokamak.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "superpower2022": {
       "citation_key": "superpower2022",
@@ -67,7 +67,7 @@
       "organization": "SuperPower Inc.",
       "year": 2022,
       "local_path": "downloads/superpower_2022_2g_hts_wire_platform.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "zhai2020": {
       "citation_key": "zhai2020",
@@ -102,7 +102,7 @@
       "journal": "Journal of Physics D: Applied Physics",
       "year": 1970,
       "local_path": "downloads/Norris_1970_Calculation_of_hysteresis_losses.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "PhysRevB.48.12893": {
       "citation_key": "PhysRevB.48.12893",
@@ -111,7 +111,7 @@
       "year": 1993,
       "doi": "10.1103/PhysRevB.48.12893",
       "local_path": "downloads/brandt_1993_type_ii_superconductor_strip.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "IEEE_TAS_2015_cost": {
       "citation_key": "IEEE_TAS_2015_cost",
@@ -149,7 +149,7 @@
       "journal": "Nature Materials",
       "year": 2014,
       "local_path": "downloads/Larbalestier_2014_Isotropic_round-wire_multifilament.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "iwasa2009cryogenic": {
       "citation_key": "iwasa2009cryogenic",
@@ -158,7 +158,7 @@
       "publisher": "Springer",
       "year": 2009,
       "local_path": "downloads/Iwasa_2009_Case_Studies_in_Superconducting_Magnets_2e.pdf",
-      "status": "found"
+      "status": "referenced"
     },
     "vanderLaan2010mechanical": {
       "citation_key": "vanderLaan2010mechanical",
@@ -166,7 +166,7 @@
       "journal": "Superconductor Science and Technology",
       "year": 2007,
       "local_path": "downloads/van_der_Laan_2007_Delamination_strength.pdf",
-      "status": "found"
+      "status": "referenced"
     }
   }
 }
