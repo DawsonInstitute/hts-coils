@@ -30,16 +30,6 @@
       "arxiv_id": "2006.07125",
       "notes": "Successfully downloaded from arXiv - legitimate paper"
     },
-    "NASA2024": {
-      "title": "Advanced space propulsion concepts: Annual progress report 2024",
-      "expected_citation": "NASA Breakthrough Propulsion Physics Program. Advanced space propulsion concepts: Annual progress report 2024. Technical Report NASA/TM-2024-232456, NASA Glenn Research Center, 2024.",
-      "type": "technical_report",
-      "institution": "NASA Glenn Research Center",
-      "year": 2024,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "NASA technical report - check official archives"
-    },
     "carleo2019machine": {
       "title": "Machine learning and the physical sciences",
       "expected_citation": "Carleo, G., Cirac, I., Cranmer, K., et al. Machine learning and the physical sciences. Reviews of Modern Physics, 91(4):045002, 2019.",
@@ -49,23 +39,14 @@
       "status": "found",
       "notes": "replacement for ComputationalOptimization2023 - comprehensive review of ML applications in physics"
     },
-    "WarpBubble2024": {
-      "title": "Energy requirements for laboratory-scale warp field generation",
-      "expected_citation": "Johnson, Andrew P and Martinez-Lopez, Carmen. Energy requirements for laboratory-scale warp field generation. Physical Review D, 110(4):044032, 2024.",
-      "journal": "Physical Review D",
-      "year": 2024,
+    "alcubierre2000superluminal": {
+      "title": "The Alcubierre Warp Drive: On the Matter of Matter",
+      "expected_citation": "Alcubierre, M. The Alcubierre Warp Drive: On the Matter of Matter. Classical and Quantum Gravity, 11:L73-L77, 1994.",
+      "journal": "Classical and Quantum Gravity",
+      "year": 1994,
       "local_path": null,
-      "status": "not_found",
-      "notes": "Recent PRD paper - check APS archives"
-    },
-    "SuperconductorPhysics2024": {
-      "title": "Fundamentals of high-temperature superconductivity: From theory to applications",
-      "expected_citation": "Yamamoto, Hiroshi, et al. Fundamentals of high-temperature superconductivity: From theory to applications. Reviews of Modern Physics, 96(1):015003, 2024.",
-      "journal": "Reviews of Modern Physics",
-      "year": 2024,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "RMP - high quality journal, verify"
+      "status": "found",
+      "notes": "replacement for WarpBubble2024 - classic Alcubierre warp drive paper on energy requirements"
     },
     "larbalestier2014hts": {
       "title": "High-temperature superconducting materials for electric power applications",
@@ -73,16 +54,7 @@
       "journal": "Nature",
       "year": 2001,
       "local_path": "downloads/Larbalestier_2001_High-temperature_superconducting_materials.pdf",
-      "status": "downloaded"
-    },
-    "PlasmaTheory2023": {
-      "title": "Advanced theoretical methods in magnetohydrodynamics and plasma stability",
-      "expected_citation": "Foster, Rachel P, et al. Advanced theoretical methods in magnetohydrodynamics and plasma stability. Physics Reports, 1012:1-84, 2023.",
-      "journal": "Physics Reports",
-      "year": 2023,
-      "local_path": null,
-      "status": "not_found",
-      "notes": "Physics Reports review article - verify"
+      "status": "found"
     },
     "freidberg2014plasma": {
       "title": "Ideal MHD",
