@@ -26,7 +26,7 @@
       "journal": "Classical and Quantum Gravity", 
       "year": 2021,
       "local_path": "downloads/lentz_2021_warp_solitons.tex",
-      "status": "downloaded",
+      "status": "referenced",
       "arxiv_id": "2006.07125",
       "notes": "Successfully downloaded from arXiv - legitimate paper"
     },
@@ -41,12 +41,13 @@
     },
     "alcubierre2000superluminal": {
       "title": "The Alcubierre Warp Drive: On the Matter of Matter",
-      "expected_citation": "Alcubierre, M. The Alcubierre Warp Drive: On the Matter of Matter. Classical and Quantum Gravity, 11:L73-L77, 1994.",
-      "journal": "Classical and Quantum Gravity",
-      "year": 1994,
+      "expected_citation": "McMonigal, B., Lewis, G.F., O'Byrne, P. The Alcubierre Warp Drive: On the Matter of Matter. Physical Review D, 85:064024, 2012.",
+      "journal": "Physical Review D",
+      "year": 2012,
+      "doi": "10.1103/PhysRevD.85.064024",
       "local_path": "downloads/McMonigal_2012_The_Alcubierre_Warp_Drive.pdf",
-      "status": "downloaded",
-      "notes": "replacement for WarpBubble2024 - classic Alcubierre warp drive paper on energy requirements"
+      "status": "fixed",
+      "notes": "Updated to correct McMonigal 2012 PhysRevD citation with proper DOI"
     },
     "larbalestier2014hts": {
       "title": "High-temperature superconducting materials for electric power applications",
@@ -100,50 +101,55 @@
       "status": "found",
       "notes": "replacement for NASA2024 - legitimate NASA breakthrough propulsion physics report"
     },
-    "ComputationalMHD2023": {
-      "title": "Advanced computational magnetohydrodynamics for fusion plasma simulations",
-      "expected_citation": "Johnson, R.K., Smith, A.B., and Davis, M.L. Advanced computational magnetohydrodynamics for fusion plasma simulations. Computer Physics Communications, 287:108712, 2023.",
-      "journal": "Computer Physics Communications",
-      "year": 2023,
+    "biskamp2003nonlinear": {
+      "title": "Nonlinear Magnetohydrodynamics",
+      "expected_citation": "Biskamp, D. Nonlinear Magnetohydrodynamics. Cambridge University Press, Cambridge, 1993.",
+      "type": "book",
+      "publisher": "Cambridge University Press",
+      "year": 1993,
       "local_path": null,
-      "status": "unavailable",
-      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+      "status": "found",
+      "notes": "replacement for ComputationalMHD2023 - standard textbook on nonlinear MHD"
     },
-    "PlasmaComputationalPhysics2024": {
-      "title": "High-performance computing methods for plasma physics applications",
-      "expected_citation": "Zhang, L.M. and Rodriguez, A.C. High-performance computing methods for plasma physics applications. Journal of Computational Physics, 478:111954, 2024.",
-      "journal": "Journal of Computational Physics",
-      "year": 2024,
+    "birdsall2005plasma": {
+      "title": "Plasma Physics via Computer Simulation",
+      "expected_citation": "Birdsall, C.K. and Langdon, A.B. Plasma Physics via Computer Simulation. Institute of Physics Publishing, Bristol, 2005.",
+      "type": "book",
+      "publisher": "Institute of Physics Publishing",
+      "year": 2005,
       "local_path": null,
-      "status": "unavailable",
-      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+      "status": "found",
+      "notes": "replacement for PlasmaComputationalPhysics2024 - standard textbook on computational plasma physics"
     },
-    "NumericalRelativity2023": {
-      "title": "Numerical relativity methods for spacetime simulations",
-      "expected_citation": "Williams, K.J. et al. Numerical relativity methods for spacetime simulations. Physical Review D, 108:084023, 2023.",
-      "journal": "Physical Review D",
-      "year": 2023,
+    "baumgarte2010numerical": {
+      "title": "Numerical Relativity: Solving Einstein's Equations on the Computer",
+      "expected_citation": "Baumgarte, T.W. and Shapiro, S.L. Numerical Relativity: Solving Einstein's Equations on the Computer. Cambridge University Press, Cambridge, 2010.",
+      "type": "book",
+      "publisher": "Cambridge University Press", 
+      "year": 2010,
       "local_path": null,
-      "status": "unavailable",
-      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+      "status": "found",
+      "notes": "replacement for NumericalRelativity2023 - standard textbook on numerical relativity methods"
     },
-    "OptimizationMethods2024": {
-      "title": "Advanced optimization algorithms for physics simulations",
-      "expected_citation": "Brown, J.P. and Wilson, S.T. Advanced optimization algorithms for physics simulations. Journal of Scientific Computing, 95:42, 2024.",
-      "journal": "Journal of Scientific Computing",
-      "year": 2024,
+    "nocedal2006numerical": {
+      "title": "Numerical Optimization",
+      "expected_citation": "Nocedal, J. and Wright, S.J. Numerical Optimization. Springer-Verlag, New York, 2006.",
+      "type": "book",
+      "publisher": "Springer-Verlag",
+      "year": 2006,
       "local_path": null,
-      "status": "unavailable",
-      "notes": "Citation appears fabricated - no confirmable source found for this specific paper"
+      "status": "found",
+      "notes": "replacement for OptimizationMethods2024 - standard textbook on numerical optimization methods"
     },
     "vandenbroeck1999": {
       "title": "A 'warp drive': from superluminal geodesics to a general relativistic model",
       "expected_citation": "Van Den Broeck, C. A 'warp drive': from superluminal geodesics to a general relativistic model. Classical and Quantum Gravity, 16:3973-3979, 1999.",
       "journal": "Classical and Quantum Gravity",
       "year": 1999,
+      "doi": "10.1088/0264-9381/16/12/314",
       "local_path": "downloads/Van_Den_Broeck_1999_A_warp_drive.pdf",
-      "status": "downloaded",
-      "notes": "replacement for Applied2025 - legitimate theoretical work on warp drive physics reducing energy requirements"
+      "status": "fixed",
+      "notes": "Updated with proper DOI for Van Den Broeck 1999 warp drive paper"
     }
   }
 }

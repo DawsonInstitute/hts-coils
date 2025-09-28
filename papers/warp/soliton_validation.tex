@@ -225,7 +225,7 @@ The energy optimization subsystem implements advanced algorithms to minimize pow
 \item \textbf{Envelope Profile Fitting}: Precision target soliton envelope generation using $\sech^2$ basis functions with $L_1/L_2$ error minimization
 \end{itemize}
 
-The integration leverages advanced multi-objective optimization algorithms for soliton envelope shaping, power budget management, and temporal energy distribution \cite{alcubierre2000superluminal,carleo2019machine}, validated through: (1) Cross-code benchmarking against established optimization libraries with variance analysis implemented in \texttt{notebooks/validation\_framework.py} showing $<3\%$ variance \cite{HTS-Coils-GitHub}; (2) Analytical verification against known optimization solutions with machine precision agreement as demonstrated in \texttt{src/warp/comsol\_plasma.py::perform\_analytical\_validation} \cite{HTS-Coils-GitHub}; (3) Monte Carlo validation across 10,000 parameter sets with 99.7\% convergence success rate through uncertainty quantification harness in \texttt{src/warp/optimizer/uq\_impulse\_energy\_variance.py} \cite{HTS-Coils-GitHub}; (4) Comprehensive error analysis showing numerical stability under extreme parameter conditions. Algorithms adapted specifically for Lentz soliton applications with enhanced convergence stability through computational modeling.
+The integration leverages advanced multi-objective optimization algorithms for soliton envelope shaping, power budget management, and temporal energy distribution \cite{alcubierre2000superluminal,carleo2019machine}, with canonical energy requirement studies by McMonigal et al.\ (DOI: PhysRevD.85.064024), validated through: (1) Cross-code benchmarking against established optimization libraries with variance analysis implemented in \texttt{notebooks/validation\_framework.py} showing $<3\%$ variance \cite{HTS-Coils-GitHub}; (2) Analytical verification against known optimization solutions with machine precision agreement as demonstrated in \texttt{src/warp/comsol\_plasma.py::perform\_analytical\_validation} \cite{HTS-Coils-GitHub}; (3) Monte Carlo validation across 10,000 parameter sets with 99.7\% convergence success rate through uncertainty quantification harness in \texttt{src/warp/optimizer/uq\_impulse\_energy\_variance.py} \cite{HTS-Coils-GitHub}; (4) Comprehensive error analysis showing numerical stability under extreme parameter conditions. Algorithms adapted specifically for Lentz soliton applications with enhanced convergence stability through computational modeling.
 
 \subsubsection{HTS Magnetic Confinement System}
 
@@ -417,7 +417,7 @@ This enhanced validation framework addresses critical concerns about model valid
    \item \textbf{Convergence Analysis}: Computationally validated superlinear convergence rate $\alpha = 1.89 \pm 0.12$ for smooth optimization landscapes
    \end{itemize}
 
-\item \textbf{Spacetime Integration Validation}: Numerical relativity methods validated through established computational frameworks \cite{NumericalRelativity2023,Einstein1915}:
+\item \textbf{Spacetime Integration Validation}: Numerical relativity methods validated through established computational frameworks \cite{baumgarte2010numerical,Einstein1915}:
    \begin{itemize}
    \item \textbf{Schwarzschild Solution Reproduction}: Exact reproduction of known metric solutions with relative error $< 10^{-14}$
    \item \textbf{Constraint Preservation}: Hamiltonian and momentum constraints maintained with drift $< 10^{-12}$ over simulation timescales
@@ -1258,25 +1258,25 @@ Weyl, Hermann.
 \newblock Gravitation und Elektrizität.
 \newblock {\em Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften}, 26:465--480, 1918.
 
-\bibitem{ComputationalMHD2023}
-Johnson, R.K., Smith, A.B., and Davis, M.L.
-\newblock Advanced computational magnetohydrodynamics for fusion plasma simulations.
-\newblock {\em Computer Physics Communications}, 287:108712, 2023.
+\bibitem{biskamp2003nonlinear}
+Biskamp, D.
+\newblock Nonlinear Magnetohydrodynamics.
+\newblock Cambridge University Press, Cambridge, 1993.
 
-\bibitem{PlasmaComputationalPhysics2024}
-Zhang, L.M. and Rodriguez, A.C.
-\newblock High-performance computing methods for plasma physics applications.
-\newblock {\em Journal of Computational Physics}, 478:111954, 2024.
+\bibitem{birdsall2005plasma}
+Birdsall, C.K. and Langdon, A.B.
+\newblock Plasma Physics via Computer Simulation.
+\newblock Institute of Physics Publishing, Bristol, 2005.
 
-\bibitem{NumericalRelativity2023}
-Thompson, P.D., Wilson, K.J., and Brown, S.E.
-\newblock Numerical relativity methods for spacetime metric evolution.
-\newblock {\em Physical Review D}, 108:084032, 2023.
+\bibitem{baumgarte2010numerical}
+Baumgarte, T.W. and Shapiro, S.L.
+\newblock Numerical Relativity: Solving Einstein's Equations on the Computer.
+\newblock Cambridge University Press, Cambridge, 2010.
 
-\bibitem{OptimizationMethods2024}
-Kumar, S. and Chen, W.H.
-\newblock Multi-objective optimization algorithms for complex physics simulations.
-\newblock {\em Computational Optimization and Applications}, 89:123--156, 2024.
+\bibitem{nocedal2006numerical}
+Nocedal, J. and Wright, S.J.
+\newblock Numerical Optimization.
+\newblock Springer-Verlag, New York, 2006.
 
 \bibitem{HTS-Coils-GitHub}
 Dawson Institute Research Team.
