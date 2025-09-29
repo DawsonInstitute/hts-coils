@@ -189,70 +189,63 @@
       "expected_citation": "Rodriguez, M., Chen, L., Williams, P. Advanced plasma confinement techniques for high-energy physics applications. Physics of Plasmas, 30(8):082105, 2023.",
       "journal": "Physics of Plasmas",
       "year": 2023,
-      "local_path": "downloads/plasma_2023_confinement_techniques.pdf",
-      "status": "unverified",
-      "notes": "Modern plasma confinement methods"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "Confinement2024": {
       "title": "Magnetic confinement optimization for extreme plasma parameters",
       "expected_citation": "Thompson, R., Kumar, A., Johnson, S. Magnetic confinement optimization for extreme plasma parameters. Nuclear Fusion, 64(5):056012, 2024.",
       "journal": "Nuclear Fusion",
       "year": 2024,
-      "local_path": "downloads/confinement_2024_optimization.pdf",
-      "status": "unverified",
-      "notes": "High-beta plasma confinement strategies"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "MHD2024": {
       "title": "Magnetohydrodynamic stability analysis for advanced plasma configurations",
       "expected_citation": "Davis, K., Anderson, J., Liu, X. Magnetohydrodynamic stability analysis for advanced plasma configurations. Physics of Plasmas, 31(4):042301, 2024.",
       "journal": "Physics of Plasmas",
       "year": 2024,
-      "local_path": "downloads/mhd_2024_stability_analysis.pdf",
-      "status": "unverified",
-      "notes": "Comprehensive MHD stability framework"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "Interferometry2022": {
       "title": "Quantum-limited interferometric detection of spacetime distortions",
       "expected_citation": "Martinez, C., Brown, R., Taylor, M. Quantum-limited interferometric detection of spacetime distortions. Physical Review Letters, 129(18):181101, 2022.",
       "journal": "Physical Review Letters",
       "year": 2022,
-      "local_path": "downloads/interferometry_2022_quantum_limited.pdf",
-      "status": "unverified",
-      "notes": "Advanced interferometry techniques"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "Detection2023": {
       "title": "Ultra-sensitive detection systems for gravitational wave experiments",
       "expected_citation": "Wilson, D., Garcia, A., Kim, H. Ultra-sensitive detection systems for gravitational wave experiments. Review of Scientific Instruments, 94(7):073501, 2023.",
       "journal": "Review of Scientific Instruments",
       "year": 2023,
-      "local_path": "downloads/detection_2023_ultra_sensitive.pdf",
-      "status": "unverified",
-      "notes": "State-of-the-art detection methodology"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "Sensitivity2024": {
       "title": "Approaching quantum limits in precision displacement measurements",
       "expected_citation": "Lee, S., Jackson, P., Moore, T. Approaching quantum limits in precision displacement measurements. Nature Physics, 20(3):245-251, 2024.",
       "journal": "Nature Physics",
       "year": 2024,
-      "local_path": "downloads/sensitivity_2024_quantum_limits.pdf",
-      "status": "unverified",
-      "notes": "Quantum-limited precision measurements"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "HTS2024": {
       "title": "High-temperature superconducting magnets for advanced physics applications",
       "expected_citation": "Zhang, Y., Miller, B., Roberts, L. High-temperature superconducting magnets for advanced physics applications. Superconductor Science and Technology, 37(4):045008, 2024.",
       "journal": "Superconductor Science and Technology",
       "year": 2024,
-      "local_path": "downloads/hts_2024_advanced_applications.pdf",
-      "status": "unverified",
-      "notes": "Modern HTS magnet technology"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "HTS_Review2022": {
       "title": "Review of REBCO coated conductor technology for high-field applications",
       "expected_citation": "Phillips, J., Carter, M., White, S. Review of REBCO coated conductor technology for high-field applications. IEEE Transactions on Applied Superconductivity, 32(4):4600612, 2022.",
       "journal": "IEEE Transactions on Applied Superconductivity",
       "year": 2022,
-      "local_path": "downloads/hts_review_2022_rebco_technology.pdf",
+      "local_path": null,
       "status": "unverified",
       "notes": "Comprehensive REBCO technology review"
     },
@@ -261,34 +254,31 @@
       "expected_citation": "Parker, R., Davis, E., Thompson, K. Quantum field theory in curved spacetime: theoretical foundations. Physical Review D, 100(8):085012, 2019.",
       "journal": "Physical Review D",
       "year": 2019,
-      "local_path": "downloads/quantum_field_theory_2019_curved_spacetime.pdf",
-      "status": "unverified",
-      "notes": "Theoretical framework for QFT in curved spacetime"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "MagneticConfinement2021": {
       "title": "Advanced magnetic confinement systems for fusion and exotic matter research",
       "expected_citation": "Nelson, G., Adams, R., Cooper, V. Advanced magnetic confinement systems for fusion and exotic matter research. Nuclear Fusion, 61(8):086025, 2021.",
       "journal": "Nuclear Fusion",
       "year": 2021,
-      "local_path": "downloads/magnetic_confinement_2021_advanced_systems.pdf",
-      "status": "unverified",
-      "notes": "Modern magnetic confinement approaches"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "PlasmaPhysics2023": {
       "title": "Plasma physics principles for high-energy density applications",
       "expected_citation": "Clark, H., Evans, M., Turner, D. Plasma physics principles for high-energy density applications. Physics of Plasmas, 30(12):122703, 2023.",
       "journal": "Physics of Plasmas",
       "year": 2023,
-      "local_path": "downloads/plasma_physics_2023_high_energy_density.pdf",
-      "status": "unverified",
-      "notes": "High-energy density plasma physics"
+      "local_path": null,
+      "status": "hallucinated"
     },
     "AdvancedOptics2024": {
       "title": "Advanced optical techniques for precision metrology applications",
       "expected_citation": "Green, J., Hall, K., Young, P. Advanced optical techniques for precision metrology applications. Optics Express, 32(8):13247-13265, 2024.",
       "journal": "Optics Express",
       "year": 2024,
-      "local_path": "downloads/advanced_optics_2024_precision_metrology.pdf",
+      "local_path": null,
       "status": "unverified",
       "notes": "State-of-the-art optical metrology"
     },
