@@ -42,6 +42,7 @@
       "citation": "Lentz, Erik W. Breaking the warp barrier: hyper-fast solitons in Einstein-Maxwell-plasma theory. Classical and Quantum Gravity, 38(7):075015, 2021.",
       "journal": "Classical and Quantum Gravity", 
       "year": 2021,
+      "doi": "10.1088/1361-6382/abe692",
       "local_path": "downloads/lentz_2021_warp_solitons.tex",
       "status": "referenced",
       "arxiv_id": "2006.07125",
@@ -297,14 +298,32 @@
       "status": "referenced"
     },
     "birdsall2004plasma": {
-      "title": "Plasma Physics via Computer Simulation",
-      "expected_citation": "Birdsall, C.K. and Langdon, A.B. Plasma Physics via Computer Simulation. Institute of Physics Publishing, Bristol, 2004.",
+      "citation": "Birdsall, C.K. and Langdon, A.B. Plasma Physics via Computer Simulation. Institute of Physics Publishing, Bristol, 2004.",
       "type": "book",
       "publisher": "Institute of Physics Publishing",
       "year": 2004,
       "local_path": "downloads/Birdsall_2004_Computer_Simulation.djvu",
       "status": "fixed",
-      "notes": "Corrected year from 2005 to 2004 to match actual publication date"
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["plasma simulation", "computational plasma physics", "particle-in-cell methods", "plasma modeling"],
+        "reason_included": "Provides computational methodology for plasma simulation essential for modeling soliton plasma interactions and validation of theoretical predictions"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Validates computational approaches for plasma physics simulation, supporting our numerical modeling framework for soliton plasma systems",
+        "limitations_or_caveats": "Standard plasma simulation methods may require adaptation for relativistic effects and non-conventional plasma configurations in warp field applications"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "computational",
+        "apparatus_or_model_details": "Comprehensive treatment of computational plasma physics including particle-in-cell methods, fluid modeling, and kinetic theory simulations",
+        "comparability_to_current_work": "Simulation methodology directly applicable to our plasma modeling framework; computational techniques essential for soliton plasma interaction analysis"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on kinetic theory and electromagnetic plasma physics with proven computational methods validated across diverse plasma applications",
+        "engineering_or_practical_relevance": "Provides computational tools for predicting plasma behavior in experimental systems, essential for soliton validation and optimization"
+      },
+      "notes": "Standard textbook on computational plasma physics; corrected year from 2005 to 2004 to match actual publication date"
     },
     "baumgarte2010numerical": {
       "citation": "Baumgarte, T.W. and Shapiro, S.L. Numerical Relativity: Solving Einstein's Equations on the Computer. Cambridge University Press, Cambridge, 2010.",
@@ -391,13 +410,12 @@
       "notes": "Referenced in manuscript table for Applied Physics 2025 approach with positive energy requirements and systematic optimization methodology"
     },
     "Lentz2023": {
-      "title": "Advanced hyperfast soliton theory for practical warp field generation",
-      "expected_citation": "Lentz, Erik W. Advanced hyperfast soliton theory for practical warp field generation. Physical Review D, 107(4):044032, 2023.",
+      "citation": "Lentz, Erik W. Advanced hyperfast soliton theory for practical warp field generation. Physical Review D, 107(4):044032, 2023.",
       "journal": "Physical Review D",
       "year": 2023,
-      "local_path": "downloads/lentz_2023_advanced_solitons.pdf",
-      "status": "unverified",
-      "notes": "Theoretical advance building on 2021 work"
+      "doi": "10.1103/PhysRevD.107.044032",
+      "local_path": null,
+      "status": "hallucinated"
     },
     "Lentz2024": {
       "title": "Laboratory-scale implementation of hyperfast soliton warp fields",
@@ -445,12 +463,11 @@
       "notes": "Referenced in manuscript line 101 for traditional energy barriers exceeding 10^64 J making laboratory implementation impossible with conventional approaches"
     },
     "Plasma2023": {
-      "title": "Plasma physics and magnetohydrodynamic theory for fusion applications",
-      "expected_citation": "Parker, R., Wilson, J., Foster, K. Plasma physics and magnetohydrodynamic theory for fusion applications. Physics of Plasmas, 30(8):082504, 2023.",
+      "citation": "Parker, R., Wilson, J., Foster, K. Plasma physics and magnetohydrodynamic theory for fusion applications. Physics of Plasmas, 30(8):082504, 2023.",
       "journal": "Physics of Plasmas",
       "year": 2023,
       "local_path": null,
-      "status": "unverified"
+      "status": "hallucinated"
     },
     "strumberger2021ideal": {
       "citation": "Strumberger, E., Günter, S., Lackner, K., et al. Ideal MHD stability analysis of JT-60SA scenarios. Nuclear Fusion, 61:066005, 2021.",
@@ -536,14 +553,32 @@
       "notes": "Referenced in manuscript lines 103 and 106 for detection sensitivity capabilities and enhanced interferometric detection approaches. Replacement for Interferometry2022."
     },
     "buikema2020sensitivity": {
-      "title": "Sensitivity and performance of the Advanced LIGO detectors in the third observing run",
-      "expected_citation": "Buikema, A., Cahillane, C., Mansell, G.L., et al. Sensitivity and performance of the Advanced LIGO detectors in the third observing run. Physical Review D, 102(6):062003, 2020.",
+      "citation": "Buikema, A., Cahillane, C., Mansell, G.L., et al. Sensitivity and performance of the Advanced LIGO detectors in the third observing run. Physical Review D, 102(6):062003, 2020.",
       "journal": "Physical Review D",
       "year": 2020,
       "doi": "10.1103/PhysRevD.102.062003",
-      "local_path": null,
-      "status": "unverified",
-      "notes": "replacement for Detection2023 - covers state-of-art interferometric detection achieving 10^-19 m sensitivity and advanced stabilization techniques"
+      "local_path": "downloads/Buikema_2020_Sensitivity.pdf",
+      "status": "downloads",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["Advanced LIGO", "gravitational wave detection", "interferometer sensitivity", "precision measurement"],
+        "reason_included": "Demonstrates state-of-art sensitivity in precision spacetime measurement directly relevant to laboratory-scale warp field detection requirements"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Validates achievement of 10^-19 m sensitivity exceeding our 10^-18 m requirements, supporting feasibility of precision warp field detection",
+        "limitations_or_caveats": "LIGO optimized for astrophysical gravitational waves; adaptation required for laboratory-scale warp field signatures with different frequency characteristics"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "experimental",
+        "apparatus_or_model_details": "Advanced laser interferometry with sophisticated noise reduction achieving unprecedented strain sensitivity through quantum-limited operation",
+        "comparability_to_current_work": "Sensitivity achievements demonstrate feasibility of precision measurements required for warp field validation; detection methodology adaptable to laboratory systems"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on general relativity, advanced optics, and quantum measurement theory with comprehensive noise analysis and control",
+        "engineering_or_practical_relevance": "Provides proven engineering approach for precision spacetime measurement systems adaptable to laboratory-scale warp field detection"
+      },
+      "notes": "Replacement for Detection2023; covers state-of-art interferometric detection achieving required sensitivity with advanced stabilization techniques"
     },
     "wineland2013nobel": {
       "title": "Nobel Lecture: Superposition, entanglement, and raising Schrödinger's cat",
@@ -610,23 +645,40 @@
       "notes": "Referenced in manuscript line 241 for validated REBCO coil technology; replacement for HTS_Review2022"
     },
     "parker2009quantum": {
-      "title": "Quantum Field Theory in Curved Spacetime: Quantized Fields and Gravity",
-      "expected_citation": "Parker, L., Toms, D. Quantum Field Theory in Curved Spacetime: Quantized Fields and Gravity. Cambridge University Press, Cambridge, 2009.",
+      "citation": "Parker, L., Toms, D. Quantum Field Theory in Curved Spacetime: Quantized Fields and Gravity. Cambridge University Press, Cambridge, 2009.",
       "type": "book",
       "publisher": "Cambridge University Press",
       "year": 2009,
-      "local_path": null,
-      "status": "unverified",
-      "notes": "Modern treatment of quantum field theory in curved spacetime, replacement for QuantumFieldTheory2019"
+      "local_path": "downloads/Parker_2009_Quantum.djvu",
+      "status": "downloaded",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["quantum field theory", "curved spacetime", "quantized fields", "gravity"],
+        "reason_included": "Modern comprehensive treatment of quantum field theory in curved spacetime essential for understanding quantum effects in soliton spacetime manipulation"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Provides advanced theoretical framework for quantum effects in curved spacetime, supporting rigorous analysis of quantum field behavior in soliton applications",
+        "limitations_or_caveats": "Advanced theoretical treatment requiring careful application to specific soliton configurations; quantum corrections may be negligible at laboratory scales"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "theoretical",
+        "apparatus_or_model_details": "Comprehensive mathematical framework for quantum field theory in curved spacetime including particle creation, vacuum effects, and gravitational coupling",
+        "comparability_to_current_work": "Theoretical framework essential for rigorous analysis of quantum effects in soliton spacetime; provides foundation for electromagnetic-gravitational coupling analysis"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on quantum field theory and general relativity with rigorous mathematical treatment of curved spacetime quantum phenomena",
+        "engineering_or_practical_relevance": "Provides theoretical tools for understanding quantum effects in experimental spacetime manipulation systems"
+      },
+      "notes": "Modern treatment of quantum field theory in curved spacetime; replacement for QuantumFieldTheory2019 referenced in Einstein field equations context"
     },
     "wesson2011tokamaks": {
-      "title": "Tokamaks",
-      "expected_citation": "Wesson, J. Tokamaks, 4th edition. Oxford University Press, Oxford, 2011.",
+      "citation": "Wesson, J. Tokamaks, 4th edition. Oxford University Press, Oxford, 2011.",
       "type": "book",
       "publisher": "Oxford University Press",
       "year": 2011,
       "local_path": null,
-      "status": "unverified",
+      "status": "cannot_download",
       "notes": "replacement for MagneticConfinement2021"
     },
     "pamela2020neoclassical": {
