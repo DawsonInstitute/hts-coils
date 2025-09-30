@@ -11,12 +11,32 @@
   },
   "references": {
     "zhou2023": {
-      "citation_key": "zhou2023",
-      "expected_text": "Y. Zhou et al., \"Review of progress and challenges of key mechanical issues in high-field superconducting magnets,\" National Science Review, vol. 10, nwad001, 2023.",
+      "citation": "Y. Zhou et al., \"Review of progress and challenges of key mechanical issues in high-field superconducting magnets,\" National Science Review, vol. 10, nwad001, 2023.",
       "journal": "National Science Review",
       "year": 2023,
+      "doi": "10.1093/nsr/nwad001",
       "local_path": "downloads/zhou_2023_review_of_progress.pdf",
-      "status": "referenced"
+      "status": "referenced",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["high-field superconducting magnets", "mechanical issues", "stress analysis", "magnet design"],
+        "reason_included": "Comprehensive review of mechanical challenges in high-field superconducting magnets directly relevant to stress analysis and structural optimization"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Validates systematic approach to mechanical stress analysis in high-field magnets, supporting our optimization framework for structural integrity",
+        "limitations_or_caveats": "General review requiring adaptation to specific geometries and operating conditions in antimatter and fusion applications"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "review",
+        "apparatus_or_model_details": "Comprehensive review of mechanical stress analysis methods, failure modes, and design optimization approaches for high-field superconducting magnets",
+        "comparability_to_current_work": "Mechanical analysis methodology directly applicable to our stress modeling; provides validation framework for structural optimization approaches"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on mechanical engineering principles, materials science, and electromagnetic stress analysis with comprehensive literature review",
+        "engineering_or_practical_relevance": "Provides engineering guidelines for structural design of high-field magnets essential for practical implementation of optimized systems"
+      },
+      "notes": "Referenced for mechanical stress analysis using Maxwell stress tensor and fundamental physics requirements for fusion and antimatter applications"
     },
     "abraimov2022": {
       "citation": "D. Abraimov et al., \"Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,\" Superconductor Science and Technology, vol. 35, 065001, 2022.",
@@ -100,18 +120,18 @@
       "notes": "Referenced for antimatter production rates scaling with magnetic field strength above 5 T thresholds, motivating our 5-10 T optimization targets"
     },
     "aegis2018": {
-      "citation_key": "aegis2018",
-      "expected_text": "C. Amsler et al. (AEgIS Collaboration), \"A new application of interferometry to gravitational measurements with antihydrogen,\" Journal of Physics B: Atomic, Molecular and Optical Physics, vol. 51, 195001, 2018.",
+      "citation": "C. Amsler et al. (AEgIS Collaboration), \"A new application of interferometry to gravitational measurements with antihydrogen,\" Journal of Physics B: Atomic, Molecular and Optical Physics, vol. 51, 195001, 2018.",
       "journal": "Journal of Physics B: Atomic, Molecular and Optical Physics",
       "year": 2018,
+      "doi": null,
       "local_path": null,
-      "status": "not_found",
-      "notes": "AEgIS Collaboration antihydrogen research"
+      "status": "hallucinated"
     },
     "sparc2020": {
       "citation": "A. J. Creely et al., \"Overview of the SPARC tokamak,\" Journal of Plasma Physics, vol. 86, 865860502, 2020.",
-      journal": "Journal of Plasma Physics", 
+      "journal": "Journal of Plasma Physics",
       "year": 2020,
+      "doi": "10.1017/S0022377820001257",
       "local_path": "downloads/creely_2020_sparc_tokamak.pdf",
       "status": "referenced",
       "literature_identification": {
@@ -136,13 +156,32 @@
       "notes": "Referenced for precise field control requirements in fusion applications and validation of commercial HTS systems, demonstrating technology readiness for complex applications"
     },
     "superpower2022": {
-      "citation_key": "superpower2022",
-      "expected_text": "SuperPower Inc., \"2G HTS Wire Platform Technical Specifications,\" SuperPower Technical Bulletin SP-TB-2022-HTS-001, 2022.",
+      "citation": "SuperPower Inc., \"2G HTS Wire Platform Technical Specifications,\" SuperPower Technical Bulletin SP-TB-2022-HTS-001, 2022.",
       "type": "technical_report",
       "organization": "SuperPower Inc.",
       "year": 2022,
       "local_path": "downloads/superpower_2022_2g_hts_wire_platform.pdf",
-      "status": "referenced"
+      "status": "referenced",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["2G HTS wire", "technical specifications", "REBCO conductors", "commercial HTS"],
+        "reason_included": "Provides industrial specifications for 2G HTS conductors including critical current densities and field dependencies essential for optimization modeling"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Validates commercial availability of HTS conductors with specifications required for our optimization targets, supporting practical feasibility",
+        "limitations_or_caveats": "Commercial specifications may not cover all operating conditions relevant to specialized antimatter and fusion applications"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "experimental",
+        "apparatus_or_model_details": "Industrial characterization of 2G HTS wire platform with comprehensive performance specifications including current density and field dependencies",
+        "comparability_to_current_work": "Conductor specifications directly input to our electromagnetic modeling; performance parameters essential for optimization constraint validation"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on superconductivity physics and materials engineering with industrial validation of performance characteristics",
+        "engineering_or_practical_relevance": "Provides proven commercial technology base for implementing optimized HTS coil designs in practical applications"
+      },
+      "notes": "Referenced for HTS specifications with Jc0=300 MA/m², Tc=90 K, and B0=5 T parameters used in optimization modeling"
     },
     "zhai2020": {
       "citation_key": "zhai2020",
