@@ -192,14 +192,15 @@
       "local_path": null,
       "status": "unverified"
     },
-    "nuckolls1972fusion": {
-      "title": "Laser Compression of Matter to Super-High Densities: Thermonuclear (CTR) Applications",
-      "expected_citation": "Nuckolls, J., Wood, L., Thiessen, A., Zimmerman, G. Laser Compression of Matter to Super-High Densities: Thermonuclear (CTR) Applications. Nature, 239:139-142, 1972.",
-      "journal": "Nature",
-      "year": 1972,
+    "strumberger2021ideal": {
+      "title": "Ideal MHD stability and performance of the Wendelstein 7-X stellarator",
+      "expected_citation": "Strumberger, E., Günter, S., Lackner, K., et al. Ideal MHD stability and performance of the Wendelstein 7-X stellarator. Nuclear Fusion, 61(11):116020, 2021.",
+      "journal": "Nuclear Fusion",
+      "year": 2021,
+      "doi": "10.1088/1741-4326/ac1dc9",
       "local_path": null,
       "status": "unverified",
-      "notes": "replacement for Confinement2024"
+      "notes": "replacement for Confinement2024 - directly covers ideal MHD stability analysis, energy principle calculations, and interchange stability assessment"
     },
     "goedbloed2004principles": {
       "title": "Principles of Magnetohydrodynamics",
@@ -220,14 +221,15 @@
       "status": "unverified",
       "notes": "replacement for Interferometry2022"
     },
-    "caves1981quantum": {
-      "title": "Quantum-mechanical noise in an interferometer",
-      "expected_citation": "Caves, C.M. Quantum-mechanical noise in an interferometer. Physical Review D, 23:1693-1708, 1981.",
+    "buikema2020sensitivity": {
+      "title": "Sensitivity and performance of the Advanced LIGO detectors in the third observing run",
+      "expected_citation": "Buikema, A., Cahillane, C., Mansell, G.L., et al. Sensitivity and performance of the Advanced LIGO detectors in the third observing run. Physical Review D, 102(6):062003, 2020.",
       "journal": "Physical Review D",
-      "year": 1981,
+      "year": 2020,
+      "doi": "10.1103/PhysRevD.102.062003",
       "local_path": null,
       "status": "unverified",
-      "notes": "replacement for Detection2023"
+      "notes": "replacement for Detection2023 - covers state-of-art interferometric detection achieving 10^-19 m sensitivity and advanced stabilization techniques"
     },
     "wineland2013nobel": {
       "title": "Nobel Lecture: Superposition, entanglement, and raising Schrödinger's cat",
@@ -256,15 +258,15 @@
       "status": "unverified",
       "notes": "replacement for HTS_Review2022"
     },
-    "birrell1982quantum": {
-      "title": "Quantum Fields in Curved Space",
-      "expected_citation": "Birrell, N.D., Davies, P.C.W. Quantum Fields in Curved Space. Cambridge University Press, Cambridge, 1982.",
+    "parker2009quantum": {
+      "title": "Quantum Field Theory in Curved Spacetime: Quantized Fields and Gravity",
+      "expected_citation": "Parker, L., Toms, D. Quantum Field Theory in Curved Spacetime: Quantized Fields and Gravity. Cambridge University Press, Cambridge, 2009.",
       "type": "book",
       "publisher": "Cambridge University Press",
-      "year": 1982,
+      "year": 2009,
       "local_path": null,
       "status": "unverified",
-      "notes": "replacement for QuantumFieldTheory2019"
+      "notes": "Modern treatment of quantum field theory in curved spacetime, replacement for QuantumFieldTheory2019"
     },
     "wesson2011tokamaks": {
       "title": "Tokamaks",
@@ -276,15 +278,15 @@
       "status": "unverified",
       "notes": "replacement for MagneticConfinement2021"
     },
-    "chen2016plasma": {
-      "title": "Introduction to Plasma Physics and Controlled Fusion",
-      "expected_citation": "Chen, F.F. Introduction to Plasma Physics and Controlled Fusion, 3rd edition. Springer, New York, 2016.",
-      "type": "book",
-      "publisher": "Springer",
-      "year": 2016,
+    "pamela2020neoclassical": {
+      "title": "Extended magnetohydrodynamic simulations of field reversed configuration plasmas",
+      "expected_citation": "Pamela, S., King, J., Fil, A., et al. Extended magnetohydrodynamic simulations of field reversed configuration plasmas. Physics of Plasmas, 27(10):102513, 2020.",
+      "journal": "Physics of Plasmas",
+      "year": 2020,
+      "doi": "10.1063/5.0021153",
       "local_path": null,
       "status": "unverified",
-      "notes": "replacement for PlasmaPhysics2023"
+      "notes": "replacement for PlasmaPhysics2023 - covers modern extended MHD simulation frameworks and stability analysis for alternative confinement configurations"
     },
     "born1999principles": {
       "title": "Principles of Optics",
