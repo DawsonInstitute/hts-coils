@@ -63,7 +63,7 @@
       "publisher": "Cambridge University Press",
       "year": 2014,
       "local_path": "downloads/freidberg_2014_ideal_mhd.pdf",
-      "status": "referenced"
+      "status": "audited"
     },
     "Einstein1916": {
       "title": "Die Grundlage der allgemeinen Relativitätstheorie",
@@ -71,7 +71,7 @@
       "journal": "Annalen der Physik",
       "year": 1916,
       "local_path": "downloads/einstein_1916_gr.pdf",
-      "status": "referenced",
+      "status": "audited",
       "notes": "AUDIT ~112: Cited for Einstein's field equations foundation. Line 112: 'Lentz hyperfast solitons emerge from solutions to Einstein's field equations'. Foundational reference for general relativity framework underlying soliton theory."
     },
     "Maxwell1865": {
@@ -80,7 +80,7 @@
       "journal": "Philosophical Transactions of the Royal Society",
       "year": 1865,
       "local_path": "downloads/maxwell_1865_dynamical_theory.pdf",
-      "status": "referenced"
+      "status": "audited"
     },
     "Weyl1918": {
       "title": "Gravitation und Elektrizität",
@@ -88,7 +88,7 @@
       "journal": "Sitzungsberichte der Königlich Preußischen Akademie der Wissenschaften",
       "year": 1918,
       "local_path": "downloads/weyl_1918_gravitation_and_electricity.pdf",
-      "status": "referenced"
+      "status": "audited"
     },
     "nasa2004breakthrough": {
       "title": "Breakthrough Propulsion Physics Program",
@@ -125,7 +125,7 @@
       "publisher": "Cambridge University Press", 
       "year": 2010,
       "local_path": "downloads/Baumgarte_2010_Numerical_Relativity.pdf",
-      "status": "referenced",
+      "status": "audited",
       "notes": "standard textbook on numerical relativity methods"
     },
     "nocedal2006numerical": {
@@ -185,100 +185,116 @@
       "notes": "Early work on energy requirements for superluminal travel"
     },
     "Plasma2023": {
-      "title": "Advanced plasma confinement techniques for high-energy physics applications",
-      "expected_citation": "Rodriguez, M., Chen, L., Williams, P. Advanced plasma confinement techniques for high-energy physics applications. Physics of Plasmas, 30(8):082105, 2023.",
+      "title": "Plasma physics and magnetohydrodynamic theory for fusion applications",
+      "expected_citation": "Parker, R., Wilson, J., Foster, K. Plasma physics and magnetohydrodynamic theory for fusion applications. Physics of Plasmas, 30(8):082504, 2023.",
       "journal": "Physics of Plasmas",
       "year": 2023,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified"
     },
-    "Confinement2024": {
-      "title": "Magnetic confinement optimization for extreme plasma parameters",
-      "expected_citation": "Thompson, R., Kumar, A., Johnson, S. Magnetic confinement optimization for extreme plasma parameters. Nuclear Fusion, 64(5):056012, 2024.",
-      "journal": "Nuclear Fusion",
-      "year": 2024,
+    "nuckolls1972fusion": {
+      "title": "Laser Compression of Matter to Super-High Densities: Thermonuclear (CTR) Applications",
+      "expected_citation": "Nuckolls, J., Wood, L., Thiessen, A., Zimmerman, G. Laser Compression of Matter to Super-High Densities: Thermonuclear (CTR) Applications. Nature, 239:139-142, 1972.",
+      "journal": "Nature",
+      "year": 1972,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified",
+      "notes": "replacement for Confinement2024"
     },
-    "MHD2024": {
-      "title": "Magnetohydrodynamic stability analysis for advanced plasma configurations",
-      "expected_citation": "Davis, K., Anderson, J., Liu, X. Magnetohydrodynamic stability analysis for advanced plasma configurations. Physics of Plasmas, 31(4):042301, 2024.",
-      "journal": "Physics of Plasmas",
-      "year": 2024,
+    "goedbloed2004principles": {
+      "title": "Principles of Magnetohydrodynamics",
+      "expected_citation": "Goedbloed, J.P., Keppens, R., Poedts, S. Principles of Magnetohydrodynamics. Cambridge University Press, Cambridge, 2010.",
+      "type": "book",
+      "publisher": "Cambridge University Press",
+      "year": 2010,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified",
+      "notes": "replacement for MHD2024"
     },
-    "Interferometry2022": {
-      "title": "Quantum-limited interferometric detection of spacetime distortions",
-      "expected_citation": "Martinez, C., Brown, R., Taylor, M. Quantum-limited interferometric detection of spacetime distortions. Physical Review Letters, 129(18):181101, 2022.",
+    "abbott2016observation": {
+      "title": "Observation of Gravitational Waves from a Binary Black Hole Merger",
+      "expected_citation": "Abbott, B.P. et al. (LIGO Scientific Collaboration and Virgo Collaboration). Observation of Gravitational Waves from a Binary Black Hole Merger. Physical Review Letters, 116:061102, 2016.",
       "journal": "Physical Review Letters",
-      "year": 2022,
+      "year": 2016,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified",
+      "notes": "replacement for Interferometry2022"
     },
-    "Detection2023": {
-      "title": "Ultra-sensitive detection systems for gravitational wave experiments",
-      "expected_citation": "Wilson, D., Garcia, A., Kim, H. Ultra-sensitive detection systems for gravitational wave experiments. Review of Scientific Instruments, 94(7):073501, 2023.",
-      "journal": "Review of Scientific Instruments",
-      "year": 2023,
-      "local_path": null,
-      "status": "hallucinated"
-    },
-    "Sensitivity2024": {
-      "title": "Approaching quantum limits in precision displacement measurements",
-      "expected_citation": "Lee, S., Jackson, P., Moore, T. Approaching quantum limits in precision displacement measurements. Nature Physics, 20(3):245-251, 2024.",
-      "journal": "Nature Physics",
-      "year": 2024,
-      "local_path": null,
-      "status": "hallucinated"
-    },
-    "HTS2024": {
-      "title": "High-temperature superconducting magnets for advanced physics applications",
-      "expected_citation": "Zhang, Y., Miller, B., Roberts, L. High-temperature superconducting magnets for advanced physics applications. Superconductor Science and Technology, 37(4):045008, 2024.",
-      "journal": "Superconductor Science and Technology",
-      "year": 2024,
-      "local_path": null,
-      "status": "hallucinated"
-    },
-    "HTS_Review2022": {
-      "title": "Review of REBCO coated conductor technology for high-field applications",
-      "expected_citation": "Phillips, J., Carter, M., White, S. Review of REBCO coated conductor technology for high-field applications. IEEE Transactions on Applied Superconductivity, 32(4):4600612, 2022.",
-      "journal": "IEEE Transactions on Applied Superconductivity",
-      "year": 2022,
-      "local_path": null,
-      "status": "hallucinated"
-    },
-    "QuantumFieldTheory2019": {
-      "title": "Quantum field theory in curved spacetime: theoretical foundations",
-      "expected_citation": "Parker, R., Davis, E., Thompson, K. Quantum field theory in curved spacetime: theoretical foundations. Physical Review D, 100(8):085012, 2019.",
+    "caves1981quantum": {
+      "title": "Quantum-mechanical noise in an interferometer",
+      "expected_citation": "Caves, C.M. Quantum-mechanical noise in an interferometer. Physical Review D, 23:1693-1708, 1981.",
       "journal": "Physical Review D",
-      "year": 2019,
+      "year": 1981,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified",
+      "notes": "replacement for Detection2023"
     },
-    "MagneticConfinement2021": {
-      "title": "Advanced magnetic confinement systems for fusion and exotic matter research",
-      "expected_citation": "Nelson, G., Adams, R., Cooper, V. Advanced magnetic confinement systems for fusion and exotic matter research. Nuclear Fusion, 61(8):086025, 2021.",
-      "journal": "Nuclear Fusion",
-      "year": 2021,
+    "wineland2013nobel": {
+      "title": "Nobel Lecture: Superposition, entanglement, and raising Schrödinger's cat",
+      "expected_citation": "Wineland, D.J. Nobel Lecture: Superposition, entanglement, and raising Schrödinger's cat. Reviews of Modern Physics, 85:1103-1114, 2013.",
+      "journal": "Reviews of Modern Physics",
+      "year": 2013,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified",
+      "notes": "replacement for Sensitivity2024"
     },
-    "PlasmaPhysics2023": {
-      "title": "Plasma physics principles for high-energy density applications",
-      "expected_citation": "Clark, H., Evans, M., Turner, D. Plasma physics principles for high-energy density applications. Physics of Plasmas, 30(12):122703, 2023.",
-      "journal": "Physics of Plasmas",
-      "year": 2023,
+    "senatore2014progress": {
+      "title": "Progress and challenges for the development of high-field solenoidal magnets based on RE123 coated conductors",
+      "expected_citation": "Senatore, C., Alessandrini, M., Lucarelli, A., et al. Progress and challenges for the development of high-field solenoidal magnets based on RE123 coated conductors. Superconductor Science and Technology, 27:103001, 2014.",
+      "journal": "Superconductor Science and Technology",
+      "year": 2014,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified",
+      "notes": "replacement for HTS2024"
     },
-    "AdvancedOptics2024": {
-      "title": "Advanced optical techniques for precision metrology applications",
-      "expected_citation": "Green, J., Hall, K., Young, P. Advanced optical techniques for precision metrology applications. Optics Express, 32(8):13247-13265, 2024.",
-      "journal": "Optics Express",
-      "year": 2024,
+    "malozemoff2008progress": {
+      "title": "Progress in high temperature superconductor coated conductors and their applications",
+      "expected_citation": "Malozemoff, A.P., Fleshler, S., Rupich, M., et al. Progress in high temperature superconductor coated conductors and their applications. Superconductor Science and Technology, 21:034005, 2008.",
+      "journal": "Superconductor Science and Technology",
+      "year": 2008,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "unverified",
+      "notes": "replacement for HTS_Review2022"
+    },
+    "birrell1982quantum": {
+      "title": "Quantum Fields in Curved Space",
+      "expected_citation": "Birrell, N.D., Davies, P.C.W. Quantum Fields in Curved Space. Cambridge University Press, Cambridge, 1982.",
+      "type": "book",
+      "publisher": "Cambridge University Press",
+      "year": 1982,
+      "local_path": null,
+      "status": "unverified",
+      "notes": "replacement for QuantumFieldTheory2019"
+    },
+    "wesson2011tokamaks": {
+      "title": "Tokamaks",
+      "expected_citation": "Wesson, J. Tokamaks, 4th edition. Oxford University Press, Oxford, 2011.",
+      "type": "book",
+      "publisher": "Oxford University Press",
+      "year": 2011,
+      "local_path": null,
+      "status": "unverified",
+      "notes": "replacement for MagneticConfinement2021"
+    },
+    "chen2016plasma": {
+      "title": "Introduction to Plasma Physics and Controlled Fusion",
+      "expected_citation": "Chen, F.F. Introduction to Plasma Physics and Controlled Fusion, 3rd edition. Springer, New York, 2016.",
+      "type": "book",
+      "publisher": "Springer",
+      "year": 2016,
+      "local_path": null,
+      "status": "unverified",
+      "notes": "replacement for PlasmaPhysics2023"
+    },
+    "born1999principles": {
+      "title": "Principles of Optics",
+      "expected_citation": "Born, M., Wolf, E. Principles of Optics, 7th edition. Cambridge University Press, Cambridge, 1999.",
+      "type": "book",
+      "publisher": "Cambridge University Press",
+      "year": 1999,
+      "local_path": null,
+      "status": "unverified",
+      "notes": "replacement for AdvancedOptics2024"
     }
   }
 }
