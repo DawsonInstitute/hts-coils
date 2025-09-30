@@ -126,7 +126,7 @@
       "year": 2010,
       "local_path": "downloads/Baumgarte_2010_Numerical_Relativity.pdf",
       "status": "referenced",
-      "notes": "replacement for NumericalRelativity2023 - standard textbook on numerical relativity methods"
+      "notes": "standard textbook on numerical relativity methods"
     },
     "nocedal2006numerical": {
       "title": "Numerical Optimization",
@@ -246,8 +246,7 @@
       "journal": "IEEE Transactions on Applied Superconductivity",
       "year": 2022,
       "local_path": null,
-      "status": "unverified",
-      "notes": "Comprehensive REBCO technology review"
+      "status": "hallucinated"
     },
     "QuantumFieldTheory2019": {
       "title": "Quantum field theory in curved spacetime: theoretical foundations",
@@ -279,17 +278,7 @@
       "journal": "Optics Express",
       "year": 2024,
       "local_path": null,
-      "status": "unverified",
-      "notes": "State-of-the-art optical metrology"
-    },
-    "WarpBubble2024": {
-      "title": "Energy optimization algorithms for warp field generation systems",
-      "expected_citation": "Morgan, T., Bell, C., Foster, W. Energy optimization algorithms for warp field generation systems. Computer Physics Communications, 295:108976, 2024.",
-      "journal": "Computer Physics Communications",
-      "year": 2024,
-      "local_path": "downloads/warp_bubble_2024_optimization_algorithms.pdf",
-      "status": "deprecated",
-      "notes": "Replaced by alcubierre2000superluminal - fabricated reference"
+      "status": "hallucinated"
     }
   }
 }
