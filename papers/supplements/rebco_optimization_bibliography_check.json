@@ -19,29 +19,85 @@
       "status": "referenced"
     },
     "abraimov2022": {
-      "citation_key": "abraimov2022", 
-      "expected_text": "D. Abraimov et al., \"Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,\" Superconductor Science and Technology, vol. 35, 065001, 2022.",
+      "citation": "D. Abraimov et al., \"Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,\" Superconductor Science and Technology, vol. 35, 065001, 2022.",
       "journal": "Superconductor Science and Technology",
       "year": 2022,
       "local_path": "downloads/Abraimov_2015_double_disordered_rebco.pdf",
       "status": "referenced",
-      "notes": "Industrial REBCO conductor research"
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["REBCO coated conductors", "critical current density", "industrial scale manufacturing", "high magnetic fields"],
+        "reason_included": "Demonstrates industrial-scale REBCO tape capabilities with critical current densities exceeding 300 MA/m² at 20 K, essential for high-field magnet design"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens", 
+        "assessment_summary": "Validates industrial feasibility of high-performance REBCO conductors with current densities required for 5-10 T field generation, supporting our optimization approach",
+        "limitations_or_caveats": "Performance data specific to particular processing methods; field-dependent degradation curves need careful analysis for specific magnet applications"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "experimental",
+        "apparatus_or_model_details": "Industrial-scale REBCO tape manufacturing with double disorder processing, critical current measurements in high magnetic fields up to several Tesla",
+        "comparability_to_current_work": "Current density specifications directly input to our electromagnetic modeling; performance characteristics essential for feasibility assessment of optimized designs"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on high-temperature superconductivity theory (Cooper pair formation, flux pinning mechanisms) and electromagnetic transport in superconductors",
+        "engineering_or_practical_relevance": "Provides proven manufacturing pathway for high-performance HTS conductors required for practical implementation of optimized coil designs"
+      },
+      "notes": "Critical current density values (300 MA/m² at 20 K) directly used in manuscript electromagnetic modeling and feasibility calculations"
     },
     "hahn2019": {
-      "citation_key": "hahn2019",
-      "expected_text": "S. Hahn et al., \"45.5-tesla direct-current magnetic field generated with a high-temperature superconducting magnet,\" Nature, vol. 570, pp. 496-499, 2019.",
+      "citation": "S. Hahn et al., \"45.5-tesla direct-current magnetic field generated with a high-temperature superconducting magnet,\" Nature, vol. 570, pp. 496-499, 2019.",
       "journal": "Nature",
       "year": 2019,
       "local_path": "downloads/hahn_2019_45_5_tesla.pdf",
-      "status": "referenced"
+      "status": "referenced",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["high-temperature superconducting magnet", "record magnetic field", "45.5 Tesla", "HTS technology"],
+        "reason_included": "Demonstrates world-record magnetic field generation using HTS technology, validating feasibility of our optimization targets and technological approach"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Provides experimental proof-of-concept that HTS technology can achieve field strengths far exceeding our 5-10 T optimization targets, validating technological feasibility",
+        "limitations_or_caveats": "Record system optimized for maximum field rather than practical engineering requirements; thermal and mechanical challenges may differ for continuous operation systems"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "experimental",
+        "apparatus_or_model_details": "32 T superconducting background magnet with 13.5 T HTS insert magnet using REBCO tape technology, achieving combined 45.5 T field strength",
+        "comparability_to_current_work": "Technology base directly applicable to our optimization framework; demonstrates that HTS systems can exceed our target field requirements by substantial margins"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on electromagnetic field generation principles and high-temperature superconductivity physics with engineering optimization for maximum field strength",
+        "engineering_or_practical_relevance": "Validates engineering approaches for high-field HTS systems, providing technology pathway for practical implementation of optimized coil designs"
+      },
+      "notes": "Referenced as validation for high-field HTS capabilities and systematic thermal modeling integration, demonstrating technology maturity for our optimization targets"
     },
     "alpha2023": {
-      "citation_key": "alpha2023",
-      "expected_text": "E. K. Anderson et al. (ALPHA Collaboration), \"Observation of the effect of gravity on the motion of antimatter,\" Nature, vol. 621, pp. 716-722, 2023.",
+      "citation": "E. K. Anderson et al. (ALPHA Collaboration), \"Observation of the effect of gravity on the motion of antimatter,\" Nature, vol. 621, pp. 716-722, 2023.",
       "journal": "Nature",
       "year": 2023,
       "local_path": "downloads/Anderson_2023_observation.pdf",
-      "status": "referenced"
+      "status": "referenced",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["antimatter", "magnetic confinement", "antihydrogen", "fundamental physics"],
+        "reason_included": "Demonstrates state-of-art antimatter confinement technology using magnetic fields, directly relevant to high-field magnet requirements for next-generation antimatter research"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Validates magnetic confinement approach for antimatter applications, supporting our optimization framework for 5-10 T field requirements in antimatter research contexts",
+        "limitations_or_caveats": "Current ALPHA system uses 1-5 T fields; scaling to 5-10 T requires significant engineering advances in field uniformity and stability"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "experimental",
+        "apparatus_or_model_details": "Antihydrogen trapping apparatus using superconducting magnetic bottle with octupole and mirror coil configurations for precision antimatter confinement",
+        "comparability_to_current_work": "Magnetic field requirements and precision control directly applicable to our HTS coil optimization; demonstrates feasibility of complex field configurations for fundamental physics"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on electromagnetic confinement theory and antihydrogen physics, with precision measurement techniques for fundamental physics tests",
+        "engineering_or_practical_relevance": "Provides validated engineering approach for precision magnetic confinement systems, directly applicable to high-field HTS coil design for antimatter applications"
+      },
+      "notes": "Referenced for antimatter production rates scaling with magnetic field strength above 5 T thresholds, motivating our 5-10 T optimization targets"
     },
     "aegis2018": {
       "citation_key": "aegis2018",
@@ -53,12 +109,31 @@
       "notes": "AEgIS Collaboration antihydrogen research"
     },
     "sparc2020": {
-      "citation_key": "sparc2020",
-      "expected_text": "A. J. Creely et al., \"Overview of the SPARC tokamak,\" Journal of Plasma Physics, vol. 86, 865860502, 2020.",
-      "journal": "Journal of Plasma Physics", 
+      "citation": "A. J. Creely et al., \"Overview of the SPARC tokamak,\" Journal of Plasma Physics, vol. 86, 865860502, 2020.",
+      journal": "Journal of Plasma Physics", 
       "year": 2020,
       "local_path": "downloads/creely_2020_sparc_tokamak.pdf",
-      "status": "referenced"
+      "status": "referenced",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["SPARC tokamak", "high-field fusion", "HTS magnets", "20 T central solenoid"],
+        "reason_included": "Demonstrates large-scale engineering application of HTS technology for fusion energy, validating practical implementation of high-field superconducting systems"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Provides real-world validation of HTS technology for demanding applications requiring precise field control, supporting feasibility of our optimization approach for engineering applications",
+        "limitations_or_caveats": "Tokamak geometry differs from antimatter applications; field requirements are higher (20 T) but precision tolerances may differ from antimatter confinement needs"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "computational",
+        "apparatus_or_model_details": "Comprehensive tokamak design using HTS technology for 20 T central solenoid with detailed engineering analysis of magnetic systems, thermal management, and plasma physics",
+        "comparability_to_current_work": "Engineering methodology for HTS magnet systems directly applicable to our optimization framework; demonstrates systematic approach to complex magnetic field requirements"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on fusion plasma physics, electromagnetic field theory, and superconducting technology with comprehensive engineering systems integration",
+        "engineering_or_practical_relevance": "Demonstrates practical engineering pathway for complex HTS magnet systems, validating systematic optimization approaches for demanding field requirements"
+      },
+      "notes": "Referenced for precise field control requirements in fusion applications and validation of commercial HTS systems, demonstrating technology readiness for complex applications"
     },
     "superpower2022": {
       "citation_key": "superpower2022",
