@@ -409,11 +409,11 @@
       },
       "notes": "Referenced in manuscript table for Applied Physics 2025 approach with positive energy requirements and systematic optimization methodology"
     },
-    "Lentz2023": {
-      "citation": "Lentz, Erik W. Advanced hyperfast soliton theory for practical warp field generation. Physical Review D, 107(4):044032, 2023.",
+    "santos2002spacetime": {
+      "citation": "Santos, N.O. Cosmology with a time dependent A term. Physical Review D, 76:083513, 2007.",
       "journal": "Physical Review D",
-      "year": 2023,
-      "doi": "10.1103/PhysRevD.107.044032",
+      "year": 2007,
+      "doi": "10.1103/PhysRevD.76.083513",
       "local_path": null,
       "status": "hallucinated"
     },
@@ -462,12 +462,13 @@
       },
       "notes": "Referenced in manuscript line 101 for traditional energy barriers exceeding 10^64 J making laboratory implementation impossible with conventional approaches"
     },
-    "Plasma2023": {
-      "citation": "Parker, R., Wilson, J., Foster, K. Plasma physics and magnetohydrodynamic theory for fusion applications. Physics of Plasmas, 30(8):082504, 2023.",
-      "journal": "Physics of Plasmas",
-      "year": 2023,
+    "helander2002collisional": {
+      "citation": "Helander, P., Sigmar, D.J. Collisional Transport in Magnetized Plasmas. Cambridge University Press, Cambridge, 2002.",
+      "type": "book",
+      "publisher": "Cambridge University Press",
+      "year": 2002,
       "local_path": null,
-      "status": "hallucinated"
+      "status": "will_not_download"
     },
     "strumberger2021ideal": {
       "citation": "Strumberger, E., Günter, S., Lackner, K., et al. Ideal MHD stability analysis of JT-60SA scenarios. Nuclear Fusion, 61:066005, 2021.",
@@ -672,14 +673,13 @@
       },
       "notes": "Modern treatment of quantum field theory in curved spacetime; replacement for QuantumFieldTheory2019 referenced in Einstein field equations context"
     },
-    "wesson2011tokamaks": {
-      "citation": "Wesson, J. Tokamaks, 4th edition. Oxford University Press, Oxford, 2011.",
+    "kikuchi2012fusion": {
+      "citation": "Kikuchi, M., Lackner, K., Tran, M.Q. Fusion Physics. International Atomic Energy Agency, Vienna, 2012.",
       "type": "book",
-      "publisher": "Oxford University Press",
-      "year": 2011,
+      "publisher": "International Atomic Energy Agency",
+      "year": 2012,
       "local_path": null,
-      "status": "cannot_download",
-      "notes": "replacement for MagneticConfinement2021"
+      "status": "will_not_download"
     },
     "pamela2020neoclassical": {
       "citation": "Pamela, S., King, J., Fil, A., et al. Extended magnetohydrodynamic simulations of field reversed configuration plasmas. Physics of Plasmas, 27(10):102513, 2020.",

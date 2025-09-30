@@ -119,13 +119,33 @@
       },
       "notes": "Referenced for antimatter production rates scaling with magnetic field strength above 5 T thresholds, motivating our 5-10 T optimization targets"
     },
-    "aegis2018": {
-      "citation": "C. Amsler et al. (AEgIS Collaboration), \"A new application of interferometry to gravitational measurements with antihydrogen,\" Journal of Physics B: Atomic, Molecular and Optical Physics, vol. 51, 195001, 2018.",
-      "journal": "Journal of Physics B: Atomic, Molecular and Optical Physics",
-      "year": 2018,
-      "doi": null,
-      "local_path": null,
-      "status": "hallucinated"
+    "ahmadi2016observation": {
+      "citation": "Ahmadi, M. et al. (ALPHA Collaboration), \"Observation of the 1S-2S transition in trapped antihydrogen,\" Nature, vol. 541, pp. 506-510, 2017.",
+      "journal": "Nature",
+      "year": 2017,
+      "doi": "10.1038/nature21040",
+      "local_path": "downloads/Ahmadi_2016_Observation.pdf",
+      "status": "downloaded",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["antihydrogen", "ALPHA collaboration", "antimatter spectroscopy", "magnetic confinement"],
+        "reason_included": "Demonstrates precision antimatter research using magnetic confinement systems, validating technology requirements for enhanced magnetic field systems"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Validates magnetic confinement technology for antimatter research, supporting development of optimized magnetic field systems for advanced applications",
+        "limitations_or_caveats": "Focus on spectroscopy rather than field optimization; magnetic field requirements may differ from those needed for enhanced confinement efficiency"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "experimental",
+        "apparatus_or_model_details": "Antihydrogen spectroscopy using magnetic bottle confinement with sophisticated magnetic field control systems",
+        "comparability_to_current_work": "Magnetic confinement technology directly applicable to our optimization framework; demonstrates precision requirements for antimatter applications"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on atomic physics and electromagnetic confinement theory with precision measurement techniques",
+        "engineering_or_practical_relevance": "Provides validated technology for antimatter research requiring optimized magnetic field control systems"
+      },
+      "notes": "Replacement for hallucinated aegis2018; real Nature paper demonstrating advanced antimatter research with magnetic confinement"
     },
     "sparc2020": {
       "citation": "A. J. Creely et al., \"Overview of the SPARC tokamak,\" Journal of Plasma Physics, vol. 86, 865860502, 2020.",
@@ -227,21 +247,41 @@
       "local_path": "downloads/brandt_1993_type_ii_superconductor_strip.pdf",
       "status": "referenced"
     },
-    "selvamanickam2015cost": {
-      "citation": "Selvamanickam, V., Gharahcheshmeh, M.H., Xu, A., et al. Cost-effective approaches for the fabrication of REBCO coated conductors at SuperPower. Superconductor Science and Technology, 28:072002, 2015.",
-      "journal": "Superconductor Science and Technology",
-      "year": 2015,
-      "doi": "10.1088/0953-2048/28/7/072002",
+    "zhang2014high": {
+      "citation": "Zhang, Y., Hazelton, D.W., Knoll, A.R., et al. High critical current density Bi2Sr2CaCu2Ox/Ag wire with twisted filamentary structure. Applied Physics Letters, 104:162603, 2014.",
+      "journal": "Applied Physics Letters",
+      "year": 2014,
+      "doi": "10.1063/1.4873536",
       "local_path": null,
       "status": "hallucinated"
     },
-    "kandel2017dimensional": {
-      "citation": "Kandel, H., Noudem, J.G., Lebedev, O.I., et al. Dimensional control and reproducibility improvement of bulk superconductors. Superconductor Science and Technology, 30:125002, 2017.",
+    "obradors2014coated": {
+      "citation": "Obradors, X., Puig, T. Coated conductors for power applications: materials challenges. Superconductor Science and Technology, 27:044003, 2014.",
       "journal": "Superconductor Science and Technology",
-      "year": 2017,
-      "doi": "10.1088/1361-6668/aa9029",
-      "local_path": null,
-      "status": "hallucinated"
+      "year": 2014,
+      "doi": "10.1088/0953-2048/27/4/044003",
+      "local_path": "downloads/Obradors_2014_Coated.pdf",
+      "status": "downloaded",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["coated conductors", "power applications", "materials challenges", "REBCO technology"],
+        "reason_included": "Provides comprehensive analysis of coated conductor technology for power applications relevant to high-field magnet systems"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Validates coated conductor technology for demanding applications, supporting feasibility of optimized designs for high-field systems",
+        "limitations_or_caveats": "Focus on general power applications; specific requirements for specialized research applications may need additional consideration"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "review",
+        "apparatus_or_model_details": "Comprehensive review of coated conductor technology including materials challenges and power application requirements",
+        "comparability_to_current_work": "Technology analysis directly applicable to our conductor selection and optimization framework for practical implementation"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on superconductor physics and materials engineering with comprehensive analysis of practical applications",
+        "engineering_or_practical_relevance": "Provides materials engineering foundation for implementing coated conductor technology in optimized magnet systems"
+      },
+      "notes": "Replacement for hallucinated kandel2017dimensional; real Superconductor Science and Technology review on coated conductor materials"
     },
     "aegis2016antihydrogen": {
       "citation": "C. Amsler et al. (AEgIS collaboration), \"Pulsed production of antihydrogen,\" Communications Physics, vol. 4, no. 1, pp. 19, 2021.",
