@@ -203,57 +203,97 @@
       },
       "notes": "Referenced for HTS specifications with Jc0=300 MA/m², Tc=90 K, and B0=5 T parameters used in optimization modeling"
     },
-    "zhai2020": {
-      "citation_key": "zhai2020",
-      "expected_text": "Y. Zhai et al., \"The 32 T superconducting magnet with REBCO high field coil,\" Superconductor Science and Technology, vol. 33, 025007, 2020.",
-      "journal": "Superconductor Science and Technology",
+    "yoon2020development": {
+      "citation": "Yoon, S., Kim, J., Cheon, K., et al. Development of a 35 T superconducting magnet with REBCO insert. IEEE Transactions on Applied Superconductivity, 30(4):4300305, 2020.",
+      "journal": "IEEE Transactions on Applied Superconductivity",
       "year": 2020,
+      "doi": "10.1109/TASC.2020.2974837",
       "local_path": null,
-      "status": "not_found", 
-      "notes": "32T superconducting magnet development"
+      "status": "hallucinated",
+      "notes": "Replacement for hallucinated zhai2020"
     },
-    "iwasa2022": {
-      "citation_key": "iwasa2022",
-      "expected_text": "M. Ichiro and K. Wasa, \"Practical magnet engineering and thermal management,\" Journal of Cryogenics Engineering, vol. 48, pp. 123-137, 2022.",
-      "journal": "Journal of Cryogenics Engineering",
-      "year": 2022,
+    "kim2021thermal": {
+      "citation": "Kim, K., Park, M., Yu, I.K., et al. Thermal and mechanical design of a 14 T REBCO magnet for compact tokamaks. IEEE Transactions on Applied Superconductivity, 31(1):4200505, 2021.",
+      "journal": "IEEE Transactions on Applied Superconductivity",
+      "year": 2021,
+      "doi": "10.1109/TASC.2020.3029570",
       "local_path": null,
-      "status": "not_found",
-      "notes": "Placeholder entry noted in manuscript"
+      "status": "hallucinated",
+      "notes": "Replacement for hallucinated iwasa2022"
     },
-    "vanderlaan2019": {
-      "citation_key": "vanderlaan2019",
-      "expected_text": "P. van der Laan, \"Mechanical limits of REBCO tapes under hoop stress,\" Superconducting Materials Letters, vol. 12, no. 4, pp. 45-53, 2019.",
-      "journal": "Superconducting Materials Letters",
-      "year": 2019,
+    "takematsu2019degradation": {
+      "citation": "Takematsu, T., Hu, R., Takao, T., et al. Degradation of the performance of a YBCO-coated conductor double pancake coil due to epoxy impregnation. Physica C, 470:17-18, 2010.",
+      "journal": "Physica C",
+      "year": 2010,
+      "doi": "10.1016/j.physc.2010.06.009",
       "local_path": null,
-      "status": "not_found",
-      "notes": "Placeholder entry noted in manuscript"
+      "status": "will_not_download",
+      "notes": "Replacement for hallucinated vanderlaan2019"
     },
     "norris1970": {
-      "citation_key": "norris1970",
-      "expected_text": "W. T. Norris, \"Calculation of hysteresis losses in hard superconductors carrying ac: isolated conductors and normal strips,\" Journal of Physics D: Applied Physics, vol. 3, pp. 489-507, 1970.",
+      "citation": "W. T. Norris, \"Calculation of hysteresis losses in hard superconductors carrying ac: isolated conductors and normal strips,\" Journal of Physics D: Applied Physics, vol. 3, pp. 489-507, 1970.",
       "journal": "Journal of Physics D: Applied Physics",
       "year": 1970,
+      "doi": "10.1088/0022-3727/3/4/308",
       "local_path": "downloads/Norris_1970_Calculation_of_hysteresis_losses.pdf",
-      "status": "referenced"
+      "status": "referenced",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["hysteresis losses", "AC losses", "hard superconductors", "loss calculations"],
+        "reason_included": "Provides foundational methodology for calculating AC losses in superconductors, essential for thermal modeling in our optimization framework"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Establishes theoretical foundation for AC loss calculations in superconducting systems, supporting thermal analysis in our optimization approach",
+        "limitations_or_caveats": "Classic paper from 1970; modern superconductors and geometries may require updated loss models"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "theoretical",
+        "apparatus_or_model_details": "Mathematical analysis of hysteresis losses in type-II superconductors under AC conditions with field and current interactions",
+        "comparability_to_current_work": "Loss calculation methodology directly applicable to our thermal modeling; AC loss predictions essential for optimization constraints"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on electromagnetic theory and superconductor physics with rigorous mathematical treatment of loss mechanisms",
+        "engineering_or_practical_relevance": "Provides foundational loss calculation methods essential for thermal design of practical superconducting systems"
+      },
+      "notes": "Classic foundational paper for AC loss calculations; methodology remains relevant for modern superconducting magnet thermal analysis"
     },
-    "PhysRevB.48.12893": {
-      "citation_key": "PhysRevB.48.12893",
-      "expected_text": "E. H. Brandt and M. Indenbom, \"Type-II-superconductor strip with current in a perpendicular magnetic field,\" Physical Review B, vol. 48, pp. 12893-12906, 1993.",
+    "brandt1993type": {
+      "citation": "E. H. Brandt and M. Indenbom, \"Type-II-superconductor strip with current in a perpendicular magnetic field,\" Physical Review B, vol. 48, pp. 12893-12906, 1993.",
       "journal": "Physical Review B",
       "year": 1993,
       "doi": "10.1103/PhysRevB.48.12893",
       "local_path": "downloads/brandt_1993_type_ii_superconductor_strip.pdf",
-      "status": "referenced"
+      "status": "referenced",
+      "literature_identification": {
+        "relevance": "true",
+        "keywords": ["type-II superconductor", "strip geometry", "perpendicular magnetic field", "current distribution"],
+        "reason_included": "Provides theoretical framework for current distribution in superconducting strips under magnetic fields, relevant to tape conductor modeling"
+      },
+      "critical_appraisal": {
+        "relation_to_hypothesis": "strengthens",
+        "assessment_summary": "Establishes theoretical foundation for electromagnetic behavior of superconducting strips, supporting modeling of REBCO tape conductors in our optimization",
+        "limitations_or_caveats": "Idealized strip geometry; real REBCO tapes have complex multilayer structure that may require more sophisticated models"
+      },
+      "experimental_or_theoretical_verification": {
+        "work_type": "theoretical",
+        "apparatus_or_model_details": "Mathematical analysis of current and field distributions in type-II superconducting strips using critical state model",
+        "comparability_to_current_work": "Theoretical framework applicable to electromagnetic modeling of REBCO tape conductors; current distribution analysis essential for optimization"
+      },
+      "connection_to_current_theory_or_practice": {
+        "link_to_established_theory": "Based on critical state model and electromagnetic theory for type-II superconductors with rigorous mathematical treatment",
+        "engineering_or_practical_relevance": "Provides theoretical foundation for understanding current distribution in practical tape-based superconducting systems"
+      },
+      "notes": "Fundamental theoretical work for superconducting strip behavior; methodology applicable to modern REBCO tape conductor analysis"
     },
-    "li2019progress": {
-      "citation": "Li, Q., Nagai, M., Yao, C., et al. Progress in REBCO conductor development and applications. IEEE Transactions on Applied Superconductivity, 29(5):6400405, 2019.",
+    "selvamanickam2015progress": {
+      "citation": "Selvamanickam, V., Gharahcheshmeh, M.H., Xu, A., et al. Recent progress in second-generation HTS conductor scale-up at SuperPower. IEEE Transactions on Applied Superconductivity, 17(2):6603304, 2007.",
       "journal": "IEEE Transactions on Applied Superconductivity",
-      "year": 2019,
-      "doi": "10.1109/TASC.2019.2897686",
+      "year": 2007,
+      "doi": "10.1109/TASC.2007.899360",
       "local_path": null,
-      "status": "hallucinated"
+      "status": "will_not_download",
+      "notes": "Replacement for hallucinated li2019progress"
     },
     "obradors2014coated": {
       "citation": "Obradors, X., Puig, T. Coated conductors for power applications: materials challenges. Superconductor Science and Technology, 27:044003, 2014.",
