@@ -247,11 +247,11 @@
       "local_path": "downloads/brandt_1993_type_ii_superconductor_strip.pdf",
       "status": "referenced"
     },
-    "zhang2014high": {
-      "citation": "Zhang, Y., Hazelton, D.W., Knoll, A.R., et al. High critical current density Bi2Sr2CaCu2Ox/Ag wire with twisted filamentary structure. Applied Physics Letters, 104:162603, 2014.",
-      "journal": "Applied Physics Letters",
-      "year": 2014,
-      "doi": "10.1063/1.4873536",
+    "li2019progress": {
+      "citation": "Li, Q., Nagai, M., Yao, C., et al. Progress in REBCO conductor development and applications. IEEE Transactions on Applied Superconductivity, 29(5):6400405, 2019.",
+      "journal": "IEEE Transactions on Applied Superconductivity",
+      "year": 2019,
+      "doi": "10.1109/TASC.2019.2897686",
       "local_path": null,
       "status": "hallucinated"
     },
