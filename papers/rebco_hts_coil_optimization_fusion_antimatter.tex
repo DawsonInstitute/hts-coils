@@ -12,7 +12,7 @@
 \usepackage{pifont}   % for checkmark symbols
 \providecommand{\checkmark}{\ding{51}}
 
-\title{\Large\bfseries Optimization of REBCO High-Temperature Superconducting Coils for High-Field Applications in Fusion and Antimatter Trapping}
+\title{\Large\bfseries Computational Optimization Framework for REBCO High-Temperature Superconducting Coil Design with FEA Validation}
 
 % Optional author config: load `author_config.tex` if it exists (it may be
 % gitignored to prevent committing personal info). If the file is missing,
@@ -48,20 +48,16 @@
 \sloppy
 
 \begin{abstract}
-We present a comprehensive optimization framework for REBCO high-temperature superconducting coils that achieves validated 5-10 T capability while maintaining engineering feasibility. The approach combines electromagnetic-thermal-mechanical modeling with realistic manufacturing constraints to enable both precision applications (2.1 T, 0.01\% ripple) and high-field operation (7.07 T, 0.16\% ripple). Key innovations include multi-tape conductor design achieving 30\% current utilization, validated space-thermal modeling with 74.5 K safety margin, and systematic reinforcement reducing stress from 179 MPa to 35 MPa. The methodology enables 60\% cost reduction versus conventional systems while extending to demanding fusion plasma confinement and antimatter production applications requiring precise high-field control.
+We present a computational optimization framework for REBCO high-temperature superconducting coils combining electromagnetic-thermal-mechanical modeling validated through COMSOL Multiphysics and FEniCSx finite element analysis. The approach demonstrates systematic scaling from precision baseline configurations (2.1 T, 0.01\% ripple) to high-field operation (7.07 T, 0.16\% ripple) through multi-objective parameter optimization. Computational results project multi-tape conductor designs achieving 30\% current utilization, thermal margins of 74.5 K, and mechanical reinforcement strategies reducing stress from 179 MPa to 35 MPa. Cross-platform FEA validation shows $<1\%$ solver variance for electromagnetic and stress analysis. All results represent computational projections requiring experimental validation.
 \end{abstract}
 
 \textbf{Index Terms}---High-temperature superconductors, REBCO, magnetic confinement, fusion energy, antimatter physics.
 
 \section{Introduction}
 
-High-field magnets utilizing rare-earth barium copper oxide (REBCO) high-temperature superconductors (HTS) enable applications beyond conventional limits, addressing critical challenges in fusion energy and antimatter research \cite{zhou2023}. The push toward 5-10 T operation stems from fundamental physics requirements: fusion plasma confinement scales as $B^2$, while antimatter production rates increase exponentially with magnetic field strength above 5 T thresholds \cite{alpha2023}.
+High-field magnets utilizing rare-earth barium copper oxide (REBCO) high-temperature superconductors enable magnetic field generation exceeding 5 T with improved thermal management compared to conventional low-temperature superconductors. Recent advances in REBCO tape manufacturing demonstrate critical current densities exceeding 300~MA/m$^2$ at 20~K, enabling high-field applications approaching record-breaking systems of 45.5~T. However, systematic optimization frameworks combining electromagnetic performance, thermal management, and mechanical integrity remain limited.
 
-Recent advances in REBCO tape manufacturing demonstrate critical current densities exceeding 300~MA/m$^2$ at 20~K \cite{abraimov2022}, enabling controlled high-field applications approaching record-breaking systems of 45.5~T \cite{hahn2019}. However, the transition from demonstration-scale systems to engineering-practical designs requires systematic optimization frameworks that simultaneously address electromagnetic performance, thermal management, and mechanical integrity.
-
-Antimatter research relies heavily on magnetic confinement, with CERN's Antihydrogen Laser Physics Apparatus (ALPHA) and AEgIS experiments successfully trapping antihydrogen using 1--5~T fields \cite{alpha2023,aegis2016antihydrogen}. Next-generation experiments require 5-10 T capabilities for enhanced trapping efficiency and precision measurements. Similarly, fusion applications demand precise field control, exemplified by the Soonest/Smallest Private-Funded Affordable Robust Compact (SPARC) tokamak's 20~T central solenoid \cite{sparc2020}.
-
-This work develops a comprehensive optimization methodology for REBCO coil designs, emphasizing realistic manufacturing constraints and mechanical robustness while achieving validated 5-10 T capability. We demonstrate the approach through both precision baseline configurations (2.1 T, 0.01\% ripple) and high-field extensions (7.07 T, 0.16\% ripple), providing design tools spanning the full range of HTS magnet applications.
+This work develops a computational optimization methodology for REBCO coil designs validated through finite element analysis using both COMSOL Multiphysics and open-source FEniCSx solvers. We demonstrate the approach through baseline precision configurations (2.1 T, 0.01\% ripple) and high-field extensions (7.07 T, 0.16\% ripple), with cross-platform FEA validation confirming computational accuracy.
 
 \section{Methodology}
 
@@ -404,51 +400,26 @@ This work was supported by advanced propulsion research initiatives. The authors
 
 \begin{thebibliography}{8}
 
-\bibitem{zhou2023}
-Y. Zhou \emph{et al.}, ``Review of progress and challenges of key mechanical issues in high-field superconducting magnets,'' \textit{National Science Review}, vol. 10, nwad001, 2023.
-
-\bibitem{abraimov2022}
-D. Abraimov \emph{et al.}, ``Double disordered REBCO coated conductors of industrial scale: high currents in high magnetic fields,'' \textit{Superconductor Science and Technology}, vol. 35, 065001, 2022.
-
 \bibitem{hahn2019}
 S. Hahn \emph{et al.}, ``45.5-tesla direct-current magnetic field generated with a high-temperature superconducting magnet,'' \textit{Nature}, vol. 570, pp. 496--499, 2019.
 
-\bibitem{alpha2023}
-E. K. Anderson \emph{et al.} (ALPHA Collaboration), ``Observation of the effect of gravity on the motion of antimatter,'' \textit{Nature}, vol. 621, pp. 716--722, 2023.
-
-\bibitem{aegis2016antihydrogen}
-C. Amsler et al. (AEgIS collaboration), ``Pulsed production of antihydrogen,'' Communications Physics, vol. 4, no. 1, pp. 19, 2021.
-
-\bibitem{sparc2020}
-A.J. Creely \emph{et al.}, ``Overview of the SPARC tokamak,'' \textit{Journal of Plasma Physics}, vol. 86, 865860502, 2020.
-
 \bibitem{superpower2022}
-SuperPower Inc., ``2G HTS Wire Platform Technical Specifications,'' SuperPower Technical Bulletin SP-TB-2022-HTS-001, 2022.
+SuperPower Inc., ``2G HTS Wire Platform Technical Specifications,'' 2022.
 
 \bibitem{larbalestier2014rebco}
-Larbalestier, D.C., Jiang, J., Trociewitz, U.P., et al. ``Isotropic round-wire multifilament cuprate superconductor for generation of magnetic fields above 30 T,'' \textit{Nature Materials}, 13:375--381, 2014.
+Larbalestier, D.C. \emph{et al.}, ``Isotropic round-wire multifilament cuprate superconductor for generation of magnetic fields above 30 T,'' \textit{Nature Materials}, 13:375--381, 2014.
 
-% --- placeholder entries for locally-cited keys (resolve undefined citation warnings) ---
 \bibitem{iwasa2009cryogenic}
-Iwasa, Y. ``Case Studies in Superconducting Magnets: Design and Operational Issues.'' 2nd Edition, Springer, New York, 2009.
+Iwasa, Y., ``Case Studies in Superconducting Magnets,'' 2nd ed., Springer, 2009.
+
+\bibitem{zhou2023}
+Y. Zhou \emph{et al.}, ``Review of progress and challenges of key mechanical issues in high-field superconducting magnets,'' \textit{National Science Review}, vol. 10, nwad001, 2023.
 
 \bibitem{vanderLaan2010mechanical}
-van der Laan, D.C., Ekin, J.W., Clickner, C.C., and Stauffer, T.C. ``Delamination strength of YBCO coated conductors under transverse tensile stress,'' \textit{Superconductor Science and Technology}, 20:765--770, 2007.
-
-\bibitem{norris1970}
-W. T. Norris, ``Calculation of hysteresis losses in hard superconductors carrying ac: isolated conductors and normal strips,'' \textit{Journal of Physics D: Applied Physics}, vol. 3, pp. 489--507, 1970.
-
-\bibitem{brandt1993type}
-E. H. Brandt and M. Indenbom, ``Type-II-superconductor strip with current in a perpendicular magnetic field,'' \textit{Physical Review B}, vol. 48, pp. 12893--12906, 1993.
-
-\bibitem{selvamanickam2015progress}
-Selvamanickam, V., Gharahcheshmeh, M.H., Xu, A., et al., ``Recent progress in second-generation HTS conductor scale-up at SuperPower,'' \textit{IEEE Transactions on Applied Superconductivity}, vol. 17, no. 2, pp. 6603304, 2007.
-
-\bibitem{obradors2014coated}
-Obradors, X., Puig, T., ``Coated conductors for power applications: materials challenges,'' \textit{Superconductor Science and Technology}, vol. 27, 044003, 2014.
+van der Laan, D.C. \emph{et al.}, ``Delamination strength of YBCO coated conductors under transverse tensile stress,'' \textit{Supercond. Sci. Technol.}, 20:765--770, 2007.
 
 \bibitem{comsol2023}
-COMSOL Inc., ``COMSOL Multiphysics Reference Manual, Version 6.1,'' COMSOL Documentation, 2023.
+COMSOL Inc., ``COMSOL Multiphysics Reference Manual, Version 6.1,'' 2023.
 
 \end{thebibliography}
 
