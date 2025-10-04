@@ -48,6 +48,8 @@
 \newcommand{\divg}{\boldsymbol{\nabla} \cdot}
 \newcommand{\dd}[1]{\,\mathrm{d}#1}
 
+\def\path#1{\texttt{\detokenize{#1}}}
+\def\path#1{\texttt{\detokenize{#1}}}
 \begin{document}
 
 \title{Computational Analysis of High-Temperature Superconducting Coils for High-Beta Plasma Confinement}
@@ -168,7 +170,7 @@ $\downarrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
 \textbf{5. Data Acquisition} $\leftarrow$ \textbf{3. Plasma Control}\\[0.2cm]
 $\uparrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
 \textbf{4. Enhanced Interferometric Detection}\\[0.3cm]
- 		extit{Coordinated operation may potentially enable soliton formation and detection.}
+ 		\t\textit{Coordinated operation may potentially enable soliton formation and detection.}
 \vspace{2cm}
 \end{minipage}}
 \caption{\textbf{Integrated Lentz-HTS Validation Framework Architecture}: Comprehensive schematic showing the five interconnected subsystems required for laboratory-scale soliton validation. \textbf{Data Flow}: (1) Energy Optimization System computes optimal energy configurations and provides targeting parameters using multi-objective optimization algorithms; (2) HTS Magnetic Confinement System generates precisely controlled $7.07\pm0.15$~T toroidal fields with $<0.2\pm0.05\%$ ripple using REBCO superconducting tape; (3) Plasma Control System maintains optimal density ($n_e = 10^{20}\,\mathrm{m}^{-3}$) and temperature (100--1000~eV) profiles through real-time feedback; (4) Enhanced Interferometric Detection system achieves $1.0\times10^{-18}\pm2\times10^{-19}$~m spacetime distortion sensitivity using a stabilized Michelson configuration; (5) Data Acquisition and Analysis processes real-time measurements at 10~kHz with automated soliton detection algorithms. \textbf{Integration}: Subsystems communicate through a centralized control system with $<100\,\mu\mathrm{s}$ latency. \textbf{Performance}: Complete system validation demonstrates computational feasibility within $\pm15\%$ error bounds across all subsystems. \textbf{Abbreviations}: HTS = High-Temperature Superconductor; REBCO = Rare Earth Barium Copper Oxide. \textbf{Status}: All parameters represent computational projections requiring experimental validation.}
@@ -185,7 +187,7 @@ The energy optimization subsystem implements advanced algorithms to minimize pow
 \item \textbf{Envelope Profile Fitting}: Precision target soliton envelope generation using $\sech^2$ basis functions with $L_1/L_2$ error minimization
 \end{itemize}
 
-The integration leverages advanced multi-objective optimization algorithms for soliton envelope shaping, power budget management, and temporal energy distribution \cite{alcubierre2000superluminal,carleo2019machine}, with canonical energy requirement studies by McMonigal et al.\ (DOI: PhysRevD.85.064024), validated through: (1) Cross-code benchmarking against established optimization libraries with variance analysis implemented in \texttt{notebooks/validation\_framework.py} showing $<3\%$ variance \cite{HTS-Coils-GitHub}; (2) Analytical verification against known optimization solutions with machine precision agreement as demonstrated in \texttt{src/warp/comsol\_plasma.py::perform\_analytical\_validation} \cite{HTS-Coils-GitHub}; (3) Monte Carlo validation across 10,000 parameter sets with 99.7\% convergence success rate through uncertainty quantification harness in \texttt{src/warp/optimizer/uq\_impulse\_energy\_variance.py} \cite{HTS-Coils-GitHub}; (4) Comprehensive error analysis showing numerical stability under extreme parameter conditions. Algorithms adapted specifically for Lentz soliton applications with enhanced convergence stability through computational modeling.
+The integration leverages advanced multi-objective optimization algorithms for soliton envelope shaping, power budget management, and temporal energy distribution, with canonical energy requirement studies by McMonigal et al.\ \cite{McMonigal2012}, validated through: (1) Cross-code benchmarking against established optimization libraries with variance analysis implemented in \path{notebooks/validation_framework.py} showing $<3\%$ variance \cite{HTS-Coils-GitHub}; (2) Analytical verification against known optimization solutions with machine precision agreement as demonstrated in \path{src/warp/comsol_plasma.py::perform_analytical_validation} \cite{HTS-Coils-GitHub}; (3) Monte Carlo validation across 10,000 parameter sets with 99.7\% convergence success rate through uncertainty quantification harness in \path{src/warp/optimizer/uq_impulse_energy_variance.py} \cite{HTS-Coils-GitHub}; (4) Comprehensive error analysis showing numerical stability under extreme parameter conditions. Algorithms adapted specifically for Lentz soliton applications with enhanced convergence stability through computational modeling.
 
 \subsubsection{HTS Magnetic Confinement System}
 
@@ -1014,11 +1016,16 @@ Freidberg, J.P.
 \newblock Ideal MHD.
 \newblock Cambridge University Press, Cambridge, 2014.
 
+\bibitem{McMonigal2012}
+McMonigal, Brendan, Lewis, Geraint F., and O'Byrne, Philip.
+\newblock Energy requirements for warp drive.
+\newblock {\em Physical Review D}, 85(6):064024, 2012.
+
 \bibitem{HTS-Coils-GitHub}
 Dawson Institute Research Team.
 \newblock HTS Coils Research Repository: Computational framework for laboratory-scale soliton validation.
-\newblock \url{https://github.com/DawsonInstitute/hts-coils}, 2025.
-\newblock Accessed: September 2025.
+\newblock Zenodo, 2025. \url{https://doi.org/10.5281/zenodo.17114417}
+
 
 \end{thebibliography}
 

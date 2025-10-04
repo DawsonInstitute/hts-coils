@@ -130,6 +130,12 @@ python -m src.warp.fenics_plasma
 pytest tests/ --tb=short
 ```
 
+### Interactive Notebook for Validation
+
+For a focused, interactive experience with our validation framework, you can launch a dedicated notebook. This provides access to the validation functions from `notebooks/validation_framework.py` without loading the full project.
+
+**Launch Interactive Validation**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/interactive_validation.ipynb)
+
 ## Quick Start
 
 ### Interactive Notebooks (MyBinder)
