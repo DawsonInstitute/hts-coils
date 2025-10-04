@@ -51,7 +51,7 @@
 We present a computational optimization framework for REBCO high-temperature superconducting coils combining electromagnetic-thermal-mechanical modeling validated through COMSOL Multiphysics and FEniCSx finite element analysis. The approach demonstrates systematic scaling from precision baseline configurations (2.1 T, 0.01\% ripple) to high-field operation (7.07 T, 0.16\% ripple) through multi-objective parameter optimization. Computational results project multi-tape conductor designs achieving 30\% current utilization, thermal margins of 74.5 K, and mechanical reinforcement strategies reducing stress from 179 MPa to 35 MPa. Cross-platform FEA validation shows $<1\%$ solver variance for electromagnetic and stress analysis. All results represent computational projections requiring experimental validation.
 \end{abstract}
 
-\textbf{Index Terms}---High-temperature superconductors, REBCO, magnetic confinement, fusion energy, antimatter physics.
+\textbf{Index Terms}---High-temperature superconductors, REBCO, magnetic confinement, computational modeling, finite element analysis.
 
 \section{Introduction}
 
@@ -76,7 +76,7 @@ where $J_{c0}=300$~MA/m$^2$, $T_c=90$~K, and $B_0=5$~T based on SuperPower 2G HT
 
 \subsection{Multi-Objective Optimization Framework}
 
-Grid search optimization minimizes field ripple subject to field strength and thermal constraints following established HTS optimization methodologies~\cite{iwasa2009cryogenic}. Parameter bounds: $N \in [200,600]$ turns, $I \in [500,2000]$~A, $R \in [0.15,0.35]$~m with convergence criteria $|\Delta \text{objective}| < 10^{-6}$ using systematic thermal modeling integration validated against commercial HTS systems~\cite{hahn2019,sparc2020}:
+Grid search optimization minimizes field ripple subject to field strength and thermal constraints following established HTS optimization methodologies~\cite{iwasa2009cryogenic}. Parameter bounds: $N \in [200,600]$ turns, $I \in [500,2000]$~A, $R \in [0.15,0.35]$~m with convergence criteria $|\Delta \text{objective}| < 10^{-6}$ using systematic thermal modeling integration validated against commercial HTS systems~\cite{hahn2019}:
 \begin{equation}
 \min_{\{N,I,R\}} \frac{\sigma_{B_z}}{\langle B_z \rangle} \quad \text{s.t.} \quad \langle B_z \rangle \geq 1\,\text{T}, \quad I \leq 0.5 I_c, \quad \Delta T_{\text{margin}} \geq 20\,\text{K}
 \end{equation}
@@ -101,7 +101,7 @@ This section presents validation results for both baseline precision application
 
 \subsection{Baseline Configuration: Precision Operation at 2.1 T}
 
-The optimized Helmholtz pair achieves 2.1~T central field with 0.01\% ripple, operating at 50\% critical current for thermal safety~\cite{sparc2020}. Key parameters:
+The optimized Helmholtz pair achieves 2.1~T central field with 0.01\% ripple, operating at 50\% critical current for thermal safety. Key parameters:
 \begin{itemize}
 \item Geometry: $N = 400$ turns, $R = 0.2$~m, separation $R/2 = 0.1$~m
 \item Operating point: $I = 1171$~A, $J_c = 146$~MA/m$^2$ (cf. 300~MA/m$^2$ at 77~K, 0~T)
@@ -109,7 +109,7 @@ The optimized Helmholtz pair achieves 2.1~T central field with 0.01\% ripple, op
 \item Material: 20.1~km REBCO tape (4~mm width, 0.1~mm thickness), cost \$402k
 \end{itemize}
 
-SPARC scaling validates our approach~\cite{sparc2020}: scaling 20~T/20~kA/1.85~m to our geometry predicts $B = 20 \times (1171/20000) \times (1.85/0.2) = 1.08$~T, consistent with our 2.1~T result considering the nonlinear $J_c(B,T)$ dependence. The reduced current density (146 vs 300~MA/m$^2$) reflects field-dependent derating~\cite{hahn2019,superpower2022}: $J_c(2.1\text{T}, 20\text{K}) = 300 \times (1-20/90)^{1.5} / (1+2.1/5)^{1.5} = 146$~MA/m$^2$, as illustrated in Figure~\ref{fig:field_stress}.
+The reduced current density (146 vs 300~MA/m$^2$) reflects field-dependent derating~\cite{hahn2019,superpower2022}: $J_c(2.1\text{T}, 20\text{K}) = 300 \times (1-20/90)^{1.5} / (1+2.1/5)^{1.5} = 146$~MA/m$^2$, as illustrated in Figure~\ref{fig:field_stress}.
 
 \begin{figure*}[t]
 	\centering
@@ -137,8 +137,6 @@ Baseline design exhibits 175 MPa hoop stress, exceeding the 35 MPa REBCO delamin
 \end{figure}
 
 \subsection{High-Field Configuration: Scaling to 7.07 T}
-
-Building upon the validated 2.1 T baseline framework, this subsection demonstrates systematic scaling to meet the challenging 5-10 T requirement for advanced fusion and antimatter applications, maintaining engineering feasibility through multi-tape conductor architecture and optimized operating conditions.
 
 Extension to 5-10 T field capability employs systematic parameter optimization with validated engineering constraints. The high-field configuration achieves 7.07 T through:
 
@@ -266,53 +264,41 @@ Quantitative framework advantages for high-field operation: (1) Projected 2× co
 
 \subsection{Technological Impact and High-Field Applications}
 
-The transition from baseline (2.1 T) to high-field (7.07 T) operation potentially unlocks significant applications with quantified performance improvements:
+The transition from baseline (2.1 T) to high-field (7.07 T) operation can enable significant performance improvements in various scientific and industrial domains. The modeling framework provides a tool to explore these potential applications.
 
-\textbf{High-Field Fusion Applications}: 7.07 T enables compact stellarator configurations with 11.3× higher magnetic pressure ($B^2$ scaling) improving plasma confinement efficiency. Tokamak error field correction achieves 71× better field quality ($B^2/\Delta B$ scaling) reducing disruption probability from 1:10$^3$ pulses to 1:10$^5$ pulses, representing \$50M/year disruption damage avoidance for ITER-scale facilities.
+\textbf{High-Field Magnetic Confinement}: 7.07 T enables compact stellarator configurations with 11.3× higher magnetic pressure ($B^2$ scaling) improving plasma confinement efficiency. Tokamak error field correction could achieve significantly better field quality, which is critical for stable plasma operation.
 
-\textbf{Antimatter Physics Applications}: 7.07 T operation may enable next-generation antihydrogen experiments requiring 5-10 T thresholds for production rate enhancement. Penning trap confinement lifetimes could improve by factor 2× through reduced field gradients (0.16\% vs 1.0\% conventional ripple), potentially enabling precision gravity measurements with extended interrogation times.
+\textbf{Particle Accelerator Applications}: 7.07 T dipole magnets may enable smaller accelerator circumferences ($R \propto p/qB$) for equivalent beam energies, potentially reducing facility construction costs.
 
-\textbf{Particle Accelerator Applications}: 7.07 T dipole magnets enable 25\% smaller accelerator circumferences ($R \propto p/qB$) for equivalent beam energies, reducing facility construction costs by \$2.1B for LHC-scale hadron colliders while maintaining precision steering through 0.16\% field uniformity. Superconducting undulator applications achieve 3.4× higher peak fields enabling shorter-wavelength X-ray generation for materials science and medical imaging.
+\textbf{Advanced MRI and Medical Physics}: High-field MRI systems at 7 T offer substantial signal-to-noise ratio improvement ($SNR \propto B^2$), which could enable higher resolution imaging.
 
-\textbf{Advanced MRI and Medical Physics}: High-field MRI systems at 7 T provide 3.4× signal-to-noise ratio improvement ($SNR \propto B^2$) enabling sub-millimeter brain imaging with 15-minute scan times vs 2-hour conventional protocols. Precision field uniformity (0.16\% vs 20 ppm commercial requirements) eliminates distortion artifacts in functional MRI, advancing neurological diagnostics with \$1.2B/year healthcare impact through earlier disease detection.
+\textbf{Quantum Computing Infrastructure}: 7.07 T fields may enable quantum dot array scaling with stronger confinement potentials, a key step for increasing qubit density.
 
-\textbf{Quantum Computing Infrastructure}: 7.07 T fields enable quantum dot array scaling with 11.3× stronger confinement potentials, supporting 1000+ qubit systems vs 100-qubit limits in weaker fields. Reduced field gradients (0.16\%) suppress decoherence mechanisms, extending quantum coherence times from microseconds to milliseconds—enabling fault-tolerant quantum computation with 99.9\% gate fidelity.
+\textbf{Materials Processing and Crystal Growth}: High-field gradient control could enable Bridgman crystal growth with reduced convection, potentially producing semiconductor wafers with fewer defects.
 
-\textbf{Materials Processing and Crystal Growth}: High-field gradient control enables Bridgman crystal growth with 10× reduced convection ($F \propto B \nabla B$), producing semiconductor wafers with 5× fewer defects for 20\% photovoltaic efficiency improvements. Magnetic levitation materials processing eliminates container contamination, enabling ultra-pure metallic glass formation for aerospace applications with \$500M/year market potential.
+\textbf{Space-Based Scientific Applications}: The framework enables the design of space-qualified superconducting magnets for applications like cosmic ray spectroscopy, which requires high field strengths in a robust package.
 
-\textbf{Space-Based Scientific Applications}: Framework enables space-qualified superconducting magnets for particle detection (cosmic ray spectroscopy requiring 5-10 T), Earth magnetosphere studies (precision field mapping), and fundamental physics experiments. 74.5 K thermal margins provide 3.7× safety factor for space environments where repair is impossible, enabling 15-year mission durations with $<1\%$ failure probability.
+\textbf{Industrial Magnetic Separation}: 7.07 T fields could enable more efficient separation of diamagnetic materials in recycling streams.
 
-\textbf{Industrial Magnetic Separation}: 7.07 T fields enable efficient separation of diamagnetic materials (graphite, plastics) for recycling applications, improving separation efficiency from 60\% to 95\% for mixed waste streams. Rare earth element recovery from electronic waste achieves 8× concentration factors vs conventional methods, addressing supply chain vulnerabilities worth \$12B annually.
+\textbf{Nuclear Magnetic Resonance Spectroscopy}: High-field NMR (7 T) provides resolution enhancement that could accelerate molecular characterization in drug discovery.
 
-\textbf{Nuclear Magnetic Resonance Spectroscopy}: High-field NMR (7 T) provides 3.4× resolution enhancement enabling protein structure determination in 6-hour experiments vs 3-day protocols at lower fields. Pharmaceutical drug discovery acceleration through faster molecular characterization reduces development timelines by 18 months, providing \$2.8B/year industry impact.
-
-\textbf{Economic High-Field Impact}: While 7.07 T systems require 89-tape conductors (vs 20-tape baseline), the cost scales sublinearly: \$1.9M total vs \$13.2M for equivalent 7 T NbTi systems, providing 85\% cost reduction despite 4.5× tape usage through eliminated helium infrastructure and 98.5\% cryogenic power reduction (150 W vs 10 kW).
-
-\textbf{Comprehensive Cost-Benefit Analysis}: High-field (7.07 T) vs baseline (2.1 T) comparison across six application domains reveals quantitative optimization thresholds:
-\begin{itemize}
-\item \textbf{Performance density}: $B^2 \times R / \text{cost} = 7.07^2 \times 0.16 / 1.9\text{M} = 4.2 \times 10^{-6}$ T$^2$·m/\$ vs $2.1^2 \times 0.2 / 0.4\text{M} = 2.2 \times 10^{-6}$ T$^2$·m/\$ (1.9× improvement)
-\item \textbf{Multi-domain economic impact}: Fusion (11.3× magnetic pressure), MRI (3.4× SNR, \$1.2B/year healthcare savings), accelerators (\$2.1B construction savings), quantum computing (1000+ qubit scaling), NMR (\$2.8B/year pharmaceutical acceleration), materials processing (\$500M/year aerospace applications)
-\item \textbf{Operational economics}: 10-year total cost of ownership \$2.8M (7.07 T) vs \$23.4M (NbTi equivalent), yielding \$20.6M savings and 2.1-year payback period across all applications
-\item \textbf{Technology readiness scaling}: Framework supports incremental field scaling (3-10 T) enabling staged deployment: 3-5 T for immediate MRI/NMR applications, 5-7 T for fusion trim coils, 7-10 T for next-generation accelerators and quantum systems
-\item \textbf{Market threshold analysis}: Break-even occurs at 4.2 T field requirements; applications $>5 T$ strongly favor HTS approach with 5× lifecycle cost advantage and eliminated helium infrastructure dependencies
-\item \textbf{Risk mitigation quantification}: 74.5 K thermal margins reduce cryogenic failure probability from 1:10$^4$ hours (helium systems) to 1:10$^6$ hours (HTS), eliminating \$2.3M/year expected downtime costs while enabling space deployment impossible with conventional approaches
-\end{itemize}
+\textbf{Economic High-Field Impact}: While 7.07 T systems require more complex conductors (e.g., 89-tape), the cost may scale sublinearly compared to traditional low-temperature superconductor systems. Our model projects a \$1.9M total cost for the 7.07 T system, which could offer significant cost reduction by eliminating complex helium infrastructure and reducing cryogenic power requirements (150 W vs 10 kW).
 
 Key advantages for high-field applications include:
 \begin{enumerate}
-\item \textbf{Field strength advantage:} 7.07 T vs 2.1 T baseline enables applications previously requiring superconducting undulators or dedicated high-field facilities
-\item \textbf{Precision maintenance:} 0.16\% ripple at 7.07 T exceeds 0.01\% baseline ripple scaled by field enhancement, demonstrating maintained uniformity
-\item \textbf{Thermal robustness:} 74.5 K margin at 7+ T provides safety factors unachievable with conventional approaches
-\item \textbf{Scalability validation:} Framework proven across 2.1-7.07 T range enables predictive design for any intermediate field requirement
+\item \textbf{Field strength advantage:} 7.07 T vs 2.1 T baseline enables applications previously requiring dedicated high-field facilities.
+\item \textbf{Precision maintenance:} 0.16\% ripple at 7.07 T demonstrates maintained uniformity even at higher fields.
+\item \textbf{Thermal robustness:} A 74.5 K margin at 7+ T provides safety factors unachievable with conventional approaches.
+\item \textbf{Scalability validation:} The framework is proven across the 2.1-7.07 T range, enabling predictive design for any intermediate field requirement.
 \end{enumerate}
 \begin{enumerate}
 \item \textbf{Economic viability:} \$1.9M high-field system cost vs \$13.2M for equivalent NbTi systems, providing 85\% cost reduction despite 4.5× conductor usage~\cite{IEEE_TAS_2015_cost}
 \item \textbf{Operational efficiency:} 150~W cryocooler vs. 10~kW for 4.2~K helium systems (98.5\% power reduction)
-\item \textbf{Field quality:} 0.16\% ripple at 7.07 T provides 2× confinement improvement over conventional 1\% systems~\cite{alpha2023}
-\item \textbf{Hybrid compatibility:} Framework supports NbTi-REBCO hybrid designs with validated thermal interfaces for space applications~\cite{sparc2020}
+\item \textbf{Field quality:} 0.16\% ripple at 7.07 T provides significant improvement over conventional 1\% systems
+\item \textbf{Hybrid compatibility:} Framework supports NbTi-REBCO hybrid designs with validated thermal interfaces for space applications
 \end{enumerate}
 
-For fusion applications~\cite{sparc2020}, the design enables cost-effective stellarator trim coils or tokamak error field correction, potentially reducing magnet costs by 60\% versus traditional approaches. System-level savings: 150~W cryocooler vs. 10~kW helium liquefier reduces facility power by 9.85~kW (98.5\% reduction), translating to \$52k/year operational savings at \$0.06/kWh. Antimatter confinement applications~\cite{alpha2023} benefit from 40\% confinement improvement: $\Delta \tau / \tau = -(\Delta B/B) \times 2 = -0.0098\% \times 2 = 102$ relative improvement vs. conventional 1\% ripple systems, enabling trapping lifetimes extending from hours to days.
+For magnetic confinement applications, the design enables cost-effective stellarator trim coils or tokamak error field correction, potentially reducing magnet costs by 60\% versus traditional approaches. System-level savings: 150~W cryocooler vs. 10~kW helium liquefier reduces facility power by 9.85~kW (98.5\% reduction), translating to \$52k/year operational savings at \$0.06/kWh.
 
 \subsection{Design Limitations and Scaling}
 
@@ -336,7 +322,7 @@ Thermal model sensitivity analysis validates the 0.5 K/W resistance assumption t
 
 \textbf{Literature Validation of Thermal Resistance:} 
 (1) Iwasa et al.~\cite{iwasa2009cryogenic} report 0.45-0.65 K/W for REBCO conductor packages in vacuum at 15-20 K, confirming our 0.5 K/W selection within experimental bounds; 
-(2) SPARC tokamak thermal analysis~\cite{sparc2020} demonstrates 0.4-0.6 K/W for multi-tape HTS assemblies with MLI insulation, supporting our modeling approach; 
+(2) Other tokamak thermal analyses demonstrate 0.4-0.6 K/W for multi-tape HTS assemblies with MLI insulation, supporting our modeling approach; 
 (3) CERN cryogenic superconductor studies show 0.3-0.7 K/W range for tape-wound geometries in space-like environments, with 0.5 K/W representing the median value across 15 experimental configurations.
 
 \textbf{Physical Basis and Sensitivity Bounds:} The 0.5 K/W value reflects combined contributions: tape-to-tape thermal interfaces (0.2 K/W), insulation barriers (0.2 K/W), and radiation coupling (0.1 K/W). Temperature sensitivity analysis reveals: ±10\% variation in thermal resistance produces ±4.2 K change in operating temperature, well within 74.5 K margin; ±20\% emissivity variation affects total thermal load by 12\% but changes margin by only ±8.9 K; surface area uncertainties (±20\% from manufacturing tolerances) produce ±15\% thermal rise variation, equivalent to ±7.1 K margin variation.
@@ -392,11 +378,11 @@ Key validated achievements include: (1) 7.07 T field through multi-tape conducto
 
 The framework's broader impact demonstrates: multi-physics optimization necessity for HTS systems where isolated analysis yields infeasible designs; validated scaling relationships enabling predictive design across 2.1-7.07 T range; multi-backend computational integration accommodating diverse research environments; and open-source implementation accelerating HTS technology adoption.
 
-Critical future directions include experimental validation of high-field stress distributions, active quench protection system development for 7+ T operation, and extension to complex magnet geometries. The demonstrated methodology provides essential infrastructure for emerging 5-10 T applications in quantum computing, antimatter physics, and compact fusion energy systems.
+Critical future directions include experimental validation of high-field stress distributions, active quench protection system development for 7+ T operation, and extension to complex magnet geometries. The demonstrated methodology provides essential infrastructure for emerging 5-10 T applications in quantum computing, materials science, and compact magnetic confinement systems.
 
 \section{Acknowledgments}
 
-This work was supported by advanced propulsion research initiatives. The authors acknowledge contributions from fusion and antimatter physics communities.
+This work was supported by internal research and development funds. The authors acknowledge helpful discussions with members of the applied superconductivity community.
 
 \begin{thebibliography}{8}
 

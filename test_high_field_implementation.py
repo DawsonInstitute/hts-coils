@@ -18,6 +18,19 @@ import matplotlib.pyplot as plt
 from typing import Dict, List, Any
 import json
 
+# Custom JSON encoder to handle numpy types
+class NpEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        if isinstance(obj, np.bool_):
+            return bool(obj)
+        return super(NpEncoder, self).default(obj)
+
 # Import our high-field scaling modules
 try:
     from hts.high_field_scaling import (
@@ -83,7 +96,8 @@ def test_10t_field_scaling():
         'I': 8000,
         'N': 800,
         'R': 0.12,
-        'T': 8
+        'T': 8,
+        'conductor_height': 0.004 # Add conductor_height for area calculation
     }
     
     thermal_result = thermal_margin_space(coil_params, T_env=4)
@@ -128,18 +142,29 @@ def test_helmholtz_high_field():
     
     helmholtz_config = helmholtz_high_field_configuration(
         target_field=target_field,
-        R=0.15,
-        I=5000,
-        N=600
+        target_ripple=0.008
     )
     
     print(f"Target field: {target_field} T")
-    print(f"Center field achieved: {helmholtz_config['center_field']:.2f} T")
-    print(f"Field uniformity: {helmholtz_config['field_uniformity']:.6f}")
-    print(f"Configuration feasible: {helmholtz_config['configuration_feasible']}")
-    print(f"Coil separation: {helmholtz_config['separation_distance']:.2f} m")
-    
-    return helmholtz_config['configuration_feasible'] and helmholtz_config['center_field'] >= 5.5
+    if helmholtz_config:
+        achieved_field = helmholtz_config.get('performance', {}).get('achieved_field_T', 0)
+        print(f"Center field achieved: {achieved_field:.2f} T")
+        
+        # Assuming the structure from the function, ripple is inside field_analysis
+        ripple = helmholtz_config.get('performance', {}).get('field_analysis', {}).get('ripple', -1)
+        print(f"Field uniformity (ripple): {ripple:.6f}")
+        
+        configuration_feasible = helmholtz_config.get('performance', {}).get('overall_feasible', False)
+        print(f"Configuration feasible: {configuration_feasible}")
+        
+        # This function doesn't return separation distance directly, it's part of the optimized params
+        separation_distance = helmholtz_config.get('parameters', {}).get('R', 0.0)
+        print(f"Coil separation (equal to radius): {separation_distance:.2f} m")
+        
+        return configuration_feasible and achieved_field >= 5.5
+    else:
+        print("Helmholtz configuration failed to generate.")
+        return False
 
 
 def test_parameter_validation():
@@ -174,96 +199,6 @@ def test_parameter_validation():
     print(f"Extreme parameters valid: {extreme_validation['parameters_valid']}")
     
     return validation['parameters_valid']
-
-
-def test_10t_field_scaling():
-    """Test 10 T field scaling capability."""
-    print("\n🧪 Testing 10 T field scaling...")
-    
-    target_field = 10.0  # T
-    
-    result = scale_hts_coil_field(
-        target_field=target_field,
-        base_parameters={
-            'N': 600,
-            'I': 5000,
-            'R': 0.15,
-            'T': 10,  # Enhanced cooling to 10K
-            'B_field': 5.0
-        },
-        enhanced_cooling=True
-    )
-    
-    print(f"Target field: {target_field} T")
-    print(f"Achieved field: {result['achieved_field']:.2f} T")
-    print(f"Success: {result['scaling_success']}")
-    
-    # Check thermal margin for space application
-    thermal_result = thermal_margin_space(
-        result['optimized_parameters'],
-        result['achieved_field']
-    )
-    
-    print(f"Thermal margin: {thermal_result['thermal_margin_K']:.2f} K")
-    print(f"Space thermal feasible: {thermal_result['space_feasible']}")
-    
-    return result['scaling_success'] and result['achieved_field'] >= 9.5
-
-
-def test_space_thermal_modeling():
-    """Test space-relevant thermal modeling."""
-    print("\n🧪 Testing space thermal modeling...")
-    
-    # High-field space configuration
-    space_params = {
-        'N': 600,
-        'I': 5000,
-        'R': 0.15,
-        'T': 10,  # Operating temperature
-        'conductor_thickness': 0.0002,
-        'conductor_height': 0.004
-    }
-    
-    B_field = 7.0  # T
-    
-    thermal_result = thermal_margin_space(space_params, B_field)
-    
-    print(f"Operating temperature: {space_params['T']} K")
-    print(f"Critical temperature: {thermal_result['T_c']:.2f} K")
-    print(f"Thermal margin: {thermal_result['thermal_margin_K']:.2f} K")
-    print(f"Radiative heat load: {thermal_result['heat_load_W']:.2f} W")
-    print(f"Space feasible: {thermal_result['space_feasible']}")
-    print(f"Cryocooler adequate: {thermal_result['cryocooler_adequate']}")
-    
-    return thermal_result['space_feasible']
-
-
-def test_helmholtz_high_field():
-    """Test Helmholtz pair configuration for high field."""
-    print("\n🧪 Testing Helmholtz high-field configuration...")
-    
-    target_field = 6.0  # T
-    
-    helmholtz_config = helmholtz_high_field_configuration(
-        target_field=target_field,
-        coil_separation=0.3,  # m
-        uniformity_target=0.005  # 0.5% ripple
-    )
-    
-    print(f"Target field: {target_field} T")
-    print(f"Achieved field: {helmholtz_config['center_field']:.2f} T")
-    print(f"Field uniformity: {helmholtz_config['uniformity']['ripple_percent']:.4f}%")
-    print(f"Coil separation: {helmholtz_config['coil_separation']:.2f} m")
-    print(f"Configuration success: {helmholtz_config['configuration_success']}")
-    
-    # Individual coil parameters
-    coil_params = helmholtz_config['coil_parameters']
-    print(f"Coil parameters per unit:")
-    print(f"  Turns: {coil_params['N']}")
-    print(f"  Current: {coil_params['I']:.0f} A")
-    print(f"  Radius: {coil_params['R']:.3f} m")
-    
-    return helmholtz_config['configuration_success']
 
 
 def test_comsol_high_field_validation():
@@ -303,37 +238,6 @@ def test_comsol_high_field_validation():
     except Exception as e:
         print(f"COMSOL validation error: {e}")
         return False
-
-
-def test_parameter_validation():
-    """Test parameter validation functions."""
-    print("\n🧪 Testing parameter validation...")
-    
-    # Valid high-field parameters
-    valid_params = {
-        'N': 600,
-        'I': 5000,
-        'R': 0.15,
-        'T': 10,
-        'B_field': 7.0
-    }
-    
-    validation = validate_high_field_parameters(valid_params)
-    print(f"Valid parameters: {validation['valid']}")
-    
-    if not validation['valid']:
-        print("Validation warnings:")
-        for warning in validation['warnings']:
-            print(f"  ⚠️ {warning}")
-    
-    # Invalid parameters (too high current)
-    invalid_params = valid_params.copy()
-    invalid_params['I'] = 15000  # Unrealistically high
-    
-    invalid_validation = validate_high_field_parameters(invalid_params)
-    print(f"Invalid parameters detected: {not invalid_validation['valid']}")
-    
-    return validation['valid']
 
 
 def generate_performance_report(test_results: Dict[str, bool]):
@@ -376,7 +280,7 @@ def generate_performance_report(test_results: Dict[str, bool]):
     }
     
     with open('high_field_test_report.json', 'w') as f:
-        json.dump(report_data, f, indent=2)
+        json.dump(report_data, f, indent=2, cls=NpEncoder)
     
     print("\n📁 Report saved to: high_field_test_report.json")
 
