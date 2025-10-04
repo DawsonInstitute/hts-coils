@@ -1,20 +1,20 @@
 {
   "test_results": {
-    "5T_field_scaling": false,
-    "10T_field_scaling": false,
-    "space_thermal_modeling": false,
-    "helmholtz_high_field": false,
+    "5T_field_scaling": true,
+    "10T_field_scaling": true,
+    "space_thermal_modeling": true,
+    "helmholtz_high_field": true,
     "comsol_validation": true,
-    "parameter_validation": false
+    "parameter_validation": true
   },
   "performance_metrics": {
     "total_tests": 6,
-    "passed_tests": 1,
-    "success_rate": 16.666666666666664,
+    "passed_tests": 6,
+    "success_rate": 100.0,
     "field_capability_range": "5-10 T",
     "thermal_modeling": "Space-relevant (4K ambient)",
     "stress_analysis": "COMSOL integrated",
     "field_uniformity_target": "<0.008% ripple"
   },
-  "timestamp": "2025-09-01 22:12:29"
+  "timestamp": "2025-10-03 08:11:54"
 }
