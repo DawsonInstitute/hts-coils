@@ -1,0 +1,121 @@
+{
+  "timestamp": "2025-10-04T16:20:28.695369",
+  "validation_framework_version": "1.0",
+  "overall_statistics": {
+    "total_tests": 24,
+    "total_passed": 23,
+    "success_rate": 95.83333333333334,
+    "critical_success_rate": 100.0
+  },
+  "validation_status": "EXCELLENT",
+  "categories": {
+    "Paper Benchmarks": {
+      "total": 6,
+      "passed": 6,
+      "critical": true
+    },
+    "Physical Reasonableness": {
+      "total": 12,
+      "passed": 12,
+      "critical": true
+    },
+    "Unit Consistency": {
+      "total": 4,
+      "passed": 4,
+      "critical": true
+    },
+    "Numerical Convergence": {
+      "total": 2,
+      "passed": 1,
+      "critical": false
+    }
+  },
+  "recommendations": [
+    "All critical validations passed",
+    "Calculations are reliable for research use",
+    "Results can be published with confidence"
+  ],
+  "uncertainty_analysis": {
+    "magnetic_field": {
+      "nominal_value": 2.1,
+      "total_uncertainty": 0.05567764362830022,
+      "relative_uncertainty": 2.6513163632523913,
+      "contributions": {
+        "current_uncertainty": {
+          "uncertainty": 0.05,
+          "sensitivity": 1.0,
+          "contribution": 0.05,
+          "percent_contribution": 100.0
+        },
+        "radius_uncertainty": {
+          "uncertainty": 0.02,
+          "sensitivity": -1.0,
+          "contribution": 0.02,
+          "percent_contribution": 13.79310344827586
+        },
+        "turns_uncertainty": {
+          "uncertainty": 0.01,
+          "sensitivity": 1.0,
+          "contribution": 0.01,
+          "percent_contribution": 3.3333333333333335
+        },
+        "geometry_uncertainty": {
+          "uncertainty": 0.1,
+          "sensitivity": 0.1,
+          "contribution": 0.010000000000000002,
+          "percent_contribution": 3.2258064516129044
+        }
+      }
+    },
+    "temperature_margin": {
+      "nominal_value": 57,
+      "total_uncertainty": 3.3541019662496847,
+      "relative_uncertainty": 5.884389414473131,
+      "contributions": {
+        "T_c_uncertainty": {
+          "uncertainty": 2.0,
+          "sensitivity": -1.0,
+          "contribution": 2.0,
+          "percent_contribution": 100.0
+        },
+        "T_op_uncertainty": {
+          "uncertainty": 1.0,
+          "sensitivity": 1.0,
+          "contribution": 1.0,
+          "percent_contribution": 20.0
+        },
+        "heating_uncertainty": {
+          "uncertainty": 5.0,
+          "sensitivity": -0.5,
+          "contribution": 2.5,
+          "percent_contribution": 55.55555555555556
+        }
+      }
+    },
+    "critical_current": {
+      "nominal_value": 200000000.0,
+      "total_uncertainty": 6.001949683227942,
+      "relative_uncertainty": 3.0009748416139712e-06,
+      "contributions": {
+        "temperature_uncertainty": {
+          "uncertainty": 2.0,
+          "sensitivity": -3.0,
+          "contribution": 6.0,
+          "percent_contribution": 100.0
+        },
+        "field_uncertainty": {
+          "uncertainty": 0.1,
+          "sensitivity": -1.5,
+          "contribution": 0.15000000000000002,
+          "percent_contribution": 0.06246096189881326
+        },
+        "material_uncertainty": {
+          "uncertainty": 0.15,
+          "sensitivity": 0.2,
+          "contribution": 0.03,
+          "percent_contribution": 0.002498376055563883
+        }
+      }
+    }
+  }
+}
