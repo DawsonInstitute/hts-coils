@@ -222,7 +222,7 @@ class ValidationFramework:
                 rel_changes.append(rel_change)
                 
         # Check if changes are decreasing (convergence)
-        converging = all(rel_changes[i] <= rel_changes[i-1] * 2 for i in range(1, len(rel_changes)))
+        converging = all(rel_changes[i] < rel_changes[i-1] for i in range(1, len(rel_changes)))
         
         status = "✅" if converging else "❌"
         print(f"{status} Convergence: {converging}")
