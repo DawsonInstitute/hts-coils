@@ -40,6 +40,38 @@ Experience the complete HTS coil optimization framework through interactive Jupy
 8. **Validation Report** - Comprehensive benchmark validation
 9. **REBCO Paper Reproduction** - Complete paper results reproduction
 
+## Quick Start
+
+### Interactive Notebook for Validation
+
+For a focused, interactive experience with our validation framework, you can launch a dedicated notebook. This provides access to the validation functions without loading the full project.
+
+**Launch Interactive Validation**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/interactive_validation.ipynb)
+
+**Note on MyBinder:** 
+- The link above opens `interactive_validation.ipynb` in JupyterLab (other notebooks visible in sidebar)
+- For faster local testing, run notebooks on your own machine (see Installation section)
+- Individual notebook launchers below provide direct access to specific notebooks
+
+### Interactive Notebooks (MyBinder)
+
+**Individual Notebook Launchers** (faster build times):
+- **Validation & Results**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/08_validation_report.ipynb)
+- **REBCO Paper Reproduction**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/09_rebco_paper_reproduction.ipynb)
+- **Optimization Workflow**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/06_optimization_workflow.ipynb)
+
+**Launch Complete Environment**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/)
+
+You can launch these interactive Jupyter notebooks in your browser without any local installation. Follow these steps:
+1. Click on one of the "Launch Binder" badges above.
+2. A new browser tab will open, preparing the environment. This may take a few minutes.
+3. Once ready, you will see the JupyterLab interface, from which you can open and run the notebooks.
+
+The following notebooks are available:
+- **08_validation_report.ipynb**: A comprehensive validation framework that reproduces the results from the `soliton_validation.tex` paper.
+- **09_rebco_paper_reproduction.ipynb**: A complete reproduction of the REBCO paper results, including all validations.
+- **01-07_educational_sequence.ipynb**: A full tutorial series covering HTS physics, electromagnetic modeling, thermal analysis, and mechanical stress.
+
 ### REBCO Paper Validation Results
 - ✅ **Baseline Configuration (2.1T):** 0.01% ripple, 1171A current, 400 turns
 - ✅ **High-Field Configuration (7.07T):** 0.16% ripple, 1800A current, 89-tape design  
@@ -85,38 +117,6 @@ RUN pip install -e .
 ```
 
 See `Dockerfile.base` and `Dockerfile.mybinder` for complete implementation.
-
-## Quick Start
-
-### Interactive Notebook for Validation
-
-For a focused, interactive experience with our validation framework, you can launch a dedicated notebook. This provides access to the validation functions without loading the full project.
-
-**Launch Interactive Validation**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/interactive_validation.ipynb)
-
-**Note on MyBinder:** 
-- The link above opens `interactive_validation.ipynb` in JupyterLab (other notebooks visible in sidebar)
-- For faster local testing, run notebooks on your own machine (see Installation section)
-- Individual notebook launchers below provide direct access to specific notebooks
-
-### Interactive Notebooks (MyBinder)
-
-**Individual Notebook Launchers** (faster build times):
-- **Validation & Results**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/08_validation_report.ipynb)
-- **REBCO Paper Reproduction**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/09_rebco_paper_reproduction.ipynb)
-- **Optimization Workflow**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/06_optimization_workflow.ipynb)
-
-**Launch Complete Environment**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/)
-
-You can launch these interactive Jupyter notebooks in your browser without any local installation. Follow these steps:
-1. Click on one of the "Launch Binder" badges above.
-2. A new browser tab will open, preparing the environment. This may take a few minutes.
-3. Once ready, you will see the JupyterLab interface, from which you can open and run the notebooks.
-
-The following notebooks are available:
-- **08_validation_report.ipynb**: A comprehensive validation framework that reproduces the results from the `soliton_validation.tex` paper.
-- **09_rebco_paper_reproduction.ipynb**: A complete reproduction of the REBCO paper results, including all validations.
-- **01-07_educational_sequence.ipynb**: A full tutorial series covering HTS physics, electromagnetic modeling, thermal analysis, and mechanical stress.
 
 ## Installation
 
