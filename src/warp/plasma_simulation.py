@@ -664,19 +664,17 @@ class PlasmaSimulation:
     
     def _update_maxwell_fields(self):
         """Update electromagnetic fields using Maxwell equations."""
-        # Simplified demo version - disable field updates to prevent instability
-        # In a full simulation, this would solve Maxwell's equations properly
+        # In a full simulation, this would solve Maxwell's equations (e.g., FDTD)
+        # For this demonstration, we will not update the fields to maintain stability
+        # and focus on the integration architecture. A real implementation would
+        # use a proper field solver here.
+        # Example of what would be here:
+        # curl_E = self._calculate_curl(self.E_field)
+        # self.B_field -= curl_E * self.params.dt_s
+        # curl_B = self._calculate_curl(self.B_field)
+        # self.E_field += (c**2 * curl_B - self.J_current / epsilon_0) * self.params.dt_s
         
-        # Just add small perturbation for demonstration
-        if self.state.step % 100 == 0:  # Every 100 steps
-            perturbation_strength = 1e3  # 1 kV/m
-            self.E_field *= 0.99  # Slight decay to prevent runaway growth
-            
-            # Add small random perturbation
-            perturbation = np.random.normal(0, perturbation_strength, self.E_field.shape)
-            self.E_field += perturbation * 0.01  # 1% perturbation
-        
-        return  # Skip full Maxwell solver for demo
+        return
     
     def _calculate_plasma_properties(self):
         """Calculate macroscopic plasma properties for MHD."""

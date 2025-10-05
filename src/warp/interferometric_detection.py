@@ -118,25 +118,32 @@ class SpacetimeMetric:
         Returns:
             4x4x4 array of Christoffel symbols
         """
-        # Simplified calculation for demonstration
-        # In practice, would compute derivatives numerically
+        # For this demonstration, we will use a simplified analytical approximation
+        # of the Christoffel symbols. A full implementation would compute these
+        # numerically from the metric tensor derivatives.
         gamma = np.zeros((4, 4, 4))
         
         r = np.sqrt(x**2 + y**2 + z**2)
-        if r > 0:
-            # Approximate derivatives for soliton profile with numerical stability
+        if r > 1e-9: # Avoid division by zero
+            # Approximate derivatives for soliton profile
             dr_dx = x / r
             normalized_r = (r - self.center) / self.width
-            # Prevent overflow in derivative calculation
-            if abs(normalized_r) < 50:
-                df_dr = (-2 * self.amplitude * np.tanh(normalized_r) / 
-                        (self.width * np.cosh(normalized_r)**2))
-                df_dx = df_dr * dr_dx
-                
-                # Non-zero Christoffel symbols (simplified)
-                gamma[1, 0, 0] = -0.5 * self.velocity * df_dx / c
-                gamma[0, 1, 0] = gamma[0, 0, 1] = -0.5 * self.velocity * df_dx / c
-                gamma[1, 1, 1] = 0.5 * df_dx
+            
+            # Clip to prevent overflow in tanh
+            normalized_r_clipped = np.clip(normalized_r, -10, 10)
+            
+            df_dr = (-2 * self.amplitude * np.tanh(normalized_r_clipped) / 
+                    (self.width * np.cosh(normalized_r_clipped)**2))
+            df_dx = df_dr * dr_dx
+            
+            # Populate the most significant Christoffel symbols for this metric
+            # This is a simplification; a full calculation is more complex.
+            # Γ^1_00 ≈ -1/2 * v² * ∂f/∂x
+            gamma[1, 0, 0] = -0.5 * (self.velocity**2 / c**2) * df_dx
+            # Γ^0_10 = Γ^0_01 ≈ -1/2 * v * ∂f/∂x
+            gamma[0, 1, 0] = gamma[0, 0, 1] = -0.5 * self.velocity / c * df_dx
+            # Γ^1_11 ≈ 1/2 * ∂f/∂x
+            gamma[1, 1, 1] = 0.5 * df_dx
         
         return gamma
 
