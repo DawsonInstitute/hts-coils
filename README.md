@@ -59,7 +59,6 @@ For a focused, interactive experience with our validation framework, you can lau
 **Launch Interactive Validation**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/interactive_validation.ipynb)
 
 **Note on MyBinder:** 
-- The initial build may take 5-10 minutes (subsequent launches are faster)
 - The link above opens `interactive_validation.ipynb` in JupyterLab (other notebooks visible in sidebar)
 - For faster local testing, run notebooks on your own machine (see Installation section)
 - Individual notebook launchers below provide direct access to specific notebooks
