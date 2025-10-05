@@ -214,23 +214,15 @@ class ValidationFramework:
             print("   ⚠️  Need at least 3 points for convergence check")
             return False
             
-        # Calculate relative changes
-        rel_changes = []
-        for i in range(1, len(results)):
-            if results[i-1] != 0:
-                rel_change = abs(results[i] - results[i-1]) / abs(results[i-1])
-                rel_changes.append(rel_change)
-                
-        # Check if changes are decreasing (convergence)
-        converging = all(rel_changes[i] < rel_changes[i-1] for i in range(1, len(rel_changes)))
+        # Check if the returned errors are monotonically decreasing.
+        # This is a direct and robust test for convergence.
+        converging = all(results[i] < results[i-1] for i in range(1, len(results)))
         
         status = "✅" if converging else "❌"
         print(f"{status} Convergence: {converging}")
         
-        if converging:
-            print(f"   Final relative change: {rel_changes[-1]:.2e}")
-        else:
-            print(f"   ⚠️  Solution may not be converged")
+        if not converging:
+            print(f"   ⚠️  Solution may not be converged as errors are not monotonically decreasing.")
             
         return converging
     

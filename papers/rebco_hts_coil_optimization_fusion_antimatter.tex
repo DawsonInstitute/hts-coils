@@ -232,7 +232,7 @@ The framework integrates multiple FEA backends for comprehensive validation and 
 
 Open-source FEA implementation uses FEniCSx (dolfinx) with cylindrical mesh generation and electromagnetic body force modeling. The solver handles 2D axisymmetric problems with linear elasticity and validates against analytical hoop stress solutions with $<1\%$ error. Mesh convergence studies demonstrate quadratic convergence with 720-point discretization achieving $<10^{-14}$ numerical error.
 
-COMSOL integration operates through batch processing without GUI interaction, generating Java-based model files for automated execution~\cite{comsol2023}. The interface supports electromagnetic-thermal-mechanical coupling with identical material properties and boundary conditions as the open-source implementation. Both solvers produce consistent results for validation cases, with analytical comparison showing perfect agreement for the reference 345 MPa hoop stress.
+COMSOL integration operates through batch processing without GUI interaction, generating Java-based model files for automated execution~\cite{comsol2022}. The interface supports electromagnetic-thermal-mechanical coupling with identical material properties and boundary conditions as the open-source implementation. Both solvers produce consistent results for validation cases, with analytical comparison showing perfect agreement for the reference 345 MPa hoop stress.
 
 Cross-platform validation protocol:
 \begin{enumerate}
@@ -404,8 +404,8 @@ Y. Zhou \emph{et al.}, ``Review of progress and challenges of key mechanical iss
 \bibitem{vanderLaan2010mechanical}
 van der Laan, D.C. \emph{et al.}, ``Delamination strength of YBCO coated conductors under transverse tensile stress,'' \textit{Supercond. Sci. Technol.}, 20:765--770, 2007.
 
-\bibitem{comsol2023}
-COMSOL Inc., ``COMSOL Multiphysics Reference Manual, Version 6.1,'' 2023.
+\bibitem{comsol2022}
+COMSOL Inc., ``COMSOL Multiphysics Reference Manual, Version 6.1,'' 2022.
 
 \end{thebibliography}
 

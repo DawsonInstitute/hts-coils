@@ -65,12 +65,16 @@ pip install -r requirements.txt
 
 ### Optional FEA Dependencies
 
-For finite element analysis (FEniCSx) and optional COMSOL Multiphysics support (requires separate COMSOL installation and licensing):
+For finite element analysis, you can use the open-source FEniCSx solver or the commercial COMSOL Multiphysics software.
 
+- **FEniCSx (Recommended)**: A powerful open-source library for solving partial differential equations.
+- **COMSOL Multiphysics**: A commercial package that requires a separate installation and license.
+
+To install the necessary Python libraries for these FEA backends, run:
 ```bash
 pip install -r requirements-fea.txt
-# Ensure COMSOL server is running (port 2036) for batch processing
 ```
+For FEniCSx, a Conda environment is the most reliable way to manage its complex dependencies. See the detailed FEniCSx installation instructions below. For COMSOL, ensure the COMSOL server is running (typically on port 2036) to allow batch processing from Python.
 
 ### Development Installation
 
