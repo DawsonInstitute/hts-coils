@@ -24,8 +24,5 @@
     {
       "path": "../warp-field-coils"
     }
-  ],
-  "settings": {
-    "powershell.cwd": "hts-coils (main)"
-  }
+  ]
 }
