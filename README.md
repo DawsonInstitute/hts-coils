@@ -55,7 +55,7 @@ For a focused, interactive experience with our validation framework, you can lau
 
 ### Interactive Notebooks (MyBinder)
 
-**Individual Notebook Launchers** (faster build times):
+**Individual Notebook Launchers** (direct access to specific notebooks):
 - **Validation & Results**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/08_validation_report.ipynb)
 - **REBCO Paper Reproduction**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/09_rebco_paper_reproduction.ipynb)
 - **Optimization Workflow**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/06_optimization_workflow.ipynb)
@@ -97,6 +97,8 @@ This repository uses a two-stage Docker approach for MyBinder to dramatically re
    - Only copies code changes (lightweight layer)
    - Build time: ~1-2 minutes (after base image is cached)
    - Updates automatically with each code commit
+
+**Note:** The first time MyBinder builds from a new base image, it will take longer (~5-10 minutes) as it pulls and caches the base image. Subsequent builds should be much faster (~1-2 minutes). If you're seeing long build times, the base image may still be propagating through MyBinder's cache system.
 
 **Benefits:**
 - **10x faster builds** after initial base image creation
@@ -158,6 +160,11 @@ pip install -r requirements.txt
 # Install package in editable mode (required for tests)
 pip install -e .
 
+# Optional: Install JAX with CUDA support for GPU acceleration
+# This step eliminates "CUDA-enabled jaxlib not installed" warnings during validation
+# If you don't have a CUDA-compatible GPU, skip this step - the framework runs fine on CPU
+pip install --upgrade "jax[cuda12]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
 # Note: FEA dependencies (fenics-dolfinx) require Conda and cannot be installed via pip in venv
 # See "Optional: FEniCSx Installation" section below for FEA setup
 
@@ -182,10 +189,6 @@ conda create -n fenics python=3.11
 conda activate fenics
 conda install -c conda-forge fenics-dolfinx mpich pyvista
 
-# Optional: Install JAX with CUDA support for GPU acceleration
-# (Eliminates "CUDA-enabled jaxlib not installed" warning)
-pip install --upgrade "jax[cuda12]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
 # Option 2: Docker (most reliable)
 docker pull dolfinx/dolfinx:stable
 docker run -ti -v $(pwd):/home/fenics/shared dolfinx/dolfinx:stable
@@ -203,6 +206,14 @@ python -m src.warp.fenics_plasma
 # Run comprehensive validation
 pytest tests/ --tb=short
 ```
+
+**Note on GPU Detection:**
+If you see "No GPU devices found" warnings during validation despite installing JAX with CUDA support, this indicates one of the following:
+- Your system doesn't have a CUDA-compatible NVIDIA GPU
+- CUDA drivers are not properly installed
+- JAX cannot detect the GPU (driver/library mismatch)
+
+The framework operates correctly in CPU-only mode with no loss of functionality, only reduced performance for large-scale simulations. GPU acceleration is optional and primarily benefits intensive numerical computations in the plasma simulation modules.
 
 ### REBCO Paper Results Reproduction
 
