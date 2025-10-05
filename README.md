@@ -100,7 +100,7 @@ For finite element analysis, you can use the open-source FEniCSx solver or the c
 - **COMSOL Multiphysics**: A commercial package that requires:
   - Separate installation and license
   - COMSOL server running on port 2036
-  - Required modules: AC/DC Module, Plasma Module (optional: Optimization Module, Uncertainty Quantification Module)
+  - Required modules: AC/DC Module, Plasma Module
   - Python client connects via `mph` library to localhost:2036
 
 ### Development Installation
