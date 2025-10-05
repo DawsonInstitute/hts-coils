@@ -54,11 +54,15 @@ Experience the complete HTS coil optimization framework through interactive Jupy
 
 ### Interactive Notebook for Validation
 
-For a focused, interactive experience with our validation framework, you can launch a dedicated notebook. This provides access to the validation functions from `notebooks/validation_framework.py` without loading the full project.
+For a focused, interactive experience with our validation framework, you can launch a dedicated notebook. This provides access to the validation functions without loading the full project.
 
 **Launch Interactive Validation**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/interactive_validation.ipynb)
 
-**Note on MyBinder:** Launching the full environment can be slow due to the number of notebooks. For a faster experience, consider running the notebooks locally or using the individual launch links below.
+**Note on MyBinder:** 
+- The initial build may take 5-10 minutes (subsequent launches are faster)
+- The link above opens `interactive_validation.ipynb` in JupyterLab (other notebooks visible in sidebar)
+- For faster local testing, run notebooks on your own machine (see Installation section)
+- Individual notebook launchers below provide direct access to specific notebooks
 
 ### Interactive Notebooks (MyBinder)
 
@@ -93,14 +97,12 @@ pip install -r requirements.txt
 
 For finite element analysis, you can use the open-source FEniCSx solver or the commercial COMSOL Multiphysics software.
 
-- **FEniCSx (Recommended)**: A powerful open-source library for solving partial differential equations.
-- **COMSOL Multiphysics**: A commercial package that requires a separate installation and license.
-
-To install the necessary Python libraries for these FEA backends, run:
-```bash
-pip install -r requirements-fea.txt
-```
-For FEniCSx, a Conda environment is the most reliable way to manage its complex dependencies. See the detailed FEniCSx installation instructions below. For COMSOL, ensure the COMSOL server is running (typically on port 2036) to allow batch processing from Python.
+- **FEniCSx (Recommended)**: A powerful open-source library for solving partial differential equations. Requires Conda for installation (see below).
+- **COMSOL Multiphysics**: A commercial package that requires:
+  - Separate installation and license
+  - COMSOL server running on port 2036
+  - Required modules: AC/DC Module, Plasma Module (optional: Optimization Module, Uncertainty Quantification Module)
+  - Python client connects via `mph` library to localhost:2036
 
 ### Development Installation
 
@@ -120,6 +122,9 @@ pip install -r requirements.txt
 
 # Install package in editable mode (required for tests)
 pip install -e .
+
+# Note: FEA dependencies (fenics-dolfinx) require Conda and cannot be installed via pip in venv
+# See "Optional: FEniCSx Installation" section below for FEA setup
 
 # Initialize submodules for advanced optimizations (optional)
 git submodule update --init --recursive
@@ -141,6 +146,10 @@ For full finite element analysis capabilities, install FEniCSx:
 conda create -n fenics python=3.11
 conda activate fenics
 conda install -c conda-forge fenics-dolfinx mpich pyvista
+
+# Optional: Install JAX with CUDA support for GPU acceleration
+# (Eliminates "CUDA-enabled jaxlib not installed" warning)
+pip install --upgrade "jax[cuda12]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # Option 2: Docker (most reliable)
 docker pull dolfinx/dolfinx:stable
