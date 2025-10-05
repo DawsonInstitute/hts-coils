@@ -2,7 +2,6 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](#testing)
 
 **REBCO HTS coil optimization framework for fusion and antimatter applications. Includes electromagnetic modeling, mechanical reinforcement analysis, AC loss calculations, and Monte Carlo sensitivity studies. Validated designs achieving 2.1T fields with open-source Python implementation.**
 
@@ -28,9 +27,9 @@ This repository provides a comprehensive optimization framework for high-tempera
 
 **Launch immediately in your browser - no installation required!**
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main)
+Experience the complete HTS coil optimization framework through interactive Jupyter notebooks.
 
-Experience the complete HTS coil optimization framework through interactive Jupyter notebooks:
+**Note on MyBinder:** Launching the full environment can be slow due to the number of notebooks. For a faster experience, consider running the notebooks locally or using the individual launch links below.
 
 ### Educational Notebook Collection
 1. **Introduction & Overview** - Project guide and learning paths  
@@ -151,39 +150,28 @@ For a focused, interactive experience with our validation framework, you can lau
 - **REBCO Paper Reproduction**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/09_rebco_paper_reproduction.ipynb)
 - **Optimization Workflow**: [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/DawsonInstitute/hts-coils/main?urlpath=lab/tree/notebooks/06_optimization_workflow.ipynb)
 
-Launch interactive Jupyter notebooks in your browser (no installation required):
+You can launch these interactive Jupyter notebooks in your browser without any local installation. Follow these steps:
+1. Click on one of the "Launch Binder" badges above.
+2. A new browser tab will open, preparing the environment. This may take a few minutes.
+3. Once ready, you will see the JupyterLab interface, from which you can open and run the notebooks.
 
-- **08_validation_report.ipynb**: Comprehensive validation framework reproducing soliton_validation.tex results
-- **09_rebco_paper_reproduction.ipynb**: Complete reproduction of REBCO paper results with validation
-- **01-07_educational_sequence.ipynb**: Comprehensive tutorial covering HTS physics, electromagnetic modeling, thermal analysis, and mechanical stress
+The following notebooks are available:
+- **08_validation_report.ipynb**: A comprehensive validation framework that reproduces the results from the `soliton_validation.tex` paper.
+- **09_rebco_paper_reproduction.ipynb**: A complete reproduction of the REBCO paper results, including all validations.
+- **01-07_educational_sequence.ipynb**: A full tutorial series covering HTS physics, electromagnetic modeling, thermal analysis, and mechanical stress.
 
 ### REBCO Paper Results Reproduction
 
-Reproduce key results from the paper with validated accuracy:
+To reproduce the key results from the paper, you can run the validation script. This script executes the same validation functions used in the notebooks and provides a summary of the results.
 
-```python
-from notebooks.validation_framework import ValidationFramework
-
-validator = ValidationFramework()
-
-# Baseline configuration (2.1T design)
-validator.validate_baseline_config(
-    field=2.1, ripple=0.01, current=1171, 
-    turns=400, radius=0.2
-)
-
-# High-field configuration (7.07T design)  
-validator.validate_high_field_config(
-    field=7.07, ripple=0.16, current=1800,
-    turns=1000, radius=0.16, tapes_per_turn=89,
-    temperature=15, thermal_margin=74.5
-)
-
-# Comprehensive validation: 100% success rate on all benchmarks
-validator.comprehensive_rebco_validation(...)
+```bash
+python scripts/validate_reproducibility.py
 ```
 
-**Reproduced Results:**
+This will output the validation results for the baseline and high-field configurations.
+
+**Expected Output:**
+The script will print the results of the validation tests. You should expect to see output similar to the following, confirming that the simulations match the paper's results:
 - Baseline: 2.1T field, 0.01% ripple, 1171A current
 - High-field: 7.07T field, 0.16% ripple, 89-tape architecture
 - Thermal: 74.5K margin, 150W cryocooler requirement
