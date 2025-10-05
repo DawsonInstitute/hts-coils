@@ -437,18 +437,73 @@ hts-coils/
 
 ## Testing
 
-Run the full test suite to validate implementations:
+### Running Tests Manually
+
+To ensure the project is working correctly, please follow these manual testing steps.
+
+#### 1. Environment Validation
+
+First, validate your environment to ensure all dependencies and hardware meet the project's requirements.
 
 ```bash
-# Unit tests and validation
+python scripts/validate_environment.py
+```
+
+This script checks your Python version, installed packages, and system resources like CPU and memory.
+
+#### 2. Core Unit Tests
+
+Run the core unit tests using `pytest`. This will check the fundamental functions of the simulation framework.
+
+```bash
 pytest tests/ -v
+```
 
-# Coverage analysis with traceability
-pytest --cov=src --cov-report=html
-python traceability_check.py --coverage-xml coverage.xml
+#### 3. Notebook Execution
 
-# Feasibility gates (B>=5T, ripple<=1%)
-python scripts/metrics_gate.py
+Execute the critical Jupyter notebooks to ensure they run without errors.
+
+```bash
+# Test the introduction notebook
+jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=300 notebooks/01_introduction_overview.ipynb
+
+# Test the physics fundamentals notebook
+jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=300 notebooks/02_hts_physics_fundamentals.ipynb
+
+# Test the full paper reproduction notebook
+jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=300 notebooks/09_rebco_paper_reproduction.ipynb
+```
+
+#### 4. Validation Framework
+
+Run the comprehensive validation framework to check the correctness of the physics models and simulation results against established benchmarks.
+
+```bash
+python -c "from notebooks.validation_framework import comprehensive_rebco_validation; result = comprehensive_rebco_validation(); assert result['all_passed'], f'Validation failed: {result}'"
+```
+
+A successful run will produce no output.
+
+#### 5. Dependency and Security Audit
+
+Check for security vulnerabilities in the project's dependencies.
+
+```bash
+pip install safety
+safety check
+```
+
+#### 6. Reproducibility and Benchmarking
+
+Run the reproducibility and performance benchmark tests.
+
+```bash
+# Reproducibility
+python scripts/validate_reproducibility.py --repeat 3 --tolerance 1e-15
+
+# Benchmarking (requires pytest-benchmark)
+pip install pytest-benchmark
+pytest benchmarks/ --benchmark-only
 ```
 
 ## Documentation

@@ -153,7 +153,7 @@ class EnvironmentValidator:
         
         # Memory requirements
         memory_gb = psutil.virtual_memory().total / (1024**3)
-        min_memory_gb = 16
+        min_memory_gb = 4
         
         if memory_gb >= min_memory_gb:
             hardware_status['memory'] = {
