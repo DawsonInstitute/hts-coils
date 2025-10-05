@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-10-04 18:42:35.127559",
+  "timestamp": "2025-10-04 22:23:34.072186",
   "platform": {
     "system": "Linux",
     "release": "6.6.87.2-microsoft-standard-WSL2",
@@ -34,22 +34,19 @@
         "required": "2.0.0"
       },
       "h5py": {
-        "status": "FAIL",
-        "version": "not installed",
-        "required": "3.9.0",
-        "error": "h5py is not installed"
+        "status": "PASS",
+        "version": "3.14.0",
+        "required": "3.9.0"
       },
       "jax": {
-        "status": "FAIL",
-        "version": "not installed",
-        "required": "0.4.10",
-        "error": "jax is not installed"
+        "status": "PASS",
+        "version": "0.7.2",
+        "required": "0.4.10"
       },
       "numba": {
-        "status": "FAIL",
-        "version": "not installed",
-        "required": "0.57.0",
-        "error": "numba is not installed"
+        "status": "PASS",
+        "version": "0.62.1",
+        "required": "0.57.0"
       },
       "pytest": {
         "status": "PASS",
@@ -64,14 +61,14 @@
         "required": 4
       },
       "memory": {
-        "status": "FAIL",
+        "status": "PASS",
         "total_gb": 15.6,
-        "required_gb": 16,
-        "error": "Memory 15.6 GB < 16 GB required"
+        "required_gb": 4
       },
       "gpu": {
         "status": "WARNING",
-        "error": "GPU check failed: No module named 'jax'"
+        "devices": 0,
+        "warning": "No GPU devices found (CPU-only mode)"
       }
     },
     "system": {
@@ -119,14 +116,9 @@
       }
     }
   },
-  "errors": [
-    "h5py is not installed",
-    "jax is not installed",
-    "numba is not installed",
-    "Memory 15.6 GB < 16 GB required"
-  ],
+  "errors": [],
   "warnings": [
-    "GPU check failed: No module named 'jax'"
+    "No GPU devices found (CPU-only mode)"
   ],
   "strict_mode": false,
   "container_mode": false
