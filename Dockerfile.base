@@ -1,0 +1,66 @@
+# Base Docker image for hts-coils MyBinder environment
+# This image contains all heavy dependencies and will be cached by MyBinder
+# Subsequent builds will only need to copy code changes, dramatically reducing build time
+
+FROM buildpack-deps:jammy
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    python3.11 \
+    python3-pip \
+    python3-dev \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set Python 3.11 as default
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1 && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+
+# Upgrade pip and install build tools
+RUN python -m pip install --no-cache-dir --upgrade pip setuptools wheel
+
+# Install heavy Python dependencies (this layer will be cached)
+# Split into logical groups for better layer caching
+COPY requirements.txt /tmp/requirements.txt
+
+# Install core scientific stack
+RUN python -m pip install --no-cache-dir \
+    numpy==1.24.3 \
+    scipy==1.11.1 \
+    matplotlib==3.7.2 \
+    pandas==2.0.3
+
+# Install Jupyter ecosystem
+RUN python -m pip install --no-cache-dir \
+    jupyter==1.0.0 \
+    jupyterlab==4.0.3 \
+    notebook==7.0.0 \
+    ipywidgets==8.0.7
+
+# Install remaining requirements
+RUN python -m pip install --no-cache-dir -r /tmp/requirements.txt
+
+# Set working directory
+WORKDIR /home/jovyan
+
+# Create jovyan user for Binder compatibility
+ARG NB_USER=jovyan
+ARG NB_UID=1000
+RUN useradd -m -s /bin/bash -u ${NB_UID} ${NB_USER} && \
+    chown -R ${NB_USER}:${NB_USER} /home/${NB_USER}
+
+# Set environment variables
+ENV USER=${NB_USER}
+ENV HOME=/home/${NB_USER}
+ENV PATH=/home/${NB_USER}/.local/bin:${PATH}
+
+USER ${NB_USER}
+
+# Verify installation
+RUN python --version && \
+    python -c "import numpy; import scipy; import matplotlib; print('Core packages verified')"
+
+LABEL maintainer="Dawson Institute <noreply@dawsoninstitute.org>"
+LABEL description="Base image for hts-coils MyBinder environment with heavy dependencies pre-installed"
+LABEL org.opencontainers.image.source="https://github.com/DawsonInstitute/hts-coils"

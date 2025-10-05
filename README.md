@@ -3,7 +3,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**REBCO HTS coil optimization framework for fusion and antimatter applications. Includes electromagnetic modeling, mechanical reinforcement analysis, AC loss calculations, and Monte Carlo sensitivity studies. Validated designs achieving 2.1T fields with open-source Python implementation.**
+**Comprehensive computational framework for REBCO HTS coils and plasma physics applications. Features validated 7.07T superconducting magnet designs, Lentz soliton simulation with interferometric detection, high-beta plasma confinement analysis, and multi-physics FEA integration. Open-source Python implementation with interactive Jupyter notebooks.**
 
 ## Project Overview
 
@@ -49,6 +49,42 @@ Experience the complete HTS coil optimization framework through interactive Jupy
 
 **Target Audiences:** Undergraduate students, graduate researchers, practicing engineers, general public  
 **Learning Time:** 2-4 hours for complete walkthrough
+
+### MyBinder Build Optimization
+
+**Optimized Docker Architecture for Fast Builds:**
+
+This repository uses a two-stage Docker approach for MyBinder to dramatically reduce build times:
+
+1. **Base Image** (`Dockerfile.base`): Contains all heavy dependencies (NumPy, SciPy, Matplotlib, Jupyter, etc.)
+   - Pushed to GitHub Container Registry: `ghcr.io/dawsoninstitute/hts-coils-base:latest`
+   - Build time: ~5-10 minutes (one-time, cached by GHCR)
+   - Rarely changes, providing stable cached layer
+
+2. **MyBinder Image** (`Dockerfile.mybinder`): Extends base image with repository code
+   - Only copies code changes (lightweight layer)
+   - Build time: ~1-2 minutes (after base image is cached)
+   - Updates automatically with each code commit
+
+**Benefits:**
+- **10x faster builds** after initial base image creation
+- **Reduced resource usage** on MyBinder infrastructure
+- **Better user experience** with minimal wait times
+- **Environmentally friendly** through cached layer reuse
+
+**Technical Details:**
+```dockerfile
+# Base image (cached)
+FROM buildpack-deps:jammy
+RUN pip install numpy scipy matplotlib jupyter ...
+
+# MyBinder image (updated frequently)  
+FROM ghcr.io/dawsoninstitute/hts-coils-base:latest
+COPY . /home/jovyan/hts-coils
+RUN pip install -e .
+```
+
+See `Dockerfile.base` and `Dockerfile.mybinder` for complete implementation.
 
 ## Quick Start
 

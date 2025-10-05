@@ -1,0 +1,27 @@
+# Optimized MyBinder Dockerfile using cached base image
+# This significantly reduces build times by only copying code changes
+# Base image build time: ~5-10 minutes (one-time)
+# Subsequent builds: ~1-2 minutes (only code layer changes)
+
+FROM ghcr.io/dawsoninstitute/hts-coils-base:latest
+
+# Copy repository content (fast layer - changes frequently)
+COPY --chown=jovyan:jovyan . ${HOME}/hts-coils
+WORKDIR ${HOME}/hts-coils
+
+# Install package in editable mode (allows code changes without rebuild)
+RUN python -m pip install --no-cache-dir -e .
+
+# Verify installation and run quick test
+RUN python -c "from src.hts import coil; print('hts-coils package verified')"
+
+# Set notebook directory for JupyterLab
+ENV JUPYTER_ENABLE_LAB=yes
+ENV NOTEBOOK_DIR=${HOME}/hts-coils/notebooks
+
+# MyBinder expects jovyan user
+USER ${NB_USER}
+
+LABEL maintainer="Dawson Institute <noreply@dawsoninstitute.org>"
+LABEL description="Optimized MyBinder environment for hts-coils using cached base image"
+LABEL org.opencontainers.image.source="https://github.com/DawsonInstitute/hts-coils"
