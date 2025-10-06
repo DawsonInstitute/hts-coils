@@ -68,7 +68,7 @@ def test_5t_field_scaling():
     print(f"Thermal feasible: {result['thermal_feasible']}")
     print(f"Critical current density: {result['J_c']/1e6:.1f} MA/m²")
     
-    return result['field_feasible'] and achieved_field >= 4.5
+    assert result['field_feasible'] and achieved_field >= 4.5
 
 
 def test_10t_field_scaling():
@@ -105,7 +105,7 @@ def test_10t_field_scaling():
     print(f"Thermal margin: {thermal_result['thermal_margin_K']:.2f} K")
     print(f"Space thermal feasible: {thermal_result['space_feasible']}")
     
-    return result['field_feasible'] and achieved_field >= 8.0
+    assert result['field_feasible'] and achieved_field >= 8.0
 
 
 def test_space_thermal_modeling():
@@ -131,7 +131,7 @@ def test_space_thermal_modeling():
     print(f"Space feasible: {thermal_result['space_feasible']}")
     print(f"Cryocooler adequate: {thermal_result['cryocooler_adequate']}")
     
-    return thermal_result['space_feasible']
+    assert thermal_result['space_feasible']
 
 
 def test_helmholtz_high_field():
@@ -161,10 +161,10 @@ def test_helmholtz_high_field():
         separation_distance = helmholtz_config.get('parameters', {}).get('R', 0.0)
         print(f"Coil separation (equal to radius): {separation_distance:.2f} m")
         
-        return configuration_feasible and achieved_field >= 5.5
+        assert configuration_feasible and achieved_field >= 5.5
     else:
         print("Helmholtz configuration failed to generate.")
-        return False
+        assert False, "Helmholtz configuration failed"
 
 
 def test_parameter_validation():
@@ -198,7 +198,7 @@ def test_parameter_validation():
     
     print(f"Extreme parameters valid: {extreme_validation['parameters_valid']}")
     
-    return validation['parameters_valid']
+    assert validation['parameters_valid']
 
 
 def test_comsol_high_field_validation():
@@ -233,11 +233,11 @@ def test_comsol_high_field_validation():
             print(f"Reinforcement factor: {validation_result.get('reinforcement_factor', 0):.2f}")
             print(f"Reinforced stress: {validation_result.get('reinforced_stress_MPa', 0):.1f} MPa")
         
-        return validation_result.get('validation_success', True)
+        assert validation_result.get('validation_success', True), "COMSOL validation failed"
         
     except Exception as e:
         print(f"COMSOL validation error: {e}")
-        return False
+        assert False, f"COMSOL validation error: {e}"
 
 
 def generate_performance_report(test_results: Dict[str, bool]):

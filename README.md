@@ -169,6 +169,11 @@ pip install --upgrade "jax[cuda12]" -f https://storage.googleapis.com/jax-releas
 # See "Optional: FEniCSx Installation" section below for FEA setup
 
 # Initialize submodules for advanced optimizations (optional)
+# This downloads the warp-bubble-optimizer submodule which contains core optimization algorithms
+# The 'S' status marker in git indicates "Submodule" - it tracks a specific commit reference
+# Files in submodules cannot be directly staged in the parent repository (use 'cd optimizer/' to commit changes)
+# Note: You may see "Using core optimization modules" message - this is normal as advanced mission/validation
+# features are not yet integrated. The core optimization functions (power.py) are sufficient for HTS design.
 git submodule update --init --recursive
 
 # Run validation tests
@@ -189,7 +194,13 @@ conda create -n fenics python=3.11
 conda activate fenics
 conda install -c conda-forge fenics-dolfinx mpich pyvista
 
-# Option 2: Docker (most reliable)
+# Optional: Add GPU support for FEniCSx in Conda (only if you have NVIDIA GPU and want GPU acceleration)
+# Skip this if you don't have a CUDA-compatible GPU or only need CPU mode
+conda install cuda-cudart cuda-version=12
+
+# Option 2: Docker (most reliable - use the official FEniCSx image)
+# Note: Our ghcr.io/dawsoninstitute/hts-coils-base:latest image is for MyBinder optimization only
+# For local FEniCSx work, use the official dolfinx image:
 docker pull dolfinx/dolfinx:stable
 docker run -ti -v $(pwd):/home/fenics/shared dolfinx/dolfinx:stable
 
@@ -212,8 +223,19 @@ If you see "No GPU devices found" warnings during validation despite installing 
 - Your system doesn't have a CUDA-compatible NVIDIA GPU
 - CUDA drivers are not properly installed
 - JAX cannot detect the GPU (driver/library mismatch)
+- **WSL2 users**: GPU passthrough requires additional setup (see below)
 
 The framework operates correctly in CPU-only mode with no loss of functionality, only reduced performance for large-scale simulations. GPU acceleration is optional and primarily benefits intensive numerical computations in the plasma simulation modules.
+
+**WSL2 GPU Setup (for NVIDIA GPUs on Windows):**
+If you're running in WSL2 and want GPU acceleration:
+1. Install NVIDIA GPU drivers on Windows (version 455.41 or later)
+2. In WSL2, verify GPU is visible: `nvidia-smi`
+3. Install CUDA toolkit: `conda install -c nvidia cuda-toolkit`
+4. Reinstall JAX with CUDA: `pip install --upgrade "jax[cuda12]"`
+5. Test GPU detection: `python -c "import jax; print(jax.devices())"`
+
+If `nvidia-smi` fails in WSL2, you may need to update your Windows NVIDIA drivers or enable GPU virtualization in your WSL2 configuration.
 
 ### REBCO Paper Results Reproduction
 

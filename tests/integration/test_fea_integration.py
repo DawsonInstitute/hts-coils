@@ -42,13 +42,13 @@ def test_original_fea_solver():
             else:
                 print(f"  {key}: {value}")
         
-        return results
+        assert results is not None
         
     except Exception as e:
         print(f"❌ Error testing FEASolver: {e}")
         import traceback
         traceback.print_exc()
-        return None
+        assert False, str(e)
 
 def test_comsol_integration():
     """Test COMSOL FEA integration."""
@@ -89,13 +89,13 @@ def test_comsol_integration():
             else:
                 print(f"  {key}: {value}")
         
-        return results
+        assert results is not None
         
     except Exception as e:
         print(f"❌ Error testing COMSOL integration: {e}")
         import traceback
         traceback.print_exc()
-        return None
+        assert False, str(e)
 
 def test_fea_integration_framework():
     """Test the unified FEA integration framework."""
@@ -188,14 +188,14 @@ def test_fea_backend_compatibility():
         # Compatibility check
         if relative_error < 0.001:  # <0.1% difference
             print("✅ Backends are fully compatible")
-            return True
+            assert True
         else:
             print(f"⚠️  Backend results diverge by {relative_error*100:.3f}%")
-            return False
+            assert False, f"Backend results diverge by {relative_error*100:.3f}%"
             
     except Exception as e:
         print(f"❌ Backend compatibility test failed: {e}")
-        return False
+        assert False, str(e)
 
 def compare_solver_results(results_dict):
     """Compare results across different solvers."""

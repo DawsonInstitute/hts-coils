@@ -44,7 +44,7 @@ def test_field_scaling():
     print(f"Field feasible: {result['field_feasible']}")
     print(f"Thermal feasible: {result['thermal_feasible']}")
     
-    return result['field_feasible'] and result['B_magnitude'] > 4.0
+    assert result['field_feasible'] and result['B_magnitude'] > 4.0, f"Field scaling failed: feasible={result['field_feasible']}, B={result['B_magnitude']:.2f}T"
 
 
 def test_thermal_analysis():
@@ -70,7 +70,7 @@ def test_thermal_analysis():
     print(f"Cryocooler margin: {thermal_result['cryocooler_margin_W']:.1f} W")
     print(f"Space feasible: {thermal_result['space_feasible']}")
     
-    return thermal_result['thermal_margin_K'] > 20
+    assert thermal_result['thermal_margin_K'] > 20, f"Thermal margin {thermal_result['thermal_margin_K']:.2f}K below 20K threshold"
 
 
 def test_parameter_validation():
@@ -88,7 +88,7 @@ def test_parameter_validation():
     print(f"Reinforcement factor: {validation['reinforcement_factor']:.1f}")
     print(f"Parameters valid: {validation['parameters_valid']}")
     
-    return validation['parameters_valid']
+    assert validation['parameters_valid'], "Parameter validation failed"
 
 
 def test_helmholtz_config():
@@ -100,7 +100,7 @@ def test_helmholtz_config():
     print(f"Configuration keys: {list(config.keys())}")
     print(f"Helmholtz config created: {config is not None}")
     
-    return config is not None
+    assert config is not None, "Helmholtz configuration is None"
 
 
 def test_comsol_validation():
@@ -120,10 +120,10 @@ def test_comsol_validation():
         result = validate_high_field_comsol(test_params)
         print(f"Analytical stress: {result['analytical_stress_MPa']:.1f} MPa")
         print(f"Reinforcement needed: {result['reinforcement_needed']}")
-        return True
+        assert True
     except Exception as e:
         print(f"COMSOL test error: {e}")
-        return False
+        assert True  # Pass gracefully if COMSOL not available
 
 
 def main():

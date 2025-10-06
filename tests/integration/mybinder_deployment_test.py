@@ -46,9 +46,9 @@ def check_environment():
     
     if missing_packages:
         log_message(f"Missing packages: {missing_packages}", "ERROR")
-        return False
+        assert False, f"Missing packages: {missing_packages}"
     
-    return True
+    assert True
 
 def check_binder_config():
     """Check MyBinder configuration files"""
@@ -57,7 +57,7 @@ def check_binder_config():
     binder_dir = Path("binder")
     if not binder_dir.exists():
         log_message("ERROR: binder/ directory not found", "ERROR")
-        return False
+        assert False, "binder/ directory not found"
     
     required_files = ["requirements.txt", "runtime.txt"]
     for filename in required_files:
@@ -82,7 +82,7 @@ def check_binder_config():
                 if line and not line.startswith('#') and package.lower() in line.lower():
                     log_message(f"Warning: Found potentially problematic package '{package}' in requirements.txt", "WARNING")
     
-    return True
+    assert True
 
 def test_notebook_execution():
     """Test that key notebooks can execute without errors"""
@@ -91,7 +91,7 @@ def test_notebook_execution():
     notebooks_dir = Path("notebooks")
     if not notebooks_dir.exists():
         log_message("ERROR: notebooks/ directory not found", "ERROR")
-        return False
+        assert False, "notebooks/ directory not found"
     
     # Key notebooks to test
     test_notebooks = [
@@ -146,9 +146,9 @@ def test_notebook_execution():
     if total_count > 0:
         success_rate = success_count / total_count * 100
         log_message(f"Notebook execution success rate: {success_rate:.1f}% ({success_count}/{total_count})")
-        return success_rate > 60  # Require at least 60% success rate for educational notebooks
-    
-    return False
+        assert success_rate > 60, f"Notebook success rate {success_rate:.1f}% below 60% threshold"
+    else:
+        assert False, "No notebooks were tested"
 
 def check_memory_usage():
     """Estimate memory usage for MyBinder compatibility"""
@@ -170,18 +170,18 @@ def check_memory_usage():
         # MyBinder limit is typically 1-2GB
         if memory_mb > 1500:
             log_message("Warning: Memory usage may be too high for MyBinder", "WARNING")
-            return False
+            assert False, "Memory usage too high for MyBinder"
         elif memory_mb > 1000:
             log_message("Warning: Memory usage is getting high for MyBinder", "WARNING")
         
-        return True
+        assert True
     
     except ImportError:
         log_message("psutil not available, skipping memory check", "WARNING")
-        return True
+        assert True
     except Exception as e:
         log_message(f"Memory check failed: {e}", "WARNING")
-        return True
+        assert True
 
 def generate_mybinder_url():
     """Generate the MyBinder launch URL"""

@@ -75,7 +75,9 @@ try:
         ADVANCED_MODULES_AVAILABLE = True
     except ImportError:
         ADVANCED_MODULES_AVAILABLE = False
-        print("🔧 Advanced modules not available - using core optimization only")
+        # Note: mission.py and validation.py are not yet integrated in the optimizer submodule
+        # Core optimization (power.py) is sufficient for HTS coil design
+        print("ℹ️  Note: Using core optimization modules (advanced mission/validation features not yet integrated)")
     
     OPTIMIZER_AVAILABLE = True
     print("🎯 Warp-bubble-optimizer integration: Successfully imported optimization functions")
