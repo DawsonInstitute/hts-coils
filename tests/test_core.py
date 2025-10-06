@@ -1,6 +1,11 @@
 import json
-import numpy as np
+import sys
 from pathlib import Path
+
+# Add src to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
+
+import numpy as np
 from hts.coil import mu_0, hts_coil_field, sample_helmholtz_pair_plane, sample_stack_plane
 from hts import sample_circular_coil_plane
 from hts.materials import jc_vs_temperature

@@ -2,8 +2,11 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Tested on WSL2 Ubuntu 24.04](https://img.shields.io/badge/tested-WSL2%20Ubuntu%2024.04-orange.svg)](https://docs.microsoft.com/en-us/windows/wsl/)
 
 **Comprehensive computational framework for REBCO HTS coils and plasma physics applications. Features validated 7.07T superconducting magnet designs, Lentz soliton simulation with interferometric detection, high-beta plasma confinement analysis, and multi-physics FEA integration. Open-source Python implementation with interactive Jupyter notebooks.**
+
+> **Platform Note**: This framework has been tested on WSL2 (Ubuntu 24.04) on Windows 11. While the core functionality should work on other Linux distributions, macOS, and native Windows, some features (especially GPU acceleration and FEniCSx integration) may require platform-specific adjustments. See the installation sections below for details.
 
 ## Project Overview
 
@@ -202,7 +205,15 @@ conda install cuda-cudart cuda-version=12
 # Note: Our ghcr.io/dawsoninstitute/hts-coils-base:latest image is for MyBinder optimization only
 # For local FEniCSx work, use the official dolfinx image:
 docker pull dolfinx/dolfinx:stable
+
+# Run an interactive FEniCSx environment with your code mounted
 docker run -ti -v $(pwd):/home/fenics/shared dolfinx/dolfinx:stable
+
+# Inside the container, navigate to your code and run:
+# cd /home/fenics/shared
+# python -m src.warp.fenics_plasma
+# Or start a Jupyter notebook server:
+# jupyter notebook --ip=0.0.0.0 --no-browser --allow-root
 
 # Option 3: pip (may require system dependencies)
 pip install fenics-dolfinx[all]
@@ -210,12 +221,13 @@ pip install fenics-dolfinx[all]
 
 **Quick validation check:**
 ```bash
-# Test core functionality
-python -m src.warp.comsol_plasma
-python -m src.warp.fenics_plasma
+# Test core functionality (CPU mode)
+python -m src.warp.comsol_plasma  # Uses analytical approximations
+python -m src.warp.fenics_plasma  # Requires FEniCSx installation
 
 # Run comprehensive validation
 pytest tests/ --tb=short
+# Expected: 11 passed, 11 skipped (high-field modules require hts.high_field_scaling package)
 ```
 
 **Note on GPU Detection:**

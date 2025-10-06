@@ -159,7 +159,11 @@ def test_fea_backend_compatibility():
     print("=" * 40)
     
     try:
-        from scripts.fea_integration import create_fea_interface
+        import sys
+        from pathlib import Path
+        scripts_path = Path(__file__).parent.parent.parent / "scripts"
+        sys.path.insert(0, str(scripts_path))
+        from fea_integration import create_fea_interface
         
         # Standard coil parameters for compatibility testing
         coil_params = {

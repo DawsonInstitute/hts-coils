@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[10pt,twocolumn]{article}
 
 % Essential packages for physics and mathematics
 \usepackage[utf8]{inputenc}
@@ -8,10 +8,12 @@
 \usepackage{bm}
 
 % Document formatting
-\usepackage{geometry}
-\geometry{margin=1in}
-\usepackage{setspace}
-\onehalfspacing
+\usepackage[margin=2cm]{geometry}
+\usepackage{times} % IEEE typically uses Times font
+\usepackage{microtype} % better line breaking
+\usepackage{textcomp} % provides textasteriskcentered for baseline asterisk
+\usepackage{pifont}   % for checkmark symbols
+\providecommand{\checkmark}{\ding{51}}
 
 % Graphics and tables
 \usepackage{graphicx}
@@ -59,13 +61,31 @@
 	\input{author_config.tex}%
 }{%
 	\providecommand{\authorname}{Independent Researcher}%
+	\providecommand{\authoraffiliation}{Independent Research Institute}%
 	\providecommand{\authoremail}{contact@example.com}%
 }
-\author{\authorname\\\texttt{\authoremail}}
-% Freeze to the run date for archival reproducibility (printed by \maketitle)
-\date{(Dated: October 5, 2025)}
+% Use symbol footnote (asterisk) for author email like arXiv formatting.
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\author{\authorname\footnotemark\\\textit{\authoraffiliation}}
+% Freeze to the run date for archival reproducibility
+\date{(Dated: \today)}
+
+\begin{document}
+% Ensure the author footnote text begins flush with the left paragraph margin
+\makeatletter
+\renewcommand\@makefntext[1]{%
+	\noindent\@makefnmark\ \ignorespaces#1%
+}
+% Short rule above the footnote area (matches arXiv style separator)
+\renewcommand{\footnoterule}{\vspace{1ex}\noindent\hrule width \columnwidth\vspace{1ex}}
+\makeatother
 
 \maketitle
+% place email as a symbol footnote at bottom of the first page
+\footnotetext{\noindent\textasteriskcentered\ Electronic address: \textbf{\texttt{\authoremail}}}
+% restore normal footnote numbering
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\sloppy
 
 \begin{abstract}
 \textbf{Background}: Achieving stable, high-beta plasma confinement is a central challenge in magnetic fusion energy research. High-temperature superconducting (HTS) magnets offer a promising pathway to generating the strong, precisely controlled magnetic fields required, but their performance in high-beta regimes is not fully characterized.

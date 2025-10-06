@@ -185,11 +185,11 @@ if not COMSOL_FEA_AVAILABLE:
         print("   Note: Using placeholder mode - set COMSOL_AVAILABLE=false to disable detection")
         # Keep COMSOL_FEA_AVAILABLE = False for now to use placeholders with better detection
     else:
-        print("⚠️  COMSOL FEA integration not available - using placeholders")
-        print("   To enable COMSOL: install COMSOL Multiphysics or set COMSOL_AVAILABLE=true")
+        print("ℹ️  COMSOL FEA integration not available - using analytical placeholders")
+        print("   To enable COMSOL: install COMSOL Multiphysics and set COMSOL_AVAILABLE=true")
 
 if not COMSOL_FEA_AVAILABLE:
-    print("⚠️  COMSOL FEA integration not available - using placeholders")
+    print("ℹ️  COMSOL Multiphysics not detected - using analytical approximations")
     # Define placeholder classes
     @dataclass
     class COMSOLServerConfig:

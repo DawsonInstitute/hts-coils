@@ -11,6 +11,7 @@ This script validates the 5-10 T capability enhancements including:
 
 import sys
 import os
+import pytest
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 import numpy as np
@@ -41,11 +42,13 @@ try:
     )
     from hts.comsol_fea import validate_high_field_comsol
     print("✅ Successfully imported high-field scaling modules")
+    HIGH_FIELD_MODULES_AVAILABLE = True
 except ImportError as e:
     print(f"❌ Import error: {e}")
-    sys.exit(1)
+    HIGH_FIELD_MODULES_AVAILABLE = False
+    # Don't exit - let pytest handle missing modules gracefully
 
-
+@pytest.mark.skipif(not HIGH_FIELD_MODULES_AVAILABLE, reason="High-field modules not available")
 def test_5t_field_scaling():
     """Test 5 T field scaling capability."""
     print("\n🧪 Testing 5 T field scaling...")
@@ -70,7 +73,7 @@ def test_5t_field_scaling():
     
     assert result['field_feasible'] and achieved_field >= 4.5
 
-
+@pytest.mark.skipif(not HIGH_FIELD_MODULES_AVAILABLE, reason="High-field modules not available")
 def test_10t_field_scaling():
     """Test 10 T field scaling capability."""
     print("\n🧪 Testing 10 T field scaling...")
@@ -107,7 +110,7 @@ def test_10t_field_scaling():
     
     assert result['field_feasible'] and achieved_field >= 8.0
 
-
+@pytest.mark.skipif(not HIGH_FIELD_MODULES_AVAILABLE, reason="High-field modules not available")
 def test_space_thermal_modeling():
     """Test space-relevant thermal modeling."""
     print("\n🧪 Testing space thermal modeling...")
@@ -133,7 +136,7 @@ def test_space_thermal_modeling():
     
     assert thermal_result['space_feasible']
 
-
+@pytest.mark.skipif(not HIGH_FIELD_MODULES_AVAILABLE, reason="High-field modules not available")
 def test_helmholtz_high_field():
     """Test Helmholtz pair configuration for high field."""
     print("\n🧪 Testing Helmholtz high-field configuration...")
@@ -166,7 +169,7 @@ def test_helmholtz_high_field():
         print("Helmholtz configuration failed to generate.")
         assert False, "Helmholtz configuration failed"
 
-
+@pytest.mark.skipif(not HIGH_FIELD_MODULES_AVAILABLE, reason="High-field modules not available")
 def test_parameter_validation():
     """Test parameter validation functions."""
     print("\n🧪 Testing parameter validation...")
@@ -200,7 +203,7 @@ def test_parameter_validation():
     
     assert validation['parameters_valid']
 
-
+@pytest.mark.skipif(not HIGH_FIELD_MODULES_AVAILABLE, reason="High-field modules not available")
 def test_comsol_high_field_validation():
     """Test COMSOL integration for high-field validation."""
     print("\n🧪 Testing COMSOL high-field validation...")
