@@ -68,7 +68,7 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \author{\authorname\footnotemark\\\textit{\authoraffiliation}}
 % Freeze to the run date for archival reproducibility
-\date{(Dated: \today)}
+\date{(Dated: October 4, 2025)}
 
 % Ensure the author footnote text begins flush with the left paragraph margin
 \makeatletter
@@ -205,11 +205,11 @@ The superconducting magnetic confinement system provides the stable, high-field 
 \item \textbf{Power Electronics}: Advanced current control with 95\% efficiency and sub-millisecond response times for dynamic field adjustment and disruption mitigation
 \end{itemize}
 
-This subsystem builds upon validated REBCO coil technology \cite{senatore2014progress,malozemoff2008progress,larbalestier2014hts} while introducing novel control algorithms for sub-percent ripple achievement necessary for stable high-beta confinement. The multi-tape REBCO design leverages advances in superconducting tape manufacturing \cite{wesson2011tokamaks} and thermal management systems \cite{chen2016plasma,freidberg2014plasma} for fusion energy applications.
+This subsystem builds upon validated REBCO coil technology \cite{senatore2014progress} while introducing novel control algorithms for sub-percent ripple achievement necessary for stable high-beta confinement. The multi-tape REBCO design leverages advances in superconducting tape manufacturing and thermal management systems \cite{chen2016plasma,freidberg2014plasma} for fusion energy applications.
 
 \subsubsection{Plasma Simulation Engine}
 
-The plasma physics simulation employs hybrid Particle-in-Cell/Magnetohydrodynamic (PIC/MHD) methods to model high-beta plasma confinement with comprehensive electromagnetic coupling \cite{Maxwell1865,freidberg2014plasma}:
+The plasma physics simulation employs hybrid Particle-in-Cell/Magnetohydrodynamic (PIC/MHD) methods to model high-beta plasma confinement with comprehensive electromagnetic coupling \cite{freidberg2014plasma}:
 
 \begin{itemize}
 \item \textbf{Magnetohydrodynamic Foundation}: Complete MHD equation set for plasma fluid dynamics:
@@ -229,7 +229,7 @@ where $\rho$ is plasma density (kg/m³), $\mathbf{v}$ is fluid velocity (m/s), $
 \end{equation}
 where collision operator includes Coulomb scattering with frequency $\nu_{ei} = 2.91 \times 10^{-12} n_e \ln\Lambda / T_e^{3/2}$ (s$^{-1}$).
 
-\item \textbf{Electromagnetic Integration}: Self-consistent field evolution with plasma current coupling following Maxwell's equations \cite{Maxwell1865}:
+\item \textbf{Electromagnetic Integration}: Self-consistent field evolution with plasma current coupling following Maxwell's equations:
 \begin{align}
 \ddt{\mathbf{E}} &= c^2 \curl \mathbf{B} - \mu_0 \mathbf{J}_p - \mu_0 \mathbf{J}_{\text{ext}} \\
 \ddt{\mathbf{B}} &= -\curl \mathbf{E}
@@ -862,7 +862,7 @@ While this research addresses speculative warp drive physics, the computational 
 
 \textbf{Direct Relevance to Magnetic Fusion Energy}:
 \begin{itemize}
-\item \textbf{HTS-Plasma Coupling}: Novel understanding of superconducting magnet behavior in complex plasma environments directly applicable to ITER and future fusion devices where superconducting magnets operate near high-performance plasmas \cite{senatore2014progress,wesson2011tokamaks}.
+\item \textbf{HTS-Plasma Coupling}: Novel understanding of superconducting magnet behavior in complex plasma environments directly applicable to ITER and future fusion devices where superconducting magnets operate near high-performance plasmas \cite{senatore2014progress}.
 \item \textbf{High-Beta Optimization}: Computational framework achieving $\beta = 0.48$ suggests optimization approaches for potentially pushing tokamak and stellarator performance beyond current limits, with projected relevance to Advanced Tokamak scenarios.
 \item \textbf{Multi-Physics Integration}: Framework coupling MHD, electromagnetic, and optimization codes advances state-of-art for integrated fusion modeling, addressing critical need for holistic design optimization \cite{PlasmaPhysics2023}.
 \end{itemize}
