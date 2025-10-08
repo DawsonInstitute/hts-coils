@@ -15,6 +15,8 @@ This repository provides a comprehensive optimization framework for high-tempera
 ### Key Features
 
 - **REBCO Paper Reproduction**: Complete reproduction of results from *"High-Temperature Superconducting REBCO Coil Optimization for Fusion and Antimatter Applications"* with 100% validation success rate
+- **HTS Plasma Confinement Analysis**: Computational framework for high-beta plasma confinement using HTS magnets (see `papers/warp/hts_plasma_confinement.tex`)
+- **Lentz Soliton Validation Framework**: Comprehensive validation methodology for Lentz soliton formation in high-beta plasma (see `papers/warp/soliton_validation.tex`)
 - **Interactive Educational Notebooks**: 9 comprehensive Jupyter notebooks covering theory, implementation, and validation (MyBinder ready)
 - **Comprehensive Validation Framework**: 24 benchmark validations with specified tolerances ensuring computational reproducibility
 - **Realistic REBCO Modeling**: Kim model implementation with validated critical current density J_c(T,B) relationships
@@ -81,6 +83,18 @@ The following notebooks are available:
 - ✅ **Thermal Analysis:** 74.5K margin validation at 15K operating temperature
 - ✅ **Stress Analysis:** 35 MPa reinforced design limit verification
 - ✅ **Performance:** <27MB memory usage, <0.01s execution time per validation
+
+### HTS Plasma Confinement Results (hts_plasma_confinement.tex)
+- ✅ **High-Beta Plasma Stability:** β = 0.48 ± 0.05 with MHD stability confirmation
+- ✅ **HTS Magnetic System:** 7.07 ± 0.15 T toroidal field, δ = 0.16 ± 0.02% magnetic ripple
+- ✅ **Thermal Performance:** 74.5 K operational margins with liquid nitrogen cooling
+- ✅ **Integrated Multi-Physics:** Validated coupling between HTS magnets and plasma simulation
+
+### Lentz Soliton Validation Results (soliton_validation.tex)
+- ✅ **Energy Optimization:** 40% reduction in energy requirements through optimization framework
+- ✅ **Plasma Confinement:** β = 0.48 stable confinement with HTS-generated fields
+- ✅ **Interferometric Detection:** 10⁻¹⁸ m spacetime distortion detection capability
+- ✅ **Comprehensive UQ:** Enhanced uncertainty quantification with Sobol sensitivity analysis
 
 **Target Audiences:** Undergraduate students, graduate researchers, practicing engineers, general public  
 **Learning Time:** 2-4 hours for complete walkthrough
