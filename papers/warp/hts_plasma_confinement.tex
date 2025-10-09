@@ -214,10 +214,10 @@ The plasma physics simulation employs hybrid Particle-in-Cell/Magnetohydrodynami
 \begin{itemize}
 \item \textbf{Magnetohydrodynamic Foundation}: Complete MHD equation set for plasma fluid dynamics:
 \begin{align}
-\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) &= 0 \quad \text{(Continuity)} \\
-\rho \frac{D\mathbf{v}}{Dt} &= -\nabla p + \frac{1}{\mu_0}(\nabla \times \mathbf{B}) \times \mathbf{B} + \rho \mathbf{g} \quad \text{(Momentum)} \\
-\frac{Dp}{Dt} &= -\gamma p \nabla \cdot \mathbf{v} + (\gamma - 1) \eta J^2 \quad \text{(Energy)} \\
-\frac{\partial \mathbf{B}}{\partial t} &= \nabla \times (\mathbf{v} \times \mathbf{B}) + \eta \nabla^2 \mathbf{B} \quad \text{(Induction)}
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) &= 0 \quad \text{(Continuity)} \notag\\
+\rho \frac{D\mathbf{v}}{Dt} &= -\nabla p + \frac{1}{\mu_0}(\nabla \times \mathbf{B}) \times \mathbf{B} + \rho \mathbf{g} \quad \text{(Momentum)} \notag\\
+\frac{Dp}{Dt} &= -\gamma p \nabla \cdot \mathbf{v} + (\gamma - 1) \eta J^2 \quad \text{(Energy)} \notag\\
+\frac{\partial \mathbf{B}}{\partial t} &= \nabla \times (\mathbf{v} \times \mathbf{B}) + \eta \nabla^2 \mathbf{B} \quad \text{(Induction)} \notag
 \end{align}
 where $\rho$ is plasma density (kg/m³), $\mathbf{v}$ is fluid velocity (m/s), $p$ is plasma pressure (Pa), $\gamma = 5/3$ is adiabatic index, and $\eta$ is magnetic diffusivity (m²/s).
 
@@ -241,161 +241,40 @@ where $\mathbf{J}_p = en_e(\mathbf{v}_i - \mathbf{v}_e)$ is plasma current densi
 
 The simulation framework ensures physical consistency while providing predictive capabilities for high-beta plasma confinement parameter optimization.
 
-\subsubsection{Enhanced Validation and Safety Framework}
+\subsubsection{HTS Magnet System Validation}
 
-We implement comprehensive validation protocols addressing critical concerns about model validity, assumption justification, and uncertainty quantification.
+We validate the HTS magnet design using the framework implemented in \texttt{src/hts/}, with validation results documented in \texttt{validation\_results.json}.
 
-\textbf{Computational Model Validation}:
+\textbf{Validated REBCO Magnet Performance}:
 
 \begin{itemize}
-\item \textbf{Extended Grid Convergence Analysis}: Systematic convergence testing from $16^3$ to $128^3$ grid resolution with Richardson extrapolation reveals $L_2$ norm convergence rate of $1.85 \pm 0.15$, consistent with second-order spatial discretization. Higher-resolution runs confirm numerical stability and eliminate concerns about under-resolved plasma skin depth.
+\item \textbf{Baseline Configuration (2.1T)}: Achieved 0.01\% magnetic ripple with 1171A operating current and 400 turns, validated against paper benchmarks with <1\% tolerance (\texttt{src/hts/validation\_framework.py})
 
-\item \textbf{MHD Approximation Validity Assessment}: Rigorous validation of single-fluid MHD assumptions through multi-scale analysis: 
-   \begin{itemize}
-   \item Larmor radius analysis: $\rho_L/L_p = 0.08 \pm 0.02 < 0.1$ confirming single-fluid validity
-   \item Plasma frequency analysis: $\omega_{pe}\tau \approx 0.3$ indicating adequate time scale separation
-   \item Charge neutrality verification: $|n_e - n_i|/n_e < 10^{-6}$ throughout computational domain
-   \item Two-fluid benchmark comparison: Agreement within $\pm 5\%$ for key parameters in accessible regime
-   \end{itemize}
+\item \textbf{High-Field Configuration (7.07T)}: Demonstrated 0.16\% magnetic ripple with 1800A current using 89-tape REBCO design at 15K operating temperature, providing 74.5K thermal margin to critical temperature (\texttt{src/hts/high\_field\_scaling.py})
 
-\item \textbf{Temporal Integration Stability}: Comprehensive CFL analysis demonstrates stable time integration:
-   \begin{itemize}
-   \item Electromagnetic wave constraint: $c\Delta t/\Delta x = 0.3$ ensuring stability
-   \item Plasma frequency constraint: $\omega_{pe}\Delta t = 0.05$ preventing numerical heating
-   \item MHD wave constraint: $v_{Alfv\text{é}n}\Delta t/\Delta x = 0.2$ maintaining accuracy
-   \end{itemize}
+\item \textbf{Thermal Analysis}: Kim model implementation (\texttt{src/hts/materials.py}) validates critical current density $J_c(T,B)$ relationships with liquid nitrogen cooling at 77K
 
-\item \textbf{Energy Conservation Validation}: Total energy conservation monitored with enhanced precision:
-   \begin{itemize}
-   \item Global energy drift: $<0.02\%$ over formation timescales
-   \item Local energy balance: $|\partial_t u + \nabla \cdot \mathbf{S}| < 10^{-8}$ J/(m³·s)
-   \item Optimization energy conservation: Verified through Noether theorem analysis
-   \end{itemize}
+\item \textbf{Mechanical Stress Validation}: Maxwell stress tensor calculations (\texttt{src/hts/mechanical\_reinforcement.py}) verify hoop stress reduction from 175 MPa (baseline) to 35 MPa (reinforced) using composite reinforcement strategies
+
+\item \textbf{FEA Integration}: Unified interface (\texttt{src/hts/fea.py}) supports both COMSOL and FEniCSx solvers with <0.1\% cross-validation error for electromagnetic field calculations
 \end{itemize}
 
-\textbf{Physical Model Assumption Justification}:
+\textbf{Computational Validation Framework}:
 
 \begin{itemize}
-\item \textbf{Classical Plasma Approximation Validity}: Quantum effects assessment reveals:
+\item \textbf{Paper Benchmark Reproduction}: 23 validation tests executed with success rate of 23/23 (see \texttt{notebooks/validation\_report.json}):
    \begin{itemize}
-   \item Plasma parameter: $\Lambda = n\lambda_D^3 = 2.3 \times 10^6 \gg 1$ confirming classical regime
-   \item Degeneracy parameter: $\theta = k_BT/E_F = 45 \gg 1$ indicating non-degenerate plasma
-   \item Quantum correction magnitude: $\delta E/E_{classical} < 0.02\%$ at target conditions
+   \item Paper benchmarks: 6/6 tests passed
+   \item Physical reasonableness: 12/12 tests passed  
+   \item Unit consistency: 4/4 tests passed
+   \item Numerical convergence: 1/1 tests passed
    \end{itemize}
 
-\item \textbf{Plasma Parameter Regime Justification}: Beta regime selection based on:
+\item \textbf{Uncertainty Quantification}: Monte Carlo sensitivity analysis (\texttt{src/hts/validation\_framework.py}) quantifies:
    \begin{itemize}
-   \item MHD stability analysis: $\beta = 0.48$ below kink mode threshold $\beta_{crit} = 0.52$
-   \item Transport analysis: Optimal confinement efficiency at this beta value
-   \item Literature comparison: Consistent with high-performance tokamak projections
-   \end{itemize}
-\end{itemize}
-
-\textbf{Enhanced Uncertainty Quantification Framework}:
-
-\begin{itemize}
-\item \textbf{Global Sensitivity Analysis}: Sobol sensitivity indices computed for 847 input parameters:
-   \begin{itemize}
-   \item First-order indices: 15 parameters account for $>80\%$ of output variance
-   \item Total-effect indices: Higher-order interactions contribute $<12\%$ to uncertainty
-   \item Ranking analysis: Magnetic field strength and plasma density dominate sensitivity
-   \end{itemize}
-
-\item \textbf{Polynomial Chaos Expansion}: Spectral uncertainty quantification reveals:
-   \begin{itemize}
-   \item Convergence order: 4th-order PCE sufficient for $<1\%$ error in statistics
-   \item Output statistics: Mean, variance, and higher moments quantified with confidence bounds
-   \item Rare event analysis: Tail probability estimation for extreme parameter excursions
-   \end{itemize}
-
-\item \textbf{Model Form Uncertainty Assessment}: Alternative model comparisons:
-   \begin{itemize}
-   \item MHD vs. two-fluid: $<8\%$ difference in key outputs validates MHD approximation
-   \item Alternative metrics: Van Den Broeck and Natário solutions show $<15\%$ variance
-   \item Optimization algorithms: Multiple optimizers converge to consistent solutions ($<3\%$ variance)
-   \end{itemize}
-\end{itemize}
-
-\textbf{Cross-Code Validation and Benchmarking}:
-
-\begin{itemize}
-\item \textbf{Established Code Benchmarking}: Comprehensive validation against community standards:
-   \begin{itemize}
-   \item BOUT++ comparison: Agreement within $\pm 4.2\%$ for MHD evolution
-   \item OSIRIS validation: Particle dynamics consistent within $\pm 6.8\%$
-   \item NIMROD benchmarks: 3D MHD results agree within $\pm 7.5\%$
-   \end{itemize}
-
-\item \textbf{Analytical Solution Validation}: Verification against known solutions:
-   \begin{itemize}
-   \item Cylindrical plasma equilibria: Exact reproduction of Grad-Shafranov solutions
-   \item Alfvén wave propagation: Dispersion relation matches analytical predictions ($<0.5\%$ error)
-   \item Force-free magnetic fields: Beltrami solutions reproduced with machine precision
-   \end{itemize}
-
-\item \textbf{Independent Implementation Verification}: Cross-validation through:
-   \begin{itemize}
-   \item Alternative finite difference schemes: Results consistent within numerical precision
-   \item Alternative libraries: JAX, PyTorch, and NumPy implementations converge identically
-   \item Multiple optimization backends: SciPy, NLOPT, and custom solvers agree within $\pm2.8\%$
-   \end{itemize}
-\end{itemize}
-
-This enhanced validation framework addresses critical concerns about model validity while maintaining computational efficiency and establishing robust uncertainty bounds for all key predictions.
-
-\textbf{Algorithm Validation and Computational Methodology}:
-
-\begin{itemize}
-\item \textbf{Multi-Objective Optimization Algorithm Validation}: Comprehensive validation protocol establishes algorithm reliability:
-   \begin{itemize}
-   \item \textbf{Cross-Library Benchmarking}: Comparison with SciPy, NLOPT, and JAX optimizers shows convergence agreement within $\pm 2.8\%$ for standard test functions
-   \item \textbf{Analytical Verification}: Exact reproduction of known analytical optima (Rosenbrock, Rastrigin, Ackley functions) with machine precision accuracy
-   \item \textbf{Stress Testing}: 10,000 random initialization Monte Carlo validation with 99.7\% convergence success rate under extreme parameter conditions
-   \item \textbf{Convergence Analysis}: Computationally validated superlinear convergence rate $\alpha = 1.89 \pm 0.12$ for smooth optimization landscapes
-   \end{itemize}
-
-\item \textbf{Spacetime Integration Validation}: Numerical relativity methods validated through established computational frameworks \cite{baumgarte2010numerical,Einstein1916}:
-   \begin{itemize}
-   \item \textbf{Schwarzschild Solution Reproduction}: Exact reproduction of known metric solutions with relative error $< 10^{-14}$ (verified via \texttt{src/spacetime/schwarzschild\_test.py}, benchmark results in \texttt{validation\_results/schwarzschild\_convergence.json})
-   \item \textbf{Constraint Preservation}: Hamiltonian and momentum constraints maintained with drift $< 10^{-12}$ over simulation timescales (monitored in \texttt{src/spacetime/constraint\_monitor.py}, time series in \texttt{validation\_results/constraint\_evolution.h5})
-   \item \textbf{Causality Verification}: Null geodesic tracking confirms causality preservation throughout computational domain (\texttt{src/spacetime/geodesic\_tracer.py})
-   \item \textbf{Energy-Momentum Conservation}: Total energy-momentum tensor conservation verified with precision $< 10^{-10}$ (computed in \texttt{src/spacetime/energy\_momentum\_conservation.py}, results in \texttt{validation\_results/conservation\_laws.json})
-   \end{itemize}
-
-\item \textbf{Plasma-Spacetime Coupling Validation}: Novel coupling algorithms validated through:
-   \begin{itemize}
-   \item \textbf{Flat Spacetime Limit}: Correct reduction to standard MHD in Minkowski spacetime limit
-   \item \textbf{Weak Field Approximation}: Agreement with perturbative general relativity calculations to $O(h^2)$
-   \item \textbf{Conservation Laws}: Verification of energy-momentum conservation across plasma-gravity interface
-   \item \textbf{Gauge Invariance}: Computational results independent of coordinate choice within numerical precision
-   \end{itemize}
-\end{itemize}
-
-\textbf{Experimental Feasibility Assessment}:
-
-\begin{itemize}
-\item \textbf{Interferometric Detection Realistic Constraints}: Comprehensive noise analysis reveals:
-   \begin{itemize}
-   \item \textbf{Thermal Noise Floor}: $\sqrt{S_x} = 2.3 \times 10^{-19}$ m$/\sqrt{\text{Hz}}$ at room temperature requiring active cooling
-   \item \textbf{Seismic Isolation}: Vibration isolation to $10^{-12}$ m level required, comparable to LIGO specifications
-   \item \textbf{Quantum Shot Noise}: Fundamental limit $\sqrt{S_x} = \sqrt{\hbar/(2m\omega^3)}$ requires high-power lasers
-   \item \textbf{Systematic Error Budget}: Total systematic uncertainty $< 10^{-18}$ m requires unprecedented stability
-   \end{itemize}
-
-\item \textbf{HTS Magnet Validation Requirements}: Critical experimental parameters for validation:
-   \begin{itemize}
-   \item \textbf{Field Accuracy}: $\pm 0.1\%$ absolute field measurement with calibrated Hall probes (validated via \texttt{src/hts\_coils/field\_solver.py}, results in \texttt{validation\_results/field\_accuracy.json})
-   \item \textbf{Ripple Characterization}: 3D magnetic field mapping with $< 0.01\%$ spatial resolution (computed via \texttt{src/hts\_coils/ripple\_analysis.py}, exported to \texttt{validation\_results/magnetic\_ripple\_3d.npz})
-   \item \textbf{Thermal Performance}: Continuous operation at 77K with $< 2$K temperature variation (simulated in \texttt{src/thermal/thermal\_solver.py}, results in \texttt{validation\_results/thermal\_margins.json})
-   \item \textbf{Quench Protection}: Fast discharge capability within 100ms for magnet protection (analysis in \texttt{src/safety/quench\_protection.py})
-   \end{itemize}
-
-\item \textbf{Integration Challenges}: Comprehensive systems analysis identifies:
-   \begin{itemize}
-   \item \textbf{Electromagnetic Compatibility}: Magnetic field effects on interferometer requiring $> 10$ m separation
-   \item \textbf{Thermal Coupling}: Cryogenic cooling system interaction with room temperature interferometry
-   \item \textbf{Control System Synchronization}: Microsecond timing precision across distributed systems
-   \item \textbf{Failure Mode Analysis}: Graceful degradation protocols for subsystem failures
+   \item Magnetic field uncertainty: $\pm 0.056$~T (2.7\% relative) from current, radius, and geometry variations
+   \item Temperature margin uncertainty: $\pm 3.4$~K (5.9\% relative) from critical temperature and heating variations
+   \item Critical current uncertainty: $\pm 6.0$~A/$\mu$m relative contribution from temperature and field dependencies
    \end{itemize}
 \end{itemize}
 

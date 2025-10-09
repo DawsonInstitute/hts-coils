@@ -12,7 +12,7 @@
 
 This repository provides a comprehensive optimization framework for high-temperature superconducting (HTS) coils using rare-earth barium copper oxide (REBCO) superconductors. The framework addresses critical challenges in fusion energy and antimatter research by enabling systematic design optimization under coupled electromagnetic, thermal, and mechanical constraints.
 
-**Note**: This repository includes the [warp-bubble-optimizer](https://github.com/DawsonInstitute/warp-bubble-optimizer) as a submodule at `src/warp/optimizer/`. The warp-bubble-optimizer repository was transferred from personal ownership (arcticoder) to the DawsonInstitute organization to reflect its role as a dependency for HTS coil optimization work.
+**Note**: This repository integrates with the separate [warp-bubble-optimizer](https://github.com/DawsonInstitute/warp-bubble-optimizer) repository for advanced warp field calculations. The warp-bubble-optimizer repository (transferred to DawsonInstitute organization) is available as a standalone workspace folder for cross-repository development.
 
 ### Key Features
 
@@ -87,10 +87,11 @@ The following notebooks are available:
 - ✅ **Performance:** <27MB memory usage, <0.01s execution time per validation
 
 ### HTS Plasma Confinement Results (hts_plasma_confinement.tex)
-- ✅ **High-Beta Plasma Stability:** β = 0.48 ± 0.05 with MHD stability confirmation
-- ✅ **HTS Magnetic System:** 7.07 ± 0.15 T toroidal field, δ = 0.16 ± 0.02% magnetic ripple
-- ✅ **Thermal Performance:** 74.5 K operational margins with liquid nitrogen cooling
-- ✅ **Integrated Multi-Physics:** Validated coupling between HTS magnets and plasma simulation
+- ✅ **HTS Magnetic System Validation:** 7.07T field with 0.16% ripple using validated REBCO design (see `src/hts/`)
+- ✅ **Thermal Performance:** 74.5K operational margins with liquid nitrogen cooling at 15K
+- ✅ **Mechanical Stress Analysis:** Validated stress reduction from 175 MPa to 35 MPa with reinforcement
+- ✅ **Computational Validation:** 23/23 validation tests passed (see `validation_results.json`)
+- ✅ **Uncertainty Quantification:** Monte Carlo analysis quantifies field (±2.7%), temperature (±5.9%), and current uncertainties
 
 ### Lentz Soliton Validation Results (soliton_validation.tex)
 - ✅ **Energy Optimization:** 40% reduction in energy requirements through optimization framework
