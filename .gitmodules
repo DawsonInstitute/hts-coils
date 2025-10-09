@@ -1,3 +1,0 @@
-[submodule "src/warp/optimizer"]
-	path = src/warp/optimizer
-	url = https://github.com/DawsonInstitute/warp-bubble-optimizer
