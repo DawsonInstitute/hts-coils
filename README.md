@@ -12,6 +12,8 @@
 
 This repository provides a comprehensive optimization framework for high-temperature superconducting (HTS) coils using rare-earth barium copper oxide (REBCO) superconductors. The framework addresses critical challenges in fusion energy and antimatter research by enabling systematic design optimization under coupled electromagnetic, thermal, and mechanical constraints.
 
+**Note**: This repository includes the [warp-bubble-optimizer](https://github.com/DawsonInstitute/warp-bubble-optimizer) as a submodule at `src/warp/optimizer/`. The warp-bubble-optimizer repository was transferred from personal ownership (arcticoder) to the DawsonInstitute organization to reflect its role as a dependency for HTS coil optimization work.
+
 ### Key Features
 
 - **REBCO Paper Reproduction**: Complete reproduction of results from *"High-Temperature Superconducting REBCO Coil Optimization for Fusion and Antimatter Applications"* with 100% validation success rate

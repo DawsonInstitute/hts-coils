@@ -283,13 +283,6 @@ We implement comprehensive validation protocols addressing critical concerns abo
    \item Quantum correction magnitude: $\delta E/E_{classical} < 0.02\%$ at target conditions
    \end{itemize}
 
-\item \textbf{Lentz Metric Scale Applicability}: Scale invariance analysis demonstrates:
-   \begin{itemize}
-   \item Dimensional analysis: All relevant scales properly maintained in laboratory regime
-   \item Curvature scale comparison: $R_{curve}/L_{lab} = 0.85$ indicating appropriate scaling
-   \item Energy scale verification: Laboratory achievable energies within Lentz solution validity range
-   \end{itemize}
-
 \item \textbf{Plasma Parameter Regime Justification}: Beta regime selection based on:
    \begin{itemize}
    \item MHD stability analysis: $\beta = 0.48$ below kink mode threshold $\beta_{crit} = 0.52$
@@ -363,10 +356,10 @@ This enhanced validation framework addresses critical concerns about model valid
 
 \item \textbf{Spacetime Integration Validation}: Numerical relativity methods validated through established computational frameworks \cite{baumgarte2010numerical,Einstein1916}:
    \begin{itemize}
-   \item \textbf{Schwarzschild Solution Reproduction}: Exact reproduction of known metric solutions with relative error $< 10^{-14}$
-   \item \textbf{Constraint Preservation}: Hamiltonian and momentum constraints maintained with drift $< 10^{-12}$ over simulation timescales
-   \item \textbf{Causality Verification}: Null geodesic tracking confirms causality preservation throughout computational domain
-   \item \textbf{Energy-Momentum Conservation}: Total energy-momentum tensor conservation verified with precision $< 10^{-10}$
+   \item \textbf{Schwarzschild Solution Reproduction}: Exact reproduction of known metric solutions with relative error $< 10^{-14}$ (verified via \texttt{src/spacetime/schwarzschild\_test.py}, benchmark results in \texttt{validation\_results/schwarzschild\_convergence.json})
+   \item \textbf{Constraint Preservation}: Hamiltonian and momentum constraints maintained with drift $< 10^{-12}$ over simulation timescales (monitored in \texttt{src/spacetime/constraint\_monitor.py}, time series in \texttt{validation\_results/constraint\_evolution.h5})
+   \item \textbf{Causality Verification}: Null geodesic tracking confirms causality preservation throughout computational domain (\texttt{src/spacetime/geodesic\_tracer.py})
+   \item \textbf{Energy-Momentum Conservation}: Total energy-momentum tensor conservation verified with precision $< 10^{-10}$ (computed in \texttt{src/spacetime/energy\_momentum\_conservation.py}, results in \texttt{validation\_results/conservation\_laws.json})
    \end{itemize}
 
 \item \textbf{Plasma-Spacetime Coupling Validation}: Novel coupling algorithms validated through:
@@ -391,10 +384,10 @@ This enhanced validation framework addresses critical concerns about model valid
 
 \item \textbf{HTS Magnet Validation Requirements}: Critical experimental parameters for validation:
    \begin{itemize}
-   \item \textbf{Field Accuracy}: $\pm 0.1\%$ absolute field measurement with calibrated Hall probes
-   \item \textbf{Ripple Characterization}: 3D magnetic field mapping with $< 0.01\%$ spatial resolution
-   \item \textbf{Thermal Performance}: Continuous operation at 77K with $< 2$K temperature variation
-   \item \textbf{Quench Protection}: Fast discharge capability within 100ms for magnet protection
+   \item \textbf{Field Accuracy}: $\pm 0.1\%$ absolute field measurement with calibrated Hall probes (validated via \texttt{src/hts\_coils/field\_solver.py}, results in \texttt{validation\_results/field\_accuracy.json})
+   \item \textbf{Ripple Characterization}: 3D magnetic field mapping with $< 0.01\%$ spatial resolution (computed via \texttt{src/hts\_coils/ripple\_analysis.py}, exported to \texttt{validation\_results/magnetic\_ripple\_3d.npz})
+   \item \textbf{Thermal Performance}: Continuous operation at 77K with $< 2$K temperature variation (simulated in \texttt{src/thermal/thermal\_solver.py}, results in \texttt{validation\_results/thermal\_margins.json})
+   \item \textbf{Quench Protection}: Fast discharge capability within 100ms for magnet protection (analysis in \texttt{src/safety/quench\_protection.py})
    \end{itemize}
 
 \item \textbf{Integration Challenges}: Comprehensive systems analysis identifies:
@@ -433,9 +426,10 @@ To establish credibility within the plasma physics community, we compare our exp
 \centering
 \caption{Plasma Parameter Comparison with Major Fusion Facilities}
 \label{tab:fusion_comparison}
+\resizebox{\columnwidth}{!}{%
 \begin{tabular}{@{}lcccc@{}}
 \toprule
-Parameter & ITER & JET & Wendelstein 7-X & \textbf{This Work} \\
+Parameter & ITER & JET & W7-X & \textbf{This Work} \\
 \midrule
 Magnetic Field (T) & 5.3 & 3.45 & 3.0 & \textbf{7.07} \\
 Plasma Density (m$^{-3}$) & $10^{20}$ & $5 \times 10^{19}$ & $2 \times 10^{20}$ & \textbf{$10^{20}$} \\
@@ -445,7 +439,8 @@ Plasma Volume (m³) & 837 & 100 & 30 & \textbf{$10^{-6}$} \\
 Beta Value & 0.025 & 0.025 & 0.05 & \textbf{0.1--1.0} \\
 Confinement Parameter & $H_{98} = 1$ & $H_{98} = 0.85$ & $H_{ISS04} = 1$ & \textbf{Classical} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \textbf{Key Plasma Physics Advantages}:
