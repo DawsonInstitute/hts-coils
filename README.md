@@ -458,7 +458,7 @@ The COMSOL plasma integration provides advanced plasma-electromagnetic coupling 
 - Soliton integration (from `soliton_plasma.py`)
 - HTS coil integration (from `src.hts.coil`) 
 - COMSOL FEA components (from `src.hts.comsol_fea`)
-- Optimization algorithms (from local `src.warp.optimizer` or workspace warp-bubble-optimizer repository)
+- Optimization algorithms (from workspace warp-bubble-optimizer repository)
 
 Running as a Python module (`python -m src.warp.comsol_plasma`) ensures proper import resolution and eliminates import warnings.
 
