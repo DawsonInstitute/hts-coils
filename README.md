@@ -188,14 +188,6 @@ pip install --upgrade "jax[cuda12]" -f https://storage.googleapis.com/jax-releas
 # Note: FEA dependencies (fenics-dolfinx) require Conda and cannot be installed via pip in venv
 # See "Optional: FEniCSx Installation" section below for FEA setup
 
-# Initialize submodules for advanced optimizations (optional)
-# This downloads the warp-bubble-optimizer submodule which contains core optimization algorithms
-# The 'S' status marker in git indicates "Submodule" - it tracks a specific commit reference
-# Files in submodules cannot be directly staged in the parent repository (use 'cd optimizer/' to commit changes)
-# Note: You may see "Using core optimization modules" message - this is normal as advanced mission/validation
-# features are not yet integrated. The core optimization functions (power.py) are sufficient for HTS design.
-git submodule update --init --recursive
-
 # Run validation tests
 python scripts/validate_environment.py
 pytest tests/ -v
@@ -390,7 +382,7 @@ See `docs/warp/WARP-SOLITONS-TODO.ndjson` for comprehensive task tracking includ
 
 ### Future Development
 
-The warp soliton codebase will be developed in `src/warp/` for plasma simulation code with `src/warp/optimizer/` as a Git submodule linking to warp-bubble-optimizer. If this research generates significant code and datasets, it may be migrated to a dedicated `warp-solitons` repository while maintaining integration with the HTS coil infrastructure developed here.
+The warp soliton codebase is developed in `src/warp/` for plasma simulation code. Optimization algorithms are sourced from the separate [warp-bubble-optimizer](https://github.com/DawsonInstitute/warp-bubble-optimizer) repository (available as a workspace folder for cross-repository development). If this research generates significant code and datasets, it may be migrated to a dedicated `warp-solitons` repository while maintaining integration with the HTS coil infrastructure developed here.
 
 **Timeline**: September 10 – October 30, 2025 for initial research phase.
 
@@ -466,7 +458,7 @@ The COMSOL plasma integration provides advanced plasma-electromagnetic coupling 
 - Soliton integration (from `soliton_plasma.py`)
 - HTS coil integration (from `src.hts.coil`) 
 - COMSOL FEA components (from `src.hts.comsol_fea`)
-- Warp-bubble-optimizer algorithms (from `src.warp.optimizer`)
+- Optimization algorithms (from local `src.warp.optimizer` or workspace warp-bubble-optimizer repository)
 
 Running as a Python module (`python -m src.warp.comsol_plasma`) ensures proper import resolution and eliminates import warnings.
 

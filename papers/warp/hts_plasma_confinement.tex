@@ -213,12 +213,12 @@ The plasma physics simulation employs hybrid Particle-in-Cell/Magnetohydrodynami
 
 \begin{itemize}
 \item \textbf{Magnetohydrodynamic Foundation}: Complete MHD equation set for plasma fluid dynamics:
-\begin{align}
-\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) &= 0 \quad \text{(Continuity)} \notag\\
-\rho \frac{D\mathbf{v}}{Dt} &= -\nabla p + \frac{1}{\mu_0}(\nabla \times \mathbf{B}) \times \mathbf{B} + \rho \mathbf{g} \quad \text{(Momentum)} \notag\\
-\frac{Dp}{Dt} &= -\gamma p \nabla \cdot \mathbf{v} + (\gamma - 1) \eta J^2 \quad \text{(Energy)} \notag\\
-\frac{\partial \mathbf{B}}{\partial t} &= \nabla \times (\mathbf{v} \times \mathbf{B}) + \eta \nabla^2 \mathbf{B} \quad \text{(Induction)} \notag
-\end{align}
+\begin{flalign}
+& \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{v}) = 0 \quad \text{(Continuity)} & \notag\\
+& \rho \frac{D\mathbf{v}}{Dt} = -\nabla p + \frac{1}{\mu_0}(\nabla \times \mathbf{B}) \times \mathbf{B} + \rho \mathbf{g} \quad \text{(Momentum)} & \notag\\
+& \frac{Dp}{Dt} = -\gamma p \nabla \cdot \mathbf{v} + (\gamma - 1) \eta J^2 \quad \text{(Energy)} & \notag\\
+& \frac{\partial \mathbf{B}}{\partial t} = \nabla \times (\mathbf{v} \times \mathbf{B}) + \eta \nabla^2 \mathbf{B} \quad \text{(Induction)} & \notag
+\end{flalign}
 where $\rho$ is plasma density (kg/m³), $\mathbf{v}$ is fluid velocity (m/s), $p$ is plasma pressure (Pa), $\gamma = 5/3$ is adiabatic index, and $\eta$ is magnetic diffusivity (m²/s).
 
 \item \textbf{Plasma Parameter Regime}: Target laboratory parameters: electron density $n_e = 10^{20} \pm 5 \times 10^{19}$~m$^{-3}$, electron temperature $T_e = 100$--$1000$~eV, ion temperature $T_i = 50$--$500$~eV, magnetic field strength $B_0 = 5$--$10$~T, and plasma beta $\beta = 8\pi p / B^2 \sim 0.1$--$1.0$.
@@ -326,16 +326,7 @@ Confinement Parameter & $H_{98} = 1$ & $H_{98} = 0.85$ & $H_{ISS04} = 1$ & \text
 \begin{itemize}
 \item \textbf{Enhanced Magnetic Confinement}: Our HTS system achieves 7.07~T toroidal fields, 33\% higher than ITER's 5.3~T, enabling stronger plasma confinement with reduced transport losses
 \item \textbf{High-Beta Regime}: Target $\beta = 0.1$--$1.0$ represents 4--40× higher values than conventional tokamaks, approaching spherical tokamak parameters and enabling more efficient magnetic utilization
-\item \textbf{Novel Confinement Geometry}: Soliton-based confinement differs fundamentally from tokamak/stellarator approaches, potentially avoiding traditional MHD instabilities through spacetime curvature effects
 \item \textbf{Cryogenic Integration}: Direct HTS cooling with liquid nitrogen (77~K) eliminates complex tritium breeding blankets and provides thermal advantages over resistive coil systems
-\end{itemize}
-
-\textbf{Plasma Physics Challenges Addressed}:
-\begin{itemize}
-\item \textbf{Disruption Mitigation}: Spacetime-coupled plasma may exhibit different instability thresholds, potentially avoiding sawtooth crashes and disruptions common in tokamaks
-\item \textbf{Edge Localized Modes (ELMs)}: High-beta plasma in curved spacetime geometry may suppress ELM formation through modified pressure gradient limits
-\item \textbf{Neoclassical Transport}: Toroidal drift velocities modified by metric perturbations could reduce anomalous transport compared to conventional confinement
-\item \textbf{Alpha Particle Confinement}: Enhanced magnetic field gradients may improve fast particle confinement efficiency compared to ITER baseline scenarios
 \end{itemize}
 
 \subsection{Methodological Limitations and Assumptions}
