@@ -458,7 +458,22 @@ The COMSOL plasma integration provides advanced plasma-electromagnetic coupling 
 - Soliton integration (from `soliton_plasma.py`)
 - HTS coil integration (from `src.hts.coil`) 
 - COMSOL FEA components (from `src.hts.comsol_fea`)
-- Optimization algorithms (from workspace warp-bubble-optimizer repository)
+- Optimization algorithms (from warp-bubble-optimizer repository)
+
+**Multi-Repository Workspace**: This project is designed to work with related repositories in a multi-folder workspace. VS Code users can open the provided `hts-coils.code-workspace` file which includes:
+- `hts-coils` (main repository)
+- `warp-bubble-optimizer` (optimization algorithms)
+- `unified-lqg`, `energy`, `enhanced-simulation-hardware-abstraction-framework`, `warp-field-coils` (supporting frameworks)
+
+Developers using other editors should clone these repositories as sibling directories:
+```bash
+Code/asciimath/
+├── hts-coils/
+├── warp-bubble-optimizer/
+├── unified-lqg/
+└── [other repos]
+```
+This allows Python import resolution to find modules from sibling repositories when running scripts.
 
 Running as a Python module (`python -m src.warp.comsol_plasma`) ensures proper import resolution and eliminates import warnings.
 
