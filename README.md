@@ -16,7 +16,7 @@ This repository provides a comprehensive optimization framework for high-tempera
 
 ### Key Features
 
-- **REBCO Paper Reproduction**: Complete reproduction of results from *"High-Temperature Superconducting REBCO Coil Optimization for Fusion and Antimatter Applications"* with 100% validation success rate
+- **REBCO Paper Reproduction**: Complete reproduction of results from *"High-Temperature Superconducting REBCO Coil Optimization for Fusion and Antimatter Applications"* with 100% validation success rate (see `papers/rebco_hts_coil_optimization_fusion_antimatter.tex`)
 - **HTS Plasma Confinement Analysis**: Computational framework for high-beta plasma confinement using HTS magnets (see `papers/warp/hts_plasma_confinement.tex`)
 - **Lentz Soliton Validation Framework**: Comprehensive validation methodology for Lentz soliton formation in high-beta plasma (see `papers/warp/soliton_validation.tex`)
 - **Interactive Educational Notebooks**: 9 comprehensive Jupyter notebooks covering theory, implementation, and validation (MyBinder ready)

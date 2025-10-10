@@ -105,17 +105,8 @@
       "id": "abstract_background"
     },
     {
-      "line_range": "97-99",
-      "type": "abstract_methods",
-      "content": "Integrated computational framework combining MHD plasma simulations with HTS magnetic confinement models",
-      "purpose": "Describe methodology",
-      "justification": "Accurately represents src/warp/ plasma code + src/hts/ magnet code integration",
-      "validation_status": "code_validated",
-      "id": "abstract_methods"
-    },
-    {
       "id": "abstract_sentence_5_beta_field_ripple",
-      "line_range": "93",
+      "line_range": "90",
       "type": "claim",
       "sentence": "Simulations demonstrate the potential for stable plasma confinement at \u03b2 = 0.48 \u00b1 0.05 using HTS-generated toroidal fields of 7.07 \u00b1 0.15 T with a magnetic ripple of \u03b4 = 0.16 \u00b1 0.02%.",
       "justification": "Values from src/hts/validation_framework.py high-field configuration and notebooks/validation_report.json",
@@ -139,6 +130,15 @@
       "justification": "MHD stability framework described in methodology, represents planned capability",
       "validation_status": "framework_described",
       "note": "Stability analysis framework outlined but not fully implemented in current codebase"
+    },
+    {
+      "line_range": "97-99",
+      "type": "abstract_methods",
+      "content": "Integrated computational framework combining MHD plasma simulations with HTS magnetic confinement models",
+      "purpose": "Describe methodology",
+      "justification": "Accurately represents src/warp/ plasma code + src/hts/ magnet code integration",
+      "validation_status": "code_validated",
+      "id": "abstract_methods"
     },
     {
       "line_range": "102-104",
