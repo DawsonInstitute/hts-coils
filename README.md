@@ -16,11 +16,11 @@ This repository provides a comprehensive optimization framework for high-tempera
 
 ### Key Features
 
-- **REBCO Paper Reproduction**: Complete reproduction of results from *"High-Temperature Superconducting REBCO Coil Optimization for Fusion and Antimatter Applications"* with 100% validation success rate (see `papers/rebco_hts_coil_optimization_fusion_antimatter.tex`)
+- **REBCO Paper Reproduction**: Reproduction of results from *"High-Temperature Superconducting REBCO Coil Optimization for Fusion and Antimatter Applications"* with validation against paper benchmarks (see `papers/rebco_hts_coil_optimization_fusion_antimatter.tex`)
 - **HTS Plasma Confinement Analysis**: Computational framework for high-beta plasma confinement using HTS magnets (see `papers/warp/hts_plasma_confinement.tex`)
-- **Lentz Soliton Validation Framework**: Comprehensive validation methodology for Lentz soliton formation in high-beta plasma (see `papers/warp/soliton_validation.tex`)
-- **Interactive Educational Notebooks**: 9 comprehensive Jupyter notebooks covering theory, implementation, and validation (MyBinder ready)
-- **Comprehensive Validation Framework**: 24 benchmark validations with specified tolerances ensuring computational reproducibility
+- **Lentz Soliton Validation Framework**: Validation methodology for Lentz soliton formation in high-beta plasma (see `papers/warp/soliton_validation.tex`)
+- **Interactive Educational Notebooks**: 9 Jupyter notebooks covering theory, implementation, and validation (MyBinder ready)
+- **Validation Framework**: 24 benchmark validations with specified tolerances for computational reproducibility
 - **Realistic REBCO Modeling**: Kim model implementation with validated critical current density J_c(T,B) relationships
 - **Electromagnetic Analysis**: Discretized Biot-Savart field calculations with <10⁻¹⁴ numerical error
 - **Mechanical Analysis**: Maxwell stress tensor computation with hoop stress validation and reinforcement strategies
@@ -76,7 +76,7 @@ You can launch these interactive Jupyter notebooks in your browser without any l
 
 The following notebooks are available:
 - **08_validation_report.ipynb**: A comprehensive validation framework that reproduces the results from the `soliton_validation.tex` paper.
-- **09_rebco_paper_reproduction.ipynb**: A complete reproduction of the REBCO paper results, including all validations.
+- **09_rebco_paper_reproduction.ipynb**: Reproduction of REBCO paper results with validation checks.
 - **01-07_educational_sequence.ipynb**: A full tutorial series covering HTS physics, electromagnetic modeling, thermal analysis, and mechanical stress.
 
 ### REBCO Paper Validation Results
@@ -326,7 +326,7 @@ make test       # Run pytest suite
 
 ## Results Highlights
 
-Our validated optimization framework demonstrates:
+The optimization framework shows:
 
 - **2.1T Magnetic Field**: Realistic REBCO configuration (N=400, I=1171A, R=0.2m)
 - **0.01% Field Ripple**: Helmholtz geometry with optimized turn distribution
@@ -460,20 +460,38 @@ The COMSOL plasma integration provides advanced plasma-electromagnetic coupling 
 - COMSOL FEA components (from `src.hts.comsol_fea`)
 - Optimization algorithms (from warp-bubble-optimizer repository)
 
-**Multi-Repository Workspace**: This project is designed to work with related repositories in a multi-folder workspace. VS Code users can open the provided `hts-coils.code-workspace` file which includes:
-- `hts-coils` (main repository)
-- `warp-bubble-optimizer` (optimization algorithms)
-- `unified-lqg`, `energy`, `enhanced-simulation-hardware-abstraction-framework`, `warp-field-coils` (supporting frameworks)
+**Multi-Repository Workspace**: This project is designed to work with related repositories in a multi-folder workspace. 
 
-Developers using other editors should clone these repositories as sibling directories:
+**Cloning Instructions**: Clone the following repositories as sibling directories at the same folder level:
+
+From **DawsonInstitute** organization:
+```bash
+git clone https://github.com/DawsonInstitute/hts-coils.git
+git clone https://github.com/DawsonInstitute/warp-bubble-optimizer.git
+```
+
+From **arcticoder** user:
+```bash
+git clone https://github.com/arcticoder/unified-lqg.git
+git clone https://github.com/arcticoder/energy.git
+git clone https://github.com/arcticoder/enhanced-simulation-hardware-abstraction-framework.git
+git clone https://github.com/arcticoder/warp-field-coils.git
+```
+
+Your directory structure should look like:
 ```bash
 Code/asciimath/
-├── hts-coils/
-├── warp-bubble-optimizer/
-├── unified-lqg/
-└── [other repos]
+├── hts-coils/                                    # DawsonInstitute
+├── warp-bubble-optimizer/                        # DawsonInstitute
+├── unified-lqg/                                  # arcticoder
+├── energy/                                       # arcticoder
+├── enhanced-simulation-hardware-abstraction-framework/  # arcticoder
+└── warp-field-coils/                            # arcticoder
 ```
-This allows Python import resolution to find modules from sibling repositories when running scripts.
+
+**VS Code Users**: Open the provided `hts-coils.code-workspace` file which references these repositories in a multi-folder workspace.
+
+**Other Editors**: The sibling directory structure above allows Python import resolution to find modules from related repositories when running scripts.
 
 Running as a Python module (`python -m src.warp.comsol_plasma`) ensures proper import resolution and eliminates import warnings.
 

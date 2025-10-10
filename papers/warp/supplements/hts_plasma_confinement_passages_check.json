@@ -2,8 +2,8 @@
   "document": "hts_plasma_confinement.tex",
   "purpose": "Computational analysis paper for HTS coils in high-beta plasma confinement applications",
   "last_updated": "2025-10-09",
-  "version": "2.1",
-  "changelog": "Added unique IDs to all passages, removed obsolete MHD comment passage (task 3), added missing abstract sentences (tasks 4-6)",
+  "version": "2.2",
+  "changelog": "Added missing abstract methods sentences (task 6), corrected beta passage validation status (task 7)",
   "passages": [
     {
       "id": "preamble_documentclass",
@@ -109,9 +109,10 @@
       "line_range": "90",
       "type": "claim",
       "sentence": "Simulations demonstrate the potential for stable plasma confinement at \u03b2 = 0.48 \u00b1 0.05 using HTS-generated toroidal fields of 7.07 \u00b1 0.15 T with a magnetic ripple of \u03b4 = 0.16 \u00b1 0.02%.",
-      "justification": "Values from src/hts/validation_framework.py high-field configuration and notebooks/validation_report.json",
-      "validation_status": "directly_validated_in_code",
-      "validation_source": "src/hts/validation_framework.py:30-31, validation_results.json"
+      "justification": "Beta value is a CLAIM not validated by current code. HTS field (7.07T) and ripple (0.16%) ARE validated in src/hts/validation_framework.py. Plasma beta (\u03b2=0.48) is NOT validated - no plasma confinement simulation exists.",
+      "validation_status": "partially_validated",
+      "validation_source": "src/hts/validation_framework.py:30-31 (field and ripple ONLY, not beta)",
+      "note": "CRITICAL: Only HTS coil parameters are validated. Beta confinement claim is theoretical/aspirational - no MHD stability analysis in codebase validates \u03b2=0.48 plasma confinement."
     },
     {
       "id": "abstract_sentence_6_thermal_structural",
@@ -139,6 +140,25 @@
       "justification": "Accurately represents src/warp/ plasma code + src/hts/ magnet code integration",
       "validation_status": "code_validated",
       "id": "abstract_methods"
+    },
+    {
+      "id": "abstract_methods_sentence_1",
+      "line_range": "88",
+      "type": "methodology_claim",
+      "sentence": "We developed an integrated computational framework combining magnetohydrodynamic (MHD) plasma simulations with a detailed model of HTS magnetic confinement systems.",
+      "justification": "Describes the computational framework - src/warp/ contains plasma code, src/hts/ contains HTS magnet modeling",
+      "validation_status": "framework_exists",
+      "validation_source": "src/warp/ and src/hts/ directories",
+      "note": "Framework components exist but integration is partial - plasma simulation and HTS models are separate subsystems"
+    },
+    {
+      "id": "abstract_methods_sentence_2",
+      "line_range": "88-89",
+      "type": "methodology_claim",
+      "sentence": "Our approach uses multi-tape REBCO coil models to assess the feasibility of generating fields suitable for high-beta plasma stability.",
+      "justification": "Multi-tape REBCO coil models implemented in src/hts/coil.py and src/hts/materials.py",
+      "validation_status": "directly_validated_in_code",
+      "validation_source": "src/hts/coil.py, src/hts/materials.py, src/hts/high_field_scaling.py"
     },
     {
       "line_range": "102-104",
@@ -393,8 +413,8 @@
     "removed_unvalidated_content": "Stripped ~150 lines of unvalidated claims per previous task, kept only validated HTS magnet results"
   },
   "validation_summary": {
-    "total_passages": 41,
-    "passages_with_unique_ids": 41
+    "total_passages": 43,
+    "passages_with_unique_ids": 43
   },
   "remaining_concerns": {
     "mhd_stability_analysis": "Lines 285-286 reference MHD stability monitoring not validated in current codebase - represents planned capability",
