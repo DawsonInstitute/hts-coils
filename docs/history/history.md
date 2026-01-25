@@ -12,3 +12,5 @@ Findings:
 - BibTeX ran successfully and produced a `.bbl` used during subsequent pdflatex runs.
 - Warnings: two citation keys (`IEEE_TAS_2015_cost` and `IEEE_TAS_2011_tolerances`) were marked as undefined by LaTeX on first run but BibTeX processed the `.bib` and the final PDF contains bibliography entries for the listed items. There are also typical overfull/underfull box warnings (layout, not fatal).
 <!-- ------ -->
+I removed the non-existent article from rebco_hts_coil_optimization_fusion_antimatter.bib and removed the matching `\cite{IEEE_TAS_2015_cost}` from the paper's sentence.
+<!-- ------ -->
