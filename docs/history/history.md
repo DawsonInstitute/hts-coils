@@ -14,3 +14,5 @@ Findings:
 <!-- ------ -->
 I removed the non-existent article from rebco_hts_coil_optimization_fusion_antimatter.bib and removed the matching `\cite{IEEE_TAS_2015_cost}` from the paper's sentence.
 <!-- ------ -->
+removed the `IEEE_TAS_2011_tolerances` entry from the BibTeX file and removed the corresponding `\cite{IEEE_TAS_2011_tolerances}` from the manuscript sentence.
+<!-- ------ -->
