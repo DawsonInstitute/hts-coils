@@ -21,3 +21,5 @@ removed the `IEEE_TAS_2011_tolerances` entry from the BibTeX file and removed th
   - `hts-coils/papers/rebco_hts_coil_optimization_fusion_antimatter.pdf` (8 pages)
 - Notes: there are only layout warnings (overfull/underfull hboxes) in the log; no fatal LaTeX errors remain.
 <!-- ------ -->
+Done — the paper now uses REVTeX 4.2 single-column preprint style and the bibliography is set to `apsrev4-2`. The modified paper file is staged as shown by `git status -s` (no commit made). 
+<!-- ------ -->

@@ -1,14 +1,10 @@
-\documentclass[10pt,twocolumn]{article}
+\documentclass[aps,prb,preprint,amsmath,amssymb]{revtex4-2}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amsfonts,amssymb}
-\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx,mathtools,bm,hyperref,microtype}
 \usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage[margin=2cm]{geometry}
-\usepackage{times} % IEEE typically uses Times font
-\usepackage{microtype} % better line breaking and fewer overfull/underfull boxes
-\usepackage{url}      % allow breaking of URLs and path-like text
-\usepackage{textcomp} % provides textasteriskcentered for baseline asterisk
+\usepackage{url}
+\usepackage{textcomp}
 \usepackage{pifont}   % for checkmark symbols
 \providecommand{\checkmark}{\ding{51}}
 
@@ -385,7 +381,7 @@ Critical future directions include experimental validation of high-field stress 
 This work was supported by internal research and development funds. The authors acknowledge helpful discussions with members of the applied superconductivity community.
 
 % Bibliography: use external BibTeX file for citations. Run: pdflatex -> bibtex -> pdflatex -> pdflatex
-\bibliographystyle{IEEEtran}
+\bibliographystyle{apsrev4-2}
 \bibliography{rebco_hts_coil_optimization_fusion_antimatter}
 
 \end{document}
