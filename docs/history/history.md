@@ -36,3 +36,43 @@ Build result ✅
 - PDF produced: `hts-coils/papers/rebco_hts_coil_optimization_fusion_antimatter.pdf` (20 pages)
 - The duplicate date text is gone and the abstract/maketitle order is correct.
 <!-- ------ -->
+**What I did**
+- Fixed the malformed Notes .bib entry (replaced the stray `@FOOTNOTE` with a valid `@misc` entry). 🔧  
+- Reworked HTS front-matter to use standard REVTeX macros (`\author`, `\affiliation`, `\email`) and removed the manual footnotetext/footnote redefinitions. 🔧  
+- Rebuilt the HTS paper (pdflatex → bibtex → pdflatex x2) to verify output. ▶️
+
+**Build results**
+- HTS paper: rebco_hts_coil_optimization_fusion_antimatter.pdf — **20 pages**, built successfully. ✅  
+- LQG paper: lqg_warp_verification_methods.pdf — **17 pages**, previously built successfully. ✅
+
+---
+
+## Current verification (first page) 🔍
+Extracted first-page text (title / author / affiliation now visible):
+```
+Computational Optimization Framework for REBCO
+High-Temperature Superconducting Coil Design with FEA
+Validation
+Ryan Sherrington
+Dawson Institute for Advanced Physics∗
+(Dated: September 2, 2025)
+```
+This confirms the **title, author, and affiliation appear on page one** as requested (matching the LQG behavior).
+
+---
+
+## Remaining minor issues ⚠️
+- LaTeX warnings (non-fatal) remain in the build log:
+  - Overfull/underfull \hbox messages from long command examples.
+  - `Package nameref Warning: The definition of \label has changed`.
+  - A `pdfTeX warning (dest)` about an mpfootnote name replacement (non-fatal).
+- The earlier BibTeX parse error is resolved — no more `@FOOTNOTE` errors.
+
+These do not prevent PDF generation; they are cosmetic/log warnings. If you want, I can try to silence them (e.g., fix long inline code formatting, adjust labels/footnote usage).
+
+---
+
+## Files changed (staged, not committed) 🗂️
+- rebco_hts_coil_optimization_fusion_antimatterNotes.bib — replaced malformed entry with `@misc{...}`.  
+- rebco_hts_coil_optimization_fusion_antimatter.tex — replaced custom front-matter with `\author` / `\affiliation` / `\email` and removed manual footnote code.  
+<!-- ------ -->
