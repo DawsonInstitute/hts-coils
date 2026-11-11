@@ -144,3 +144,28 @@ I added 7 follow-ups to `TODO.ndjson`. The most important is re-deriving every m
 - Notebook outputs that nobody has reviewed yet.
 <!-- ------ -->
 ---
+All seven items are done. Nothing is pushed. The repo's About text and Topics are already live on GitHub, but the README and Binder fixes only help once you push.
+
+1. **Commit:** the only staged change was your `docs/history/history.md`, committed as `a8f521f`. That file is a paste of my earlier chat summary. My earlier work had already been auto-committed as `12ce3ee`, with that same pasted summary as its message. I didn't rewrite history; reword it if you want.
+2. **About:** the description now says what the repo does and that the results are model results, with experimental validation pending.
+3. **Topics:** I removed `warp-field`, `soliton-physics`, `spacetime-physics`, `interferometric-detection` and `magnetohydrodynamics`, and added `magnet-design`, `biot-savart`, `hts`, `python` and `reproducible-research`. That's 20, GitHub's maximum. The warp code is still in `src/warp`; the removed topics just no longer describe what the repo is about, so add them back if you disagree.
+4. **README:**
+   - A correction notice at the top explains that 7.07 T was withdrawn.
+   - The headline is now 6.43 T, and the reproduction commands point at scripts that exist.
+   - I fixed the Python badge (3.10+), added a CI badge, and removed the MIT badge.
+   - There is no LICENSE file, and `pyproject.toml` says Unlicense. I didn't pick a licence for you (new item `repo-01-license`).
+5. **Critical item:** the P0 re-derivation is in `TODO-RESOLVED.ndjson` (the commit is `8642f0f`).
+   - **New script:** `scripts/rederive_high_field_numbers.py` writes `results/high_field_rederived.json`.
+   - **Main paper:** I rewrote its high-field section, abstract, discussion, table and conclusion around the corrected numbers. It compiles to 20 pages with no undefined citations.
+   - **Reproduction commands:** the paper's old commands called three scripts that don't exist, so I replaced them with commands that do.
+   - **Unsupported claims:** the cost figures ($1.9M, "60% reduction"), runtime breakdowns, sensitivity bounds and "71×" claim couldn't be regenerated. I reworded them as unverified or removed them instead of leaving stale numbers.
+6. **`www`:** the hts-coils entry now has a note that the archived Zenodo PDF's 7.07 T figure was revised.
+7. **`.github`:** the profile README no longer lists 7.07 T / 74.5 K / 35 MPa as "✅ Validated". It now shows the model-verified 6.43 T / 38 K / 31.5 MPa, and its clone commands use `--recurse-submodules`.
+
+I left the `www` and `.github` edits uncommitted since you only asked for the update.
+
+Still open (tracked in `TODO.ndjson` as `manuscript-02`): 28 other files still quote the old numbers. The most important are the two plasma and soliton papers, the Zenodo data package (published as 10.5281/zenodo.17029167 and 10.5281/zenodo.17042790, both still with 7.07 T) and the `validation_framework.py` constants. Check that last one next: it may hard-code 7.07 T as the "expected" value, which would make validation pass by construction. The published Zenodo PDF still says 7.07 T, so a corrected version is worth releasing.
+
+The new modelling assumptions (400 MPa hoop allowable, 0.5 K/W thermal resistance, fill factor 1.0) are flagged in the paper as assumptions and still need citations.
+<!-- ------ -->
+---
