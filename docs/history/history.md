@@ -76,3 +76,33 @@ These do not prevent PDF generation; they are cosmetic/log warnings. If you want
 - rebco_hts_coil_optimization_fusion_antimatterNotes.bib — replaced malformed entry with `@misc{...}`.  
 - rebco_hts_coil_optimization_fusion_antimatter.tex — replaced custom front-matter with `\author` / `\affiliation` / `\email` and removed manual footnote code.  
 <!-- ------ -->
+---
+I added 17 findings to [docs/TODO.ndjson](../hts-coils/docs/TODO.ndjson). Nothing else in the repo was changed. The 17 new lines parse as valid JSON and follow the existing fields (`task`, `description`, `math`, `python`, `status: "pending"`). I added `id`, `priority`, `files` and `verified` so Sonnet knows which ones I actually ran.
+
+**The Binder error (P0, fix tested).** Commit `bf1e438` emptied `.gitmodules` but left the submodule pointer for `src/warp/optimizer` in the repo, so Binder's submodule step finds no URL. In a fresh clone, restoring the `.gitmodules` entry with the DawsonInstitute URL fixed it: the submodule checks out at commit `3bdf942`. One catch is noted in the entry: your local `src/warp/optimizer` is a plain copied folder, not a submodule checkout, so it needs moving aside and comparing before re-initialising. Dropping the submodule instead is also listed as an option, since no Binder notebook uses it.
+
+**Notebooks.** I ran all ten in a fresh Python 3.11 environment built from `binder/requirements.txt`. 01, 07, 08, 09 and `interactive_validation` run cleanly; 02 to 06 fail:
+- **02–05:** `import validation_framework` points at the wrong folder.
+- **03, 04, 05:** some cells were saved with escaped text (`\n`, `\"`), so they won't run. My repair script fixes 03 and 04. Notebook 05's four cells also contain pasted file fragments and need fixing by hand; every committed version of 05 has the same damage, so there's no clean copy to restore.
+- **03, 04:** one stray `)` and one misplaced f-string format.
+- **06:** the optimizer is called with the wrong arguments, which then causes six more errors further down.
+
+Most notebooks are also set to a local kernel, `hts-py311`, that doesn't exist on Binder. And `binder/postBuild` runs commands that no longer work with current JupyterLab; the errors are hidden, so it only slows the build.
+
+**Physics:**
+- **Field formula in notebook 03:** the off-axis formula is wrong by 7× to 18×. For example, 4.28e-5 T where the exact value is 7.83e-4 T; I checked against direct Biot–Savart integration. The entry includes an exact replacement using scipy that matches to about 1e-15.
+- **The 7.07 T headline:** the field treats all 1000 turns as one thin loop. The same design also uses 89 tapes per turn (a winding about 0.27 m across, bigger than the 0.16 m coil radius) and a 4 m coil height in the thermal model. At that height the centre field is about 0.56 T.
+- **The "35 MPa reinforced" stress:** the code sets it to the limit and then checks it against the same limit, so the check can't fail. The unreinforced value is 178.7 MPa. The 30% current utilisation check is circular in the same way.
+- **The ~0.16% ripple:** it comes from a fixed placeholder formula that never looks at the field.
+- **Thermal margin:** it's measured against the 90 K zero-field critical temperature rather than the temperature where the coil starts to quench at 7 T. Heat radiated away from the coil is also counted as heat coming in.
+
+These feed the numbers in the paper, so the 7.07 T claim, the ripple and the 74.5 K margin should be re-derived after the fixes.
+
+**Smaller items:**
+- **Tests:** a plain `pytest` crashes because it scans the copied optimizer code; `pytest tests` passes 22 of 22.
+- **No CI:** `.github/workflows` is empty.
+- **Dependencies:** they aren't pinned, and `pyproject.toml` leaves out scipy.
+- **Docs:** the Binder docs claim testing passed and describe Binder building from the Dockerfiles, which it ignores while `binder/` exists.
+- **Housekeeping:** checkpoint files are tracked, and three existing TODO lines use the wrong field name.
+<!-- ------ -->
+---
