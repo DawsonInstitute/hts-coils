@@ -106,3 +106,41 @@ These feed the numbers in the paper, so the 7.07 T claim, the ripple and the 74.
 - **Housekeeping:** checkpoint files are tracked, and three existing TODO lines use the wrong field name.
 <!-- ------ -->
 ---
+I worked through all 17 items. They're now in `docs/TODO-RESOLVED.ndjson`, each with a resolution note. Nothing is committed or pushed.
+
+**What I ran:**
+- All 10 notebooks run clean from a fresh Python 3.11 environment built from the pinned `binder/requirements.txt`.
+- `pytest tests` passes 22 of 22.
+- I haven't pushed anything, so the new CI workflow hasn't run. I also haven't re-tested the Binder build itself; that needs a push.
+
+**Binder fixes:**
+- **Submodule:** the old `src/warp/optimizer` folder was identical to the pinned commit, so I replaced it with a real submodule checkout. I tested the same fix in a scratch clone before the real repo.
+- **`postBuild`:** I deleted it because its commands are obsolete.
+- **Requirements:** pinned to the versions I tested. I dropped `voila` (nothing linked to it).
+- **CI:** added `.github/workflows/notebooks.yml`.
+- **Notebook 05:** it had never run before. Its cells were mangled with pasted fragments of other cells, which I repaired.
+- **Docs:** I added correction notes to the two Binder docs that said testing had passed, and fixed the README's description of how Binder builds.
+
+**Notebook 06 had three more bugs behind the call error:**
+- **Sort loop:** it stepped past the last Pareto front.
+- **Stress formula:** it was about 100× too large.
+- **Critical current:** the temperature factor wasn't normalised to the 77 K reference its `Ic0` is defined at.
+
+Together these left only 0.2% of random designs feasible and an empty Pareto front. About 8% are feasible now. I also changed the Kim characteristic field `B0` from 0.1 T to 0.5 T. That's my judgement call, so please check it.
+
+**The 7.07 T claim doesn't hold** (code fixed; paper not updated):
+- I built `src/hts/winding_pack.py`, one geometry shared by the field, conductor count, thermal area and stress checks. It matches the analytic thick-solenoid formula to 0.025%.
+- The 1800 A × 1000 turn design with 89 tapes per turn is a 3.95 T coil (4.9 T peak). The 7.07 T figure is only the single-loop idealisation.
+- The best design that passes all the checks reaches about 6.1–6.4 T, limited by radial stress. Options: 3500 A, 1000 turns, 0.16 m inner radius, 10 K gives 6.1 T; 1800 A, 2000 turns, 0.12 m, 20 K gives 6.4 T.
+- The "35 MPa reinforced" stress, the 0.16% ripple and the 74.5 K thermal margin all came from placeholder or circular logic. The default design now gives a ripple of about 0.6% and a thermal margin of about 41 K.
+- I updated four tests to use designs the corrected model supports, because they asserted the old claims.
+- The scripts I ran regenerated the tracked `results/high_field_results.json`, so it now holds the corrected numbers.
+
+I added 7 follow-ups to `TODO.ndjson`. The most important is re-deriving every manuscript, README and data number that depended on 7.07 T. Others:
+- A discontinuity in `jc_vs_tb` above 10 T.
+- `helmholtz_high_field_configuration` evaluating single coils rather than a pair.
+- A syntax error in `scripts/export_simulation_data.py`, which already existed.
+- Several assumptions that still need citations: 400 MPa hoop allowable, 0.5 K/W thermal resistance, fill factor 1.0.
+- Notebook outputs that nobody has reviewed yet.
+<!-- ------ -->
+---
