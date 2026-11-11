@@ -34,8 +34,8 @@ def test_field_scaling():
     # Test at center position with realistic current
     r = np.array([0, 0, 0])
     
-    # Realistic high-field parameters - optimized for 5T target
-    result = scale_hts_coil_field(r, I=1800, N=1000, R=0.16, T=15)
+    # Winding-pack model: (1800 A, 1000 turns, 15 K) only reaches ~3.95 T; this design reaches ~6.1 T
+    result = scale_hts_coil_field(r, I=3500, N=1000, R=0.16, T=10)
     
     print(f"Field magnitude: {result['B_magnitude']:.2f} T")
     print(f"Field ripple: {result['ripple']:.4f}")
@@ -80,7 +80,7 @@ def test_parameter_validation():
     """Test parameter validation with realistic parameters."""
     print("\n🧪 Testing parameter validation...")
     
-    validation = validate_high_field_parameters(I=1800, N=1000, R=0.16, T=15, B_target=5.0)
+    validation = validate_high_field_parameters(I=3500, N=1000, R=0.16, T=10, B_target=5.0)
     
     print(f"Target field: {validation['parameters']['B_target']:.1f} T")
     print(f"Achieved field: {validation['achieved_field_T']:.2f} T")

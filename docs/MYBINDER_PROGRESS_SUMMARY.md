@@ -1,5 +1,8 @@
 # MyBinder TODO Progress Summary
 
+> **Correction (2026-11-11):** Earlier versions of this file reported Binder testing as passing. At commit fa5654b the mybinder.org build failed (orphaned `src/warp/optimizer` gitlink with an empty `.gitmodules`) and notebooks 02-06 raised errors when executed end to end. These were fixed afterwards; the authoritative check is now CI (`.github/workflows/notebooks.yml`), which executes every notebook with the pinned `binder/requirements.txt`. `binder/postBuild` was removed (obsolete on JupyterLab 4).
+
+
 ## 🎉 Major Accomplishments
 
 ### ✅ **COMPLETED TASKS (15 out of 22)**

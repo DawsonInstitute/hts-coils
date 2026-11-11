@@ -102,11 +102,13 @@ The following notebooks are available:
 **Target Audiences:** Undergraduate students, graduate researchers, practicing engineers, general public  
 **Learning Time:** 2-4 hours for complete walkthrough
 
-### MyBinder Build Optimization
+### MyBinder Build Configuration
 
-**Optimized Docker Architecture for Fast Builds:**
+**mybinder.org is configured by `binder/`** (`runtime.txt` + pinned `requirements.txt`). Because a `binder/` directory exists, repo2docker ignores the root `Dockerfile`, `Dockerfile.base` and `Dockerfile.mybinder`; the Dockerfile description below applies to local/Docker builds only. repo2docker also runs `git submodule update --init --recursive`, so `.gitmodules` must list every submodule path. CI (`.github/workflows/notebooks.yml`) executes all notebooks with the pinned versions.
 
-This repository uses a two-stage Docker approach for MyBinder to dramatically reduce build times:
+**Optional Docker architecture (local/Docker use, not mybinder.org):**
+
+The Dockerfiles use a two-stage approach to reduce build times:
 
 1. **Base Image** (`Dockerfile.base`): Contains all heavy dependencies (NumPy, SciPy, Matplotlib, Jupyter, etc.)
    - Pushed to GitHub Container Registry: `ghcr.io/dawsoninstitute/hts-coils-base:latest`

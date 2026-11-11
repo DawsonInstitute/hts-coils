@@ -1,3 +1,4 @@
+NOTE (2026-11-11): these results predate the fixes described in docs/MYBINDER_PROGRESS_SUMMARY.md; they did not execute the notebooks end to end. Use CI as the source of truth.
 
 📊 MyBinder Local Testing Summary:
 =================================

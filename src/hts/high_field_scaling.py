@@ -14,170 +14,203 @@ from .coil import hts_coil_field, field_from_loops
 from .materials import jc_vs_tb, enhanced_thermal_simulation
 
 
-def scale_hts_coil_field(r: np.ndarray, I: float = 1800, N: int = 1000, R: float = 0.16, T: float = 15) -> Dict[str, float]:
+def scale_hts_coil_field(r: np.ndarray, I: float = 1800, N: int = 1000, R: float = 0.16, T: float = 15,
+                         util_target: float = 0.3, fill_factor: float = 1.0,
+                         roi_fraction: float = 0.1) -> Dict[str, float]:
     """
-    Scale HTS coil field to 5-10 T by adjusting parameters and validating feasibility.
-    Updated with realistic current levels and tape stacking for feasible operation.
-    
+    Field, conductor count and feasibility of an N-turn HTS solenoid, using ONE consistent
+    winding-pack geometry (see :mod:`hts.winding_pack`).
+
+    The conductor count (tapes per turn) is chosen so the tape runs at ``util_target`` of its
+    critical current at the *peak field on the winding*. Because the pack grows with the tape
+    count, and the peak field depends on the pack, this is solved as a fixed point.
+
     Parameters:
     -----------
     r : np.ndarray
-        Position vector [x, y, z] (m)
+        Evaluation point [x, y, z] (m); the origin gives the centre field
     I : float
-        Current per turn (A, default: 1800 - optimized for 5T target)
+        Current per turn (A)
     N : int
-        Number of turns (default: 1000 - more turns for higher field)
+        Number of turns
     R : float
-        Coil radius (m, default: 0.16 - optimized for field vs stress)
+        Winding-pack INNER radius (m)
     T : float
-        Operating temperature (K, default: 15 - slightly higher for margin)
-        
+        Operating temperature (K)
+    util_target : float
+        Target I / I_c of the tape at B_peak
+    fill_factor : float
+        Conductor fraction of the pack cross-section (1.0 = optimistic limit)
+    roi_fraction : float
+        Ripple region of interest: sphere of radius roi_fraction * R
+
     Returns:
     --------
     result : Dict[str, float]
-        Field analysis results including feasibility assessment
+        Field analysis including ``B_filament`` (the idealised thin-loop value mu0*N*I/(2R),
+        kept for comparison only) and ``converged`` (fixed-point status).
     """
-    # Compute magnetic field using existing function
-    B_vec = hts_coil_field(r, I=I, N=N, R=R)
-    B_magnitude = np.linalg.norm(B_vec)
-    B_z = B_vec[2]  # On-axis component
-    
-    # Kim model critical current density
-    J_c = jc_vs_tb(T=T, B=B_magnitude, Tc=90.0, Jc0=300e6, B0=5.0, n=1.5)  # A/m²
-    
-    # Realistic tape stack design for high current
-    tape_width = 4e-3  # m (4mm standard REBCO tape)
+    from .winding_pack import pack_from_conductor, pack_field, peak_field, field_ripple, MU0
+
+    r = np.asarray(r, dtype=float)
+    tape_width = 4e-3       # m (4mm standard REBCO tape)
     tape_thickness = 0.2e-3  # m (0.2mm including substrate)
-    
-    # Calculate required number of tapes for desired current
-    I_max_single_tape = J_c * tape_width * tape_thickness
-    tapes_per_turn = max(1, int(np.ceil(I / (0.3 * I_max_single_tape))))  # 30% utilization target
-    
-    # Effective parameters
-    effective_thickness = tape_thickness * tapes_per_turn
-    I_max = I_max_single_tape * tapes_per_turn  # Total current capacity
-    
-    # Field ripple computation (simplified)
-    ripple = compute_field_ripple(B_vec, R)
-    
-    # Feasibility checks - realistic thresholds
+
+    def _state(tpt):
+        pk = pack_from_conductor(R, N, I, tpt, tape_width, tape_thickness, fill_factor)
+        Bp = peak_field(pk)
+        Jc = jc_vs_tb(T=T, B=Bp, Tc=90.0, Jc0=300e6, B0=5.0, n=1.5)  # Kim model, A/m^2
+        Imax1 = Jc * tape_width * tape_thickness
+        need = int(np.ceil(I / (util_target * Imax1))) if Imax1 > 0 else 10**9
+        return pk, Bp, Jc, Imax1, max(1, need)
+
+    # More tapes -> bigger pack -> lower B_peak -> higher I_c, so the required count falls as the
+    # count rises. Find the smallest tpt with need(tpt) <= tpt by bisection.
+    lo, hi, cap = 1, 1, 5000
+    while hi < cap and _state(hi)[4] > hi:
+        lo, hi = hi, min(hi * 2, cap)
+    converged = _state(hi)[4] <= hi
+    while converged and hi - lo > 1:
+        mid = (lo + hi) // 2
+        if _state(mid)[4] <= mid:
+            hi = mid
+        else:
+            lo = mid
+    tapes_per_turn = hi
+    pack, B_peak, J_c, I_max_single_tape, _ = _state(tapes_per_turn)
+    I_max = I_max_single_tape * tapes_per_turn
+
+    Bz, Brho = pack_field(pack, r[2], np.hypot(r[0], r[1]))
+    B_z = float(Bz)
+    B_magnitude = float(np.hypot(Bz, Brho))
+    ripple = field_ripple(pack, roi_fraction * R)
+
     current_utilization = I / I_max if I_max > 0 else float('inf')
     thermal_feasible = T < 80  # Well below Tc
-    field_feasible = (current_utilization <= 0.35) and (ripple < 0.01)  # 35% utilization for safety
-    
+    field_feasible = bool(converged and (current_utilization <= 0.35) and (ripple < 0.01))
+
     return {
         'B_magnitude': B_magnitude,
         'B_z': B_z,
+        'B_peak': float(B_peak),
+        'B_filament': float(MU0 * N * I / (2.0 * R)),
         'ripple': ripple,
         'J_c': J_c,
+        'J_e': float(pack.Je),
         'I_max': I_max,
         'current_utilization': current_utilization,
         'field_feasible': field_feasible,
         'thermal_feasible': thermal_feasible,
         'temperature': T,
         'tapes_per_turn': tapes_per_turn,
-        'effective_thickness': effective_thickness,
-        'I_max_single_tape': I_max_single_tape
+        'effective_thickness': tape_thickness * tapes_per_turn,
+        'I_max_single_tape': I_max_single_tape,
+        'pack_inner_radius': pack.a1,
+        'pack_outer_radius': pack.a2,
+        'pack_half_length': pack.b,
+        'converged': converged,
     }
 
 
-def compute_field_ripple(B_vec: np.ndarray, R: float) -> float:
+def compute_field_ripple(R: float, NI: float, r_roi: float, coils_z: Tuple[float, ...] = (0.0,),
+                         n: int = 41, kind: str = 'pp') -> float:
     """
-    Compute field ripple estimate.
-    
-    Parameters:
-    -----------
-    B_vec : np.ndarray
-        Magnetic field vector [Bx, By, Bz]
-    R : float
-        Coil radius (m)
-        
-    Returns:
-    --------
-    ripple : float
-        Field ripple estimate (fractional)
+    Ripple of B_z over a spherical region of interest (radius ``r_roi``) for coaxial thin loops
+    of radius R at axial positions ``coils_z`` carrying NI amp-turns each (exact loop fields).
+
+    kind='pp'  : (max - min) / B_z(0)            (peak-to-peak)
+    kind='rms' : weighted std / weighted mean     (volume weight ~ rho)
+    For an extended winding pack use :func:`hts.winding_pack.field_ripple`.
     """
-    # Simplified ripple calculation
-    # In practice, this would sample field over a volume
-    B_magnitude = np.linalg.norm(B_vec)
-    
-    # Estimate based on coil geometry (empirical for single coil)
-    # Helmholtz pairs would have better uniformity
-    ripple_estimate = 0.001 * (0.2 / R)**2  # Scales with geometry
-    
-    return min(ripple_estimate, 0.1)  # Cap at 10%
+    from .winding_pack import loop_field
+    zz, rr = np.meshgrid(np.linspace(-r_roi, r_roi, n), np.linspace(0.0, r_roi, n), indexing='ij')
+    mask = zz ** 2 + rr ** 2 <= r_roi ** 2
+    Bz = sum(loop_field(R, NI, zz - zc, rr)[0] for zc in coils_z)[mask]
+    if kind == 'pp':
+        B0 = sum(loop_field(R, NI, -zc, 0.0)[0] for zc in coils_z)
+        return float((Bz.max() - Bz.min()) / B0)
+    w = rr[mask] + 1e-12
+    mu = np.average(Bz, weights=w)
+    return float(np.sqrt(np.average((Bz - mu) ** 2, weights=w)) / mu)
 
 
-def thermal_margin_space(coil_params: Dict[str, float], T_env: float = 4, 
-                        cryocooler_power: float = 150) -> Dict[str, Any]:
+def thermal_margin_space(coil_params: Dict[str, float], T_env: float = 4,
+                        cryocooler_power: float = 150, min_margin_K: float = 20.0) -> Dict[str, Any]:
     """
     Space-relevant thermal modeling including vacuum conditions.
-    
+
+    Margin basis: if ``coil_params`` contains ``I_tape`` (A per tape), ``B_peak`` (T) and
+    ``A_tape`` (m^2 of superconducting cross-section) the margin is measured to the
+    CURRENT-SHARING temperature T_cs (I_tape = I_c(B_peak, T_cs)), which is the physically
+    relevant limit under field. Otherwise it falls back to the zero-field T_c = 90 K.
+
+    Radiation: ``T_env`` is the temperature of the surface the coil exchanges radiation with.
+    Heat flows INTO the coil only when T_env > T_op; a colder surroundings never contributes to
+    the load (no credit is taken for radiative cooling). For a shielded cryostat pass the shield
+    temperature as ``T_env``.
+
     Parameters:
     -----------
     coil_params : Dict[str, float]
-        Coil parameters including surface area and operating temperature
+        Coil parameters (T, R, N, conductor_height, Q_AC, optionally I_tape/B_peak/A_tape)
     T_env : float
-        Environment temperature (K, default: 4 for space-like)
+        Temperature of the radiating surroundings (K, default: 4 for deep space)
     cryocooler_power : float
         Cryocooler power capacity (W, default: 150)
-        
+    min_margin_K : float
+        Required margin for ``space_feasible`` (K)
+
     Returns:
     --------
     thermal_result : Dict[str, Any]
         Comprehensive thermal analysis results
     """
+    from .winding_pack import current_sharing_temperature
+
     T_op = coil_params.get('T', 20.0)  # Operating temperature
-    
-    # Calculate realistic surface area for solenoid coil: A = 2πRh + 2πR² (sides + ends)
+
+    # Surface area of a solenoid: sides + ends. A pack-derived height may be supplied.
     R = coil_params.get('R', 0.15)  # Coil radius (m)
-    # Estimate coil height from number of turns and tape thickness
     N = coil_params.get('N', 600)
     tape_height = coil_params.get('conductor_height', 0.004)  # 4mm tape height
-    h = N * tape_height  # Total coil height
-    
-    # Surface area: cylindrical sides + top/bottom ends
-    A_sides = 2 * np.pi * R * h  # Cylindrical surface
-    A_ends = 2 * np.pi * R**2    # Top and bottom ends
-    surface_area = A_sides + A_ends
-    
-    # Stefan-Boltzmann radiative heat transfer in vacuum
+    h = coil_params.get('height', N * tape_height)  # Total coil height
+    surface_area = 2 * np.pi * R * h + 2 * np.pi * R**2
+
+    # Stefan-Boltzmann radiative INLEAK in vacuum (zero when surroundings are colder)
     sigma_sb = 5.67e-8  # W/(m²·K⁴)
-    emissivity = 0.1  # Typical for polished metal surfaces (conservative)
-    
-    Q_rad = sigma_sb * emissivity * surface_area * (T_op**4 - T_env**4)
-    
-    # AC losses from manuscript (1 mHz operation)
-    Q_AC = coil_params.get('Q_AC', 0.92)  # W
-    
-    # Total heat load
+    emissivity = coil_params.get('emissivity', 0.1)
+    Q_rad = sigma_sb * emissivity * surface_area * max(0.0, T_env**4 - T_op**4)
+
+    Q_AC = coil_params.get('Q_AC', 0.92)  # W, AC losses at 1 mHz (from manuscript)
     Q_total = Q_rad + Q_AC
-    
-    # Critical temperature for REBCO
-    T_c = 90.0  # K
-    
-    # Thermal margin calculation
+
+    T_c = 90.0  # K (zero-field, zero-current)
+    T_limit, basis = T_c, 'Tc'
+    if all(k in coil_params for k in ('I_tape', 'B_peak', 'A_tape')):
+        T_cs = current_sharing_temperature(coil_params['I_tape'], coil_params['B_peak'],
+                                           coil_params['A_tape'], Tc=T_c,
+                                           Jc0=300e6, B0=5.0, n=1.5)
+        T_limit, basis = (T_cs if T_cs is not None else 0.0), 'T_cs'
+
     if Q_total < cryocooler_power:
-        # Realistic thermal analysis for cryogenic systems
-        # With active cryocooler, internal thermal resistance dominates
-        # Typical values: 0.1-1.0 K/W for well-designed cryogenic systems
-        
-        R_th_internal = 0.5  # K/W (conservative internal thermal resistance)
-        dT_realistic = Q_total * R_th_internal
-        T_final = T_op + dT_realistic
-            
-        margin = T_c - T_final  # Margin to critical temperature
-        space_feasible = margin > 20.0  # Require >20 K margin for safety
+        # With an active cryocooler the internal thermal resistance dominates.
+        # R_th is an ASSUMED lumped value (typical 0.1-1.0 K/W); override via coil_params['R_th'].
+        R_th_internal = coil_params.get('R_th', 0.5)  # K/W
+        T_final = T_op + Q_total * R_th_internal
+        margin = T_limit - T_final
+        space_feasible = margin > min_margin_K
         cryocooler_adequate = True
     else:
-        # Insufficient cooling capacity - thermal runaway
-        T_final = T_c  # Will reach critical temperature
+        T_final = T_c  # thermal runaway
         margin = 0
         space_feasible = False
         cryocooler_adequate = False
-    
+
     return {
         'thermal_margin_K': max(margin, 0),
+        'margin_basis': basis,
+        'T_limit': T_limit,
+        'margin_to_Tc_K': max(T_c - T_final, 0),
         'T_c': T_c,
         'T_final': T_final,
         'heat_load_W': Q_total,
@@ -190,91 +223,88 @@ def thermal_margin_space(coil_params: Dict[str, float], T_env: float = 4,
     }
 
 
-def validate_high_field_parameters(I: float = 1800, N: int = 1000, R: float = 0.16, 
-                                  T: float = 15, B_target: float = 5.0) -> Dict[str, Any]:
+def validate_high_field_parameters(I: float = 1800, N: int = 1000, R: float = 0.16,
+                                  T: float = 15, B_target: float = 5.0,
+                                  t_reinforcement: float = 0.0,
+                                  sigma_allow_hoop: float = 400e6) -> Dict[str, Any]:
     """
-    Validate high-field coil parameters for 5-10 T operation.
-    Updated with realistic current levels and reinforcement analysis.
-    
+    Validate high-field coil parameters for 5-10 T operation with ONE consistent geometry
+    (winding pack) used for field, conductor count, thermal surface and mechanics.
+
     Parameters:
     -----------
     I : float
-        Current per turn (A, default: 2500 - realistic level)
-    N : int  
+        Current per turn (A)
+    N : int
         Number of turns
     R : float
-        Coil radius (m)
+        Winding-pack inner radius (m)
     T : float
         Operating temperature (K)
     B_target : float
-        Target magnetic field (T)
-        
+        Target centre field (T); the design must reach >= 80% of it
+    t_reinforcement : float
+        Radial thickness of a structural overband (m); default none
+    sigma_allow_hoop : float
+        In-plane tensile allowable of the conductor (Pa); an ASSUMPTION, see
+        :func:`hts.winding_pack.hoop_stress_check`
+
     Returns:
     --------
     validation : Dict[str, Any]
-        Comprehensive validation results
+        Results. ``hoop_stress_unreinforced_*`` is the bare estimate, ``hoop_stress_reinforced_*``
+        the stress after the overband; the reinforcement needed to meet the allowable is reported
+        as ``t_reinf_required_m`` (it is an output, not an assumed outcome).
     """
-    # Test point at coil center
+    from .winding_pack import WindingPack, hoop_stress_check
+
     r_center = np.array([0, 0, 0])
-    
-    # Field scaling analysis with updated current
     field_result = scale_hts_coil_field(r_center, I=I, N=N, R=R, T=T)
-    
-    # Coil parameters for thermal analysis - use realistic geometry
-    tape_height = 0.004  # 4mm tape height
-    coil_height = N * tape_height
+
+    pack = WindingPack(a1=field_result['pack_inner_radius'], a2=field_result['pack_outer_radius'],
+                       b=field_result['pack_half_length'], N=N, I=I,
+                       tapes_per_turn=field_result['tapes_per_turn'])
+    B_peak = field_result['B_peak']
+
     coil_params = {
         'T': T,
-        'R': R,
+        'R': pack.a_mean,
         'N': N,
-        'conductor_height': tape_height,
-        'Q_AC': 0.92  # W, AC losses at 1mHz
+        'height': 2 * pack.b,
+        'Q_AC': 0.92,  # W, AC losses at 1mHz
+        'I_tape': I / field_result['tapes_per_turn'],
+        'B_peak': B_peak,
+        'A_tape': 4e-3 * 0.2e-3,
     }
-    
-    # Space thermal analysis
     thermal_result = thermal_margin_space(coil_params, T_env=4)
-    
-    # Hoop stress estimation using realistic conductor stack
-    B_field = field_result['B_magnitude']
-    mu_0 = 4 * np.pi * 1e-7
-    
-    # Use thicker conductor stack (3 tapes × 0.2mm each)
-    conductor_thickness = field_result.get('effective_thickness', 0.6e-3)  # 0.6mm total
-    
-    # Analytical hoop stress calculation
-    hoop_stress_unreinforced = (B_field**2 * R) / (2 * mu_0 * conductor_thickness)
-    
-    # Realistic reinforcement factor based on structural analysis
-    # Target: reduce stress to safe levels (<35 MPa for REBCO)
-    rebco_stress_limit = 35e6  # Pa (35 MPa)
-    
-    if hoop_stress_unreinforced > rebco_stress_limit:
-        reinforcement_factor = hoop_stress_unreinforced / rebco_stress_limit
-        hoop_stress_reinforced = rebco_stress_limit  # Design target
-    else:
-        reinforcement_factor = 1.0
-        hoop_stress_reinforced = hoop_stress_unreinforced
-    
-    # Overall feasibility assessment
-    parameters_valid = (
+
+    mech = hoop_stress_check(pack, B_peak, sigma_allow_hoop=sigma_allow_hoop, t_reinf=t_reinforcement)
+    hoop_unreinforced = mech['sigma_hoop_bare_Pa']
+    hoop_reinforced = mech['sigma_hoop_conductor_Pa']
+    reinforcement_factor = max(1.0, hoop_unreinforced / sigma_allow_hoop)
+
+    parameters_valid = bool(
         field_result.get('field_feasible', False) and
         field_result.get('thermal_feasible', False) and
         thermal_result['space_feasible'] and
-        hoop_stress_reinforced <= rebco_stress_limit and
+        mech['hoop_ok'] and mech['radial_ok'] and
         field_result['B_magnitude'] >= B_target * 0.8  # Allow 20% tolerance
     )
-    
+
     return {
         'parameters': {'I': I, 'N': N, 'R': R, 'T': T, 'B_target': B_target},
         'field_analysis': field_result,
         'thermal_analysis': thermal_result,
-        'hoop_stress_unreinforced_Pa': hoop_stress_unreinforced,
-        'hoop_stress_unreinforced_MPa': hoop_stress_unreinforced / 1e6,
-        'hoop_stress_reinforced_Pa': hoop_stress_reinforced,
-        'hoop_stress_reinforced_MPa': hoop_stress_reinforced / 1e6,
+        'mechanics': mech,
+        'hoop_stress_unreinforced_Pa': hoop_unreinforced,
+        'hoop_stress_unreinforced_MPa': hoop_unreinforced / 1e6,
+        'hoop_stress_reinforced_Pa': hoop_reinforced,
+        'hoop_stress_reinforced_MPa': hoop_reinforced / 1e6,
+        'radial_stress_est_MPa': mech['sigma_radial_est_Pa'] / 1e6,
+        't_reinf_required_m': mech['t_reinf_required_m'],
         'reinforcement_factor': reinforcement_factor,
-        'rebco_stress_limit_Pa': rebco_stress_limit,
-        'rebco_stress_limit_MPa': rebco_stress_limit / 1e6,
+        'rebco_stress_limit_Pa': sigma_allow_hoop,
+        'rebco_stress_limit_MPa': sigma_allow_hoop / 1e6,
         'parameters_valid': parameters_valid,
         'overall_feasible': parameters_valid,  # Add alias for compatibility
         'achieved_field_T': field_result['B_magnitude'],
@@ -301,10 +331,12 @@ def helmholtz_high_field_configuration(target_field: float = 5.0,
         Optimized Helmholtz configuration
     """
     # Starting parameters for high-field design
+    # Candidates chosen from a parameter scan of the winding-pack model (hoop, radial, T_cs and
+    # ripple gates all satisfied). NOTE: despite the name, each candidate is a single coil.
     configurations = [
-        {'I': 5000, 'N': 600, 'R': 0.15, 'T': 10},
-        {'I': 4500, 'N': 650, 'R': 0.12, 'T': 8},
-        {'I': 5500, 'N': 550, 'R': 0.18, 'T': 12}
+        {'I': 3500, 'N': 1000, 'R': 0.16, 'T': 10},
+        {'I': 2500, 'N': 1400, 'R': 0.12, 'T': 20},
+        {'I': 1800, 'N': 2000, 'R': 0.12, 'T': 20}
     ]
     
     best_config = None
@@ -350,8 +382,8 @@ if __name__ == "__main__":
     
     print(f"Field: {validation['field_analysis']['B_magnitude']:.2f} T")
     print(f"Ripple: {validation['field_analysis']['ripple']*100:.3f}%")
-    print(f"Space thermal margin: {validation['thermal_margin_space']:.1f} K")
-    print(f"Hoop stress (reinforced): {validation['hoop_stress_reinforced']/1e6:.1f} MPa")
+    print(f"Space thermal margin: {validation['thermal_margin_K']:.1f} K")
+    print(f"Hoop stress (reinforced): {validation['hoop_stress_reinforced_MPa']:.1f} MPa")
     print(f"Overall feasible: {validation['overall_feasible']}")
     
     # Test Helmholtz optimization

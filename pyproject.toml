@@ -8,7 +8,9 @@ license = { text = "Unlicense" }
 authors = [ { name = "arcticoder" } ]
 
 dependencies = [
-	"numpy>=1.21",
+	"numpy>=1.24",
+	"scipy>=1.10",
+	"matplotlib>=3.6",
 ]
 
 [project.optional-dependencies]
@@ -18,4 +20,9 @@ opt = ["scikit-optimize>=0.9.0"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["*"]
+include = ["hts*"]   # add "warp" explicitly only if it should be installable
+exclude = ["warp.optimizer*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+norecursedirs = ["src/warp/optimizer", ".venv", "papers", "notebooks"]

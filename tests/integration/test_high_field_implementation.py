@@ -175,11 +175,13 @@ def test_parameter_validation():
     print("\n🧪 Testing parameter validation...")
     
     # Valid high-field parameters
+    # (5000 A, 600 turns, 10 K) is NOT valid in the winding-pack model: B_peak ~11 T leaves a
+    # T_cs margin < 20 K and ~106 MPa radial stress. This design is valid (~6.4 T).
     validation = validate_high_field_parameters(
-        I=5000,
-        N=600,
-        R=0.15,
-        T=10,
+        I=1800,
+        N=2000,
+        R=0.12,
+        T=20,
         B_target=7.0
     )
     

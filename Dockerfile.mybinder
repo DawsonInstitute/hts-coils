@@ -13,7 +13,7 @@ WORKDIR ${HOME}/hts-coils
 RUN python -m pip install --no-cache-dir -e .
 
 # Verify installation and run quick test
-RUN python -c "from src.hts import coil; print('hts-coils package verified')"
+RUN python -c "import hts.coil; print('hts-coils package verified')"
 
 # Set notebook directory for JupyterLab
 ENV JUPYTER_ENABLE_LAB=yes
