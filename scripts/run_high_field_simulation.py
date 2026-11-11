@@ -2,7 +2,8 @@
 """
 High-Field HTS Coil Simulation Reproduction Script
 
-This script reproduces the 7.07 T high-field results from the corrected analysis.
+This script runs the high-field analysis with the self-consistent winding-pack model
+(6.43 T design; the earlier 7.07 T single-filament figure is withdrawn).
 Designed to validate computational reproducibility with exact dependency versions.
 
 Usage:
@@ -38,14 +39,12 @@ def main():
     # Create output directory
     Path(args.output).parent.mkdir(parents=True, exist_ok=True)
     
-    # High-field configuration parameters (validated 7.07 T design)
+    # High-field configuration (winding-pack model design that passes all gates, ~6.43 T)
     config = {
-        'N': 1000,           # Number of turns
+        'N': 2000,           # Number of turns
         'I': 1800,           # Current per turn (A)
-        'R': 0.16,           # Coil radius (m)
-        'T_op': 15,          # Operating temperature (K)
-        'conductor_thickness': 0.6e-3,  # Multi-tape thickness (m)
-        'conductor_height': 4e-3,       # Conductor height (m)
+        'R': 0.12,           # Winding-pack inner radius (m)
+        'T_op': 20,          # Operating temperature (K)
     }
     
     if args.verbose:
@@ -84,10 +83,13 @@ def main():
     
     coil_params = {
         'T': config['T_op'],
-        'R': config['R'],
+        'R': 0.5 * (field_result['pack_inner_radius'] + field_result['pack_outer_radius']),
         'N': config['N'],
-        'conductor_height': 0.004,  # 4mm tape height
-        'Q_AC': 0.92  # W, AC losses at 1mHz
+        'height': 2 * field_result['pack_half_length'],
+        'Q_AC': 0.92,  # W, AC losses at 1mHz
+        'I_tape': config['I'] / field_result['tapes_per_turn'],
+        'B_peak': field_result['B_peak'],
+        'A_tape': 4e-3 * 0.2e-3,
     }
     
     thermal_result = thermal_margin_space(coil_params, T_env=4)
@@ -108,7 +110,7 @@ def main():
         N=config['N'],
         R=config['R'],
         T=config['T_op'],
-        B_target=7.0
+        B_target=5.0
     )
     
     results['parameter_validation'] = validation_result
@@ -116,8 +118,8 @@ def main():
     if args.verbose:
         print(f"   Parameters valid: {validation_result['parameters_valid']}")
         print(f"   Achieved field: {validation_result['achieved_field_T']:.2f} T")
-        print(f"   Hoop stress: {validation_result['hoop_stress_reinforced_MPa']:.1f} MPa")
-        print(f"   Reinforced stress: {validation_result['hoop_stress_reinforced_MPa']:.1f} MPa")
+        print(f"   Hoop stress: {validation_result['hoop_stress_unreinforced_MPa']:.1f} MPa")
+        print(f"   Radial stress (est.): {validation_result['radial_stress_est_MPa']:.1f} MPa")
         print(f"   Reinforcement factor: {validation_result['reinforcement_factor']:.1f}")
     
     # 4. Optional COMSOL Validation
@@ -160,13 +162,14 @@ def main():
         'thermal_margin_achieved_K': thermal_result['thermal_margin_K'],
         'current_utilization_limit': 0.5,
         'current_utilization_achieved': field_result['current_utilization'],
-        'stress_limit_MPa': 35.0,
-        'stress_achieved_MPa': validation_result['hoop_stress_reinforced_MPa'],
+        'radial_stress_limit_MPa': 35.0,
+        'radial_stress_achieved_MPa': validation_result['radial_stress_est_MPa'],
+        'hoop_stress_achieved_MPa': validation_result['hoop_stress_unreinforced_MPa'],
         'all_targets_met': (
             5.0 <= field_result['B_magnitude'] <= 10.0 and
             thermal_result['thermal_margin_K'] >= 20.0 and
             field_result['current_utilization'] <= 0.5 and
-            validation_result['hoop_stress_reinforced_MPa'] <= 35.0
+            validation_result['radial_stress_est_MPa'] <= 35.0 and validation_result['parameters_valid']
         )
     }
     

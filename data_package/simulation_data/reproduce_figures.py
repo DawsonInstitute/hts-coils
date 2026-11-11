@@ -11,8 +11,8 @@ with open('simulation_results.json', 'r') as f:
 
 # Performance comparison plot
 configs = ['Baseline', 'High-Field']
-fields = [2.1, 7.07]
-margins = [70, 74.5]
+fields = [2.1, 6.43]
+margins = [70, 38.3]
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
 

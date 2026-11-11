@@ -169,3 +169,26 @@ Still open (tracked in `TODO.ndjson` as `manuscript-02`): 28 other files still q
 The new modelling assumptions (400 MPa hoop allowable, 0.5 K/W thermal resistance, fill factor 1.0) are flagged in the paper as assumptions and still need citations.
 <!-- ------ -->
 ---
+Nothing is committed from my side; there are 34 changed files in the working tree for you to review. The latest commit, `6385bf2`, is one of yours. Tests pass (24 of 24) and all 10 notebooks run.
+
+**Done since the last update (`manuscript-02`):**
+- **Validation framework:** its benchmarks now use the corrected 6.43 T design and are checked against values the model computes. Before, it compared the typed-in 7.07 T against the same 7.07 T, so it passed by construction. A new test, `tests/test_validation_regression.py`, also asserts that 7.07 T no longer validates.
+- **Notebooks 01, 03, 05, 07, 08, 09:** updated to the corrected values. Notebook 08 had typed-in "calculated" numbers (7.15, 0.158) that now come from the model.
+- **Plasma and soliton papers:** these used 7.07 T for a 12-coil toroidal system I never modelled. I relabelled it as an assumed simulation input and added a correction note saying the plasma results (β = 0.48 etc.) were not re-run. Both papers compile.
+- **Scripts and data:** `run_high_field_simulation.py`, `create_data_package.py` (data package regenerated), `generate_corrected_report.py`, the lecture notes and `reproduce_figure_3.py` are updated.
+- **Historical docs:** 11 docs got a "SUPERSEDED" banner rather than a rewrite. I also marked three justifications in `hts_plasma_confinement_passages_check.json` as withdrawn.
+- **`export_simulation_data.py`:** I fixed its syntax error and moved it to the new design. It still fails when run, because it doesn't create its output sub-folders.
+
+**Still open in `TODO.ndjson`:**
+- **`manuscript-03` (P1):**
+  - Model the 12-coil system and re-run the plasma simulations.
+  - Release corrected Zenodo versions of the paper and dataset.
+  - Notebook 08's baseline numbers are still typed in.
+  - Cost, runtime and sensitivity claims in the paper are unverified.
+- **`scripts-03`:** the missing-folder bug in `export_simulation_data.py`.
+- **`repo-01-license`:** needs your decision. There is no LICENSE file.
+- **Earlier P2/P3 items:** assumption citations, the `jc_vs_tb` field-factor bug, `helmholtz_high_field_configuration` modelling only a single coil, notebook output review.
+
+The `www` and `.github` edits from before are also still uncommitted, and nothing is pushed.
+<!-- ------ -->
+---

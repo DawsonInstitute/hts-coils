@@ -44,6 +44,7 @@ class FigureReproducer:
                         "plasma_temperature": 500.0
                     },
                     "hts_coils": {
+                        "_note": "7.07 T is an ASSUMED plasma-simulation input (12-coil toroidal system); the winding-pack HTS model supports 6.43 T for a single solenoid. 0.16 / 74.5 are legacy, withdrawn HTS figures.",
                         "field_strength": 7.07,
                         "ripple_tolerance": 0.16,
                         "thermal_setpoint": 74.5

@@ -1,18 +1,18 @@
 {
   "high_field_configuration": {
     "parameters": {
-      "N_turns": 1000,
+      "N_turns": 2000,
       "I_current_A": 1800,
-      "R_coil_m": 0.16,
-      "T_operating_K": 15
+      "R_coil_m": 0.12,
+      "T_operating_K": 20
     },
     "results": {
-      "B_magnitude_T": 7.0685834705770665,
-      "field_ripple": 0.0015625,
-      "current_utilization": 0.29697836230352226,
-      "tapes_per_turn": 89,
-      "thermal_margin_K": 74.53940281406095,
-      "heat_load_W": 0.9211943718780902,
+      "B_magnitude_T": 6.4263481429771145,
+      "field_ripple": 0.0017221865979466287,
+      "current_utilization": 0.2986160575178522,
+      "tapes_per_turn": 95,
+      "thermal_margin_K": 38.266716757811515,
+      "heat_load_W": 0.92,
       "space_feasible": true
     }
   },
@@ -31,7 +31,7 @@
     }
   },
   "metadata": {
-    "generated_date": "2025-09-02 20:26:53",
+    "generated_date": "2026-11-11 13:24:00",
     "software_versions": {
       "python": "3.11+",
       "numpy": "1.24+",

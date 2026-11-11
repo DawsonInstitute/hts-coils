@@ -22,24 +22,27 @@ def generate_basic_data_package(output_dir: Path):
     
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # High-field simulation results (matching our validated 7.07 T configuration)
+    # High-field simulation results (winding-pack model design, ~6.43 T)
     print("   Computing high-field validation results...")
     r_center = np.array([0, 0, 0])
     
     field_result = scale_hts_coil_field(
         r=r_center,
-        N=1000, 
+        N=2000, 
         I=1800, 
-        R=0.16, 
-        T=15
+        R=0.12, 
+        T=20
     )
     
     coil_params = {
-        'T': 15,
-        'R': 0.16,
-        'N': 1000,
-        'conductor_height': 0.004,
-        'Q_AC': 0.92
+        'T': 20,
+        'R': 0.5 * (field_result['pack_inner_radius'] + field_result['pack_outer_radius']),
+        'N': 2000,
+        'height': 2 * field_result['pack_half_length'],
+        'Q_AC': 0.92,  # W, AC losses at 1mHz
+        'I_tape': 1800 / field_result['tapes_per_turn'],
+        'B_peak': field_result['B_peak'],
+        'A_tape': 4e-3 * 0.2e-3,
     }
     
     thermal_result = thermal_margin_space(coil_params, T_env=4)
@@ -48,10 +51,10 @@ def generate_basic_data_package(output_dir: Path):
     package_data = {
         'high_field_configuration': {
             'parameters': {
-                'N_turns': 1000,
+                'N_turns': 2000,
                 'I_current_A': 1800,
-                'R_coil_m': 0.16,
-                'T_operating_K': 15
+                'R_coil_m': 0.12,
+                'T_operating_K': 20
             },
             'results': {
                 'B_magnitude_T': field_result['B_magnitude'],
@@ -137,8 +140,8 @@ with open('simulation_results.json', 'r') as f:
 
 # Performance comparison plot
 configs = ['Baseline', 'High-Field']
-fields = [2.1, 7.07]
-margins = [70, 74.5]
+fields = [2.1, 6.43]
+margins = [70, 38.3]
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
 
@@ -172,10 +175,10 @@ High-Field Applications in Fusion and Antimatter Trapping"
 ## Contents
 
 ### simulation_results.json
-Core simulation results for both baseline (2.1 T) and high-field (7.07 T) configurations.
+Core simulation results for both baseline (2.1 T) and high-field (6.43 T, winding-pack model) configurations. The high-field figures replace an earlier withdrawn 7.07 T / 74.5 K result.
 
 Key results:
-- **High-field**: 7.07 T, 0.16% ripple, 74.5 K thermal margin
+- **High-field**: 6.43 T, 0.17% ripple (p-p, r <= 0.1*a1), 38.3 K margin to the current-sharing temperature
 - **Baseline**: 2.1 T, 0.01% ripple, 70 K thermal margin  
 
 ### comsol_template.java

@@ -365,15 +365,15 @@
             \toprule
             \textbf{Parameter} & \textbf{Value} & \textbf{Units} \\
             \midrule
-            Magnetic Field & 7.07 & T \\
-            Field Ripple & 0.16 & \% \\
+            Magnetic Field & 6.43 & T \\
+            Field Ripple (p-p, $r\le0.1a_1$) & 0.17 & \% \\
             Current & 1800 & A \\
-            Number of Turns & 1000 & - \\
-            Coil Radius & 0.16 & m \\
-            Operating Temperature & 15 & K \\
-            Multi-tape Design & 89 tapes & per turn \\
-            Reinforced Stress & 35.0 & MPa \\
-            Thermal Margin & 74.5 & K \\
+            Number of Turns & 2000 & - \\
+            Pack Inner Radius & 0.12 & m \\
+            Operating Temperature & 20 & K \\
+            Multi-tape Design & 95 tapes & per turn \\
+            Radial / Hoop Stress & 31.5 / 50.9 & MPa \\
+            Margin to $T_{cs}$ & 38.3 & K \\
             Current Utilization & 30 & \% \\
             \bottomrule
         \end{tabular}
@@ -400,8 +400,8 @@
             \addlegendentry{Baseline (2.1T)}
             
             % High-field design  
-            \addplot[red,mark=square,mark size=4pt] coordinates {(7.07,78)};
-            \addlegendentry{High-field (7.07T)}
+            \addplot[red,mark=square,mark size=4pt] coordinates {(6.43,78)};
+            \addlegendentry{High-field (6.43T)}
             
             % Comparison systems
             \addplot[green,mark=triangle,mark size=4pt] coordinates {(1.5,45)};

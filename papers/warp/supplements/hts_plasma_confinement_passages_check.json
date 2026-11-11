@@ -73,7 +73,7 @@
       "type": "title",
       "content": "Computational Analysis of High-Temperature Superconducting Coils for High-Beta Plasma Confinement",
       "purpose": "Paper title",
-      "justification": "Accurately describes scope: computational (not experimental), HTS coils (REBCO technology), high-beta plasma (\u03b2~0.5), confinement focus",
+      "justification": "Accurately describes scope: computational (not experimental), HTS coils (REBCO technology), high-beta plasma (β~0.5), confinement focus",
       "validation_status": "validated_against_content",
       "id": "title"
     },
@@ -108,18 +108,18 @@
       "id": "abstract_sentence_5_beta_field_ripple",
       "line_range": "90",
       "type": "claim",
-      "sentence": "Simulations demonstrate the potential for stable plasma confinement at \u03b2 = 0.48 \u00b1 0.05 using HTS-generated toroidal fields of 7.07 \u00b1 0.15 T with a magnetic ripple of \u03b4 = 0.16 \u00b1 0.02%.",
-      "justification": "Beta value is a CLAIM not validated by current code. HTS field (7.07T) and ripple (0.16%) ARE validated in src/hts/validation_framework.py. Plasma beta (\u03b2=0.48) is NOT validated - no plasma confinement simulation exists.",
+      "sentence": "Simulations demonstrate the potential for stable plasma confinement at β = 0.48 ± 0.05 using HTS-generated toroidal fields of 7.07 ± 0.15 T with a magnetic ripple of δ = 0.16 ± 0.02%.",
+      "justification": "[WITHDRAWN 2026-11: the 7.07 T / 0.16% / 74.5 K / 89-tape HTS figures are withdrawn; the old check compared constants to the same constants. Current model: 6.43 T single solenoid, see results/high_field_rederived.json] Beta value is a CLAIM not validated by current code. HTS field (7.07T) and ripple (0.16%) ARE validated in src/hts/validation_framework.py. Plasma beta (β=0.48) is NOT validated - no plasma confinement simulation exists.",
       "validation_status": "partially_validated",
       "validation_source": "src/hts/validation_framework.py:30-31 (field and ripple ONLY, not beta)",
-      "note": "CRITICAL: Only HTS coil parameters are validated. Beta confinement claim is theoretical/aspirational - no MHD stability analysis in codebase validates \u03b2=0.48 plasma confinement."
+      "note": "CRITICAL: Only HTS coil parameters are validated. Beta confinement claim is theoretical/aspirational - no MHD stability analysis in codebase validates β=0.48 plasma confinement."
     },
     {
       "id": "abstract_sentence_6_thermal_structural",
       "line_range": "93-94",
       "type": "claim",
       "sentence": "The HTS coil models indicate sufficient thermal margins (74.5 K) and structural integrity under the high electromagnetic loads associated with this regime.",
-      "justification": "74.5K thermal margin from src/hts/high_field_scaling.py",
+      "justification": "[WITHDRAWN 2026-11: the 7.07 T / 0.16% / 74.5 K / 89-tape HTS figures are withdrawn; the old check compared constants to the same constants. Current model: 6.43 T single solenoid, see results/high_field_rederived.json] 74.5K thermal margin from src/hts/high_field_scaling.py",
       "validation_status": "confirmed_externally",
       "validation_source": "src/hts/high_field_scaling.py"
     },
@@ -199,7 +199,7 @@
     {
       "line_range": "129-132",
       "type": "theoretical_foundation",
-      "content": "Beta definition: \u03b2 = p/(B\u00b2/2\u03bc\u2080)",
+      "content": "Beta definition: β = p/(B²/2μ₀)",
       "purpose": "Define key parameter",
       "justification": "Standard plasma physics definition, essential for understanding high-beta regime",
       "validation_status": "textbook_definition",
@@ -274,7 +274,7 @@
     {
       "line_range": "265-266",
       "type": "plasma_parameters",
-      "content": "Target laboratory parameters: n\u2091 = 10\u00b2\u2070 m\u207b\u00b3, T\u2091 = 100-1000 eV, B\u2080 = 5-10 T, \u03b2 = 0.1-1.0",
+      "content": "Target laboratory parameters: nₑ = 10²⁰ m⁻³, Tₑ = 100-1000 eV, B₀ = 5-10 T, β = 0.1-1.0",
       "purpose": "Specify simulation regime",
       "justification": "Realistic parameters for laboratory-scale fusion experiments, consistent with ITER/JET ranges",
       "validation_status": "physics_reasonable",
@@ -295,14 +295,14 @@
       "type": "electromagnetic_coupling",
       "content": "Maxwell's equations for self-consistent field evolution",
       "purpose": "Couple plasma to fields",
-      "justification": "Standard EM-plasma coupling with plasma current J\u209a and external coil currents J\u2091\u2093\u209c",
+      "justification": "Standard EM-plasma coupling with plasma current Jₚ and external coil currents Jₑₓₜ",
       "validation_status": "textbook_physics",
       "id": "passage_27"
     },
     {
       "line_range": "285-286",
       "type": "mhd_stability",
-      "content": "MHD stability analysis using energy principle \u03b4W < 0",
+      "content": "MHD stability analysis using energy principle δW < 0",
       "purpose": "Monitor plasma stability",
       "justification": "Standard ideal MHD stability criterion, ballooning/kink/tearing mode detection",
       "validation_status": "standard_criterion",
@@ -314,7 +314,7 @@
       "type": "validation_results",
       "content": "HTS Magnet System Validation from src/hts/",
       "purpose": "Report validated magnet performance",
-      "justification": "Direct validation against code: baseline 2.1T (0.01% ripple, 1171A, 400 turns), high-field 7.07T (0.16% ripple, 1800A, 89 tapes, 74.5K margin)",
+      "justification": "[WITHDRAWN 2026-11: the 7.07 T / 0.16% / 74.5 K / 89-tape HTS figures are withdrawn; the old check compared constants to the same constants. Current model: 6.43 T single solenoid, see results/high_field_rederived.json] Direct validation against code: baseline 2.1T (0.01% ripple, 1171A, 400 turns), high-field 7.07T (0.16% ripple, 1800A, 89 tapes, 74.5K margin)",
       "validation_status": "DIRECTLY_VALIDATED_IN_CODE",
       "validation_source": "src/hts/validation_framework.py (paper_benchmarks dict lines 13-32), validation_results.json, notebooks/validation_report.json (23/23 tests passed)",
       "id": "passage_29"
@@ -324,7 +324,7 @@
       "type": "uncertainty_quantification",
       "content": "Monte Carlo sensitivity analysis results",
       "purpose": "Quantify uncertainties",
-      "justification": "Field \u00b10.056T (2.7%), temperature \u00b13.4K (5.9%), current \u00b16.0A/\u03bcm - from validation_results.json uncertainty_analysis section",
+      "justification": "Field ±0.056T (2.7%), temperature ±3.4K (5.9%), current ±6.0A/μm - from validation_results.json uncertainty_analysis section",
       "validation_status": "DIRECTLY_VALIDATED_IN_CODE",
       "validation_source": "validation_results.json:60-100 (uncertainty_analysis section)",
       "id": "passage_30"
@@ -344,7 +344,7 @@
       "type": "plasma_physics_advantages",
       "content": "Enhanced magnetic confinement, high-beta regime, cryogenic integration",
       "purpose": "Highlight benefits",
-      "justification": "33% higher field than ITER, 4-40\u00d7 higher beta, LN2 cooling advantages - all based on validated HTS performance",
+      "justification": "33% higher field than ITER, 4-40× higher beta, LN2 cooling advantages - all based on validated HTS performance",
       "validation_status": "derived_from_validated_data",
       "note": "Removed soliton-based confinement per task 5 - moved to soliton_validation.tex",
       "id": "passage_32"
@@ -354,7 +354,7 @@
       "type": "limitations_mhd",
       "content": "MHD Approximation Validity assessment",
       "purpose": "Acknowledge model limitations",
-      "justification": "\u03c1\u1d62/L\u209a ~ 0.03 < 0.1 validates MHD, discusses kinetic effects, two-fluid, FLR corrections",
+      "justification": "ρᵢ/Lₚ ~ 0.03 < 0.1 validates MHD, discusses kinetic effects, two-fluid, FLR corrections",
       "validation_status": "honest_limitation_assessment",
       "id": "passage_33"
     },
@@ -363,7 +363,7 @@
       "type": "limitations_computational",
       "content": "Computational and Numerical Limitations",
       "purpose": "Document numerical constraints",
-      "justification": "Grid resolution 32\u00b3 (\u0394x\u22480.6mm), time stepping \u0394t~10\u207b\u2079s, PIC noise N\u209a\u207b\u00b9/\u00b2",
+      "justification": "Grid resolution 32³ (Δx≈0.6mm), time stepping Δt~10⁻⁹s, PIC noise Nₚ⁻¹/²",
       "validation_status": "computational_honesty",
       "note": "Specific values represent realistic simulation parameters",
       "id": "passage_34"
@@ -382,7 +382,7 @@
       "type": "limitations_experimental",
       "content": "Experimental Idealization Assumptions",
       "purpose": "Note idealized conditions",
-      "justification": "10\u207b\u2076 Torr vacuum, plasma heating/current drive not detailed, diagnostic integration simplified",
+      "justification": "10⁻⁶ Torr vacuum, plasma heating/current drive not detailed, diagnostic integration simplified",
       "validation_status": "assumption_documentation",
       "id": "passage_36"
     },
@@ -391,7 +391,7 @@
       "type": "limitations_detection",
       "content": "Detection Sensitivity Assumptions",
       "purpose": "Acknowledge measurement challenges",
-      "justification": "Vibration isolation, optical stability (\u0394f/f < 10\u207b\u00b9\u2075), background subtraction challenges",
+      "justification": "Vibration isolation, optical stability (Δf/f < 10⁻¹⁵), background subtraction challenges",
       "validation_status": "measurement_realism",
       "id": "passage_37"
     },

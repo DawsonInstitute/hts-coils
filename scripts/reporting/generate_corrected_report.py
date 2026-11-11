@@ -28,14 +28,14 @@ def generate_corrected_report():
     
     # Validated parameters
     I = 1800  # A
-    N = 1000  # turns  
-    R = 0.16  # m
-    T = 15    # K
+    N = 2000  # turns
+    R = 0.12  # m (winding-pack inner radius)
+    T = 20    # K
     
     print(f"\n📋 VALIDATED CONFIGURATION:")
     print(f"Current per turn: {I} A")
     print(f"Number of turns: {N}")
-    print(f"Coil radius: {R} m") 
+    print(f"Winding-pack inner radius: {R} m") 
     print(f"Operating temperature: {T} K")
     
     # Field analysis
@@ -52,10 +52,13 @@ def generate_corrected_report():
     # Thermal analysis
     coil_params = {
         'T': T,
-        'R': R, 
+        'R': 0.5 * (field_result['pack_inner_radius'] + field_result['pack_outer_radius']),
         'N': N,
-        'conductor_height': 0.004,
-        'Q_AC': 0.92
+        'height': 2 * field_result['pack_half_length'],
+        'Q_AC': 0.92,
+        'I_tape': I / field_result['tapes_per_turn'],
+        'B_peak': field_result['B_peak'],
+        'A_tape': 4e-3 * 0.2e-3,
     }
     
     thermal_result = thermal_margin_space(coil_params, T_env=4)
@@ -75,11 +78,10 @@ def generate_corrected_report():
     validation = validate_high_field_parameters(I=I, N=N, R=R, T=T, B_target=5.0)
     
     print(f"\n🔧 MECHANICAL ANALYSIS:")
-    print(f"Hoop stress (unreinforced): {validation['hoop_stress_unreinforced_MPa']:.1f} MPa")
-    print(f"Reinforcement factor required: {validation['reinforcement_factor']:.1f}×")
-    print(f"Hoop stress (reinforced): {validation['hoop_stress_reinforced_MPa']:.1f} MPa")
-    print(f"REBCO stress limit: {validation['rebco_stress_limit_MPa']:.1f} MPa")
-    print(f"Stress feasible: {'✅ YES' if validation['hoop_stress_reinforced_MPa'] <= 35 else '❌ NO'}")
+    print(f"Hoop stress (bare): {validation['hoop_stress_unreinforced_MPa']:.1f} MPa (assumed allowable {validation['rebco_stress_limit_MPa']:.0f} MPa)")
+    print(f"Radial stress (est.): {validation['radial_stress_est_MPa']:.1f} MPa (delamination limit 35 MPa)")
+    print(f"Reinforcement thickness required: {validation['t_reinf_required_m']*1000:.1f} mm")
+    print(f"Stress feasible: {'✅ YES' if validation['mechanics']['hoop_ok'] and validation['mechanics']['radial_ok'] else '❌ NO'}")
     
     # Overall assessment
     overall_feasible = validation['parameters_valid']
@@ -113,21 +115,19 @@ def generate_corrected_report():
         },
         'mechanical': {
             'hoop_stress_unreinforced_MPa': float(validation['hoop_stress_unreinforced_MPa']),
-            'hoop_stress_reinforced_MPa': float(validation['hoop_stress_reinforced_MPa']),
+            'radial_stress_est_MPa': float(validation['radial_stress_est_MPa']),
             'reinforcement_factor': float(validation['reinforcement_factor'])
         },
         'feasibility': {
             'field_feasible': bool(field_result['field_feasible']),
             'thermal_feasible': bool(thermal_result['space_feasible']),
-            'stress_feasible': bool(validation['hoop_stress_reinforced_MPa'] <= 35),
+            'stress_feasible': bool(validation['mechanics']['hoop_ok'] and validation['mechanics']['radial_ok']),
             'overall_feasible': bool(overall_feasible)
         },
         'comparison_to_original': {
             'target_field_T': 5.0,
             'achieved_vs_target': float(field_result['B_magnitude'] / 5.0),
-            'thermal_margin_improvement': 'Fixed from 0 K to 74.5 K',
-            'current_utilization_improvement': 'Fixed from 247.82 to 0.30',
-            'stress_feasible_improvement': 'Achieved <35 MPa reinforced'
+            'note': 'Supersedes the withdrawn 7.07 T / 74.5 K / 35 MPa-reinforced report (single-filament idealisation, placeholder ripple, circular stress check)'
         },
         'timestamp': datetime.now().isoformat()
     }
@@ -140,11 +140,11 @@ def generate_corrected_report():
     
     # Key improvements summary
     print(f"\n🚀 KEY IMPROVEMENTS ACHIEVED:")
-    print(f"1. Thermal Margin: 0 K → 74.5 K (>20 K requirement met)")
-    print(f"2. Current Utilization: 247.82 → 0.30 (feasible operation)")  
-    print(f"3. Field Achievement: 7.07 T (exceeds 5-10 T target)")
-    print(f"4. Stress Management: 35 MPa reinforced (within REBCO limits)")
-    print(f"5. Overall Feasibility: ❌ → ✅ (all constraints satisfied)")
+    print(f"1. Thermal margin to T_cs: {thermal_result['thermal_margin_K']:.1f} K (>20 K required)")
+    print(f"2. Current utilization: {field_result['current_utilization']:.2f}")
+    print(f"3. Field: {field_result['B_magnitude']:.2f} T centre / {field_result['B_peak']:.2f} T peak")
+    print(f"4. Radial stress {validation['radial_stress_est_MPa']:.1f} MPa vs 35 MPa limit")
+    print(f"5. Overall feasibility: {'✅' if overall_feasible else '❌'}")
     
     return performance_metrics
 

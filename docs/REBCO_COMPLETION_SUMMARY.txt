@@ -1,3 +1,5 @@
+SUPERSEDED NUMBERS (2026-11-11): the 7.07 T / 0.16% / 74.5 K / 89-tape / 35 MPa-reinforced figures below are withdrawn; see README.md and results/high_field_rederived.json (6.43 T winding-pack design).
+
 
 🎉 REBCO PAPER REPRODUCTION COMPLETE
 ====================================

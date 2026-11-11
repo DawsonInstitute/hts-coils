@@ -79,6 +79,11 @@
 \textbf{Keywords}: Lentz soliton, computational framework, HTS superconductors, plasma confinement, interferometry, uncertainty quantification.
 \end{abstract}
 
+\begin{quote}\small
+\textbf{Correction (2026-11).} The HTS-coil performance originally quoted here (7.07~T, 0.16\% ripple, 74.5~K margin, 89-tape conductor at 15~K) came from an analysis that has since been withdrawn: 7.07~T was the field of all turns on a single thin loop, inconsistent with the conductor required. A self-consistent winding-pack model supports a single-solenoid design of 6.43~T (95 tapes per turn, 20~K, 0.17\% peak-to-peak ripple over $r\le0.1a_1$, 38~K margin to the current-sharing temperature; see the companion REBCO paper). The 12-coil toroidal system used by the plasma simulations has \emph{not} been modelled with the winding-pack code, and the plasma results below were obtained with 7.07~T as an assumed input and have not been re-run at the corrected field.
+\end{quote}
+
+
 \section{Introduction}
 
 The theoretical concept of a Lentz soliton, a form of localized spacetime distortion, presents a profound but speculative area of physics. While the underlying principles are grounded in general relativity, the experimental realization of such a phenomenon faces immense technological hurdles. The primary obstacle is the generation and stable confinement of a high-beta plasma under the extreme magnetic field conditions required to theoretically initiate a soliton.
@@ -117,7 +122,7 @@ $\uparrow$ \hspace{3cm} $\downarrow$\\[0.2cm]
  		\textit{Coordinated operation may potentially enable soliton formation and detection.}
 \vspace{2cm}
 \end{minipage}}
-\caption{\textbf{Integrated Lentz-HTS Validation Framework Architecture}: Comprehensive schematic showing the five interconnected subsystems required for laboratory-scale soliton validation. \textbf{Data Flow}: (1) Energy Optimization System computes optimal energy configurations and provides targeting parameters using multi-objective optimization algorithms; (2) HTS Magnetic Confinement System generates precisely controlled $7.07\pm0.15$~T toroidal fields with $<0.2\pm0.05\%$ ripple using REBCO superconducting tape; (3) Plasma Control System maintains optimal density ($n_e = 10^{20}\,\mathrm{m}^{-3}$) and temperature (100--1000~eV) profiles through real-time feedback; (4) Enhanced Interferometric Detection system achieves $1.0\times10^{-18}\pm2\times10^{-19}$~m spacetime distortion sensitivity using a stabilized Michelson configuration; (5) Data Acquisition and Analysis processes real-time measurements at 10~kHz with automated soliton detection algorithms. \textbf{Integration}: Subsystems communicate through a centralized control system with $<100\,\mu\mathrm{s}$ latency. \textbf{Performance}: Complete system validation demonstrates computational feasibility within $\pm15\%$ error bounds across all subsystems. \textbf{Abbreviations}: HTS = High-Temperature Superconductor; REBCO = Rare Earth Barium Copper Oxide. \textbf{Status}: All parameters represent computational projections requiring experimental validation.}
+\caption{\textbf{Integrated Lentz-HTS Validation Framework Architecture}: Comprehensive schematic showing the five interconnected subsystems required for laboratory-scale soliton validation. \textbf{Data Flow}: (1) Energy Optimization System computes optimal energy configurations and provides targeting parameters using multi-objective optimization algorithms; (2) HTS Magnetic Confinement System generates precisely controlled toroidal fields (7.07~T assumed as a simulation input; the HTS model currently supports 6.43~T for a single solenoid) with sub-percent ripple using REBCO superconducting tape; (3) Plasma Control System maintains optimal density ($n_e = 10^{20}\,\mathrm{m}^{-3}$) and temperature (100--1000~eV) profiles through real-time feedback; (4) Enhanced Interferometric Detection system achieves $1.0\times10^{-18}\pm2\times10^{-19}$~m spacetime distortion sensitivity using a stabilized Michelson configuration; (5) Data Acquisition and Analysis processes real-time measurements at 10~kHz with automated soliton detection algorithms. \textbf{Integration}: Subsystems communicate through a centralized control system with $<100\,\mu\mathrm{s}$ latency. \textbf{Performance}: Complete system validation demonstrates computational feasibility within $\pm15\%$ error bounds across all subsystems. \textbf{Abbreviations}: HTS = High-Temperature Superconductor; REBCO = Rare Earth Barium Copper Oxide. \textbf{Status}: All parameters represent computational projections requiring experimental validation.}
 \label{fig:framework}
 \end{figure}
 \subsubsection{Energy Optimization Core (Multi-Objective Algorithm Integration)}
@@ -415,7 +420,7 @@ To establish credibility within the plasma physics community, we compare our exp
 \toprule
 Parameter & ITER & JET & Wendelstein 7-X & \textbf{This Work} \\
 \midrule
-Magnetic Field (T) & 5.3 & 3.45 & 3.0 & \textbf{7.07} \\
+Magnetic Field (T) & 5.3 & 3.45 & 3.0 & \textbf{6.43}$^\ddagger$ \\
 Plasma Density (m$^{-3}$) & $10^{20}$ & $5 \times 10^{19}$ & $2 \times 10^{20}$ & \textbf{$10^{20}$} \\
 Electron Temperature (keV) & 8--15 & 3--5 & 1--3 & \textbf{0.1--1.0} \\
 Pulse Duration (s) & 400--3000 & 20--60 & Steady-state & \textbf{$>0.001$} \\
@@ -424,11 +429,12 @@ Beta Value & 0.025 & 0.025 & 0.05 & \textbf{0.1--1.0} \\
 Confinement Parameter & $H_{98} = 1$ & $H_{98} = 0.85$ & $H_{ISS04} = 1$ & \textbf{Classical} \\
 \bottomrule
 \end{tabular}
+\par\smallskip{\footnotesize $^\ddagger$HTS single-solenoid winding-pack model (6.43~T); the plasma simulations assumed 7.07~T and were not re-run.}
 \end{table}
 
 \textbf{Key Plasma Physics Advantages}:
 \begin{itemize}
-\item \textbf{Enhanced Magnetic Confinement}: Our HTS system achieves 7.07~T toroidal fields, 33\% higher than ITER's 5.3~T, enabling stronger plasma confinement with reduced transport losses
+\item \textbf{Enhanced Magnetic Confinement}: The corrected HTS single-solenoid design reaches 6.43~T (21\% above ITER's 5.3~T; the toroidal 12-coil system is not yet modelled), which would enable stronger plasma confinement with reduced transport losses
 \item \textbf{High-Beta Regime}: Target $\beta = 0.1$--$1.0$ represents 4--40× higher values than conventional tokamaks, approaching spherical tokamak parameters and enabling more efficient magnetic utilization
 \item \textbf{Novel Confinement Geometry}: Soliton-based confinement differs fundamentally from tokamak/stellarator approaches, potentially avoiding traditional MHD instabilities through spacetime curvature effects
 \item \textbf{Cryogenic Integration}: Direct HTS cooling with liquid nitrogen (77~K) eliminates complex tritium breeding blankets and provides thermal advantages over resistive coil systems
@@ -537,8 +543,8 @@ The high-temperature superconducting magnetic confinement system exceeded all de
 Comprehensive testing of our HTS coil system demonstrates:
 
 \begin{itemize}
-\item \textbf{Field Strength}: 7.07~T computationally projected with multi-tape REBCO configuration, pending experimental validation
-\item \textbf{Ripple Control}: 0.16\% maximum ripple, well below 1\% requirement
+\item \textbf{Field Strength}: 6.43~T computationally projected for a single-solenoid multi-tape REBCO design (95 tapes per turn); the 7.07~T used as plasma-simulation input is an assumption, pending experimental validation
+\item \textbf{Ripple Control}: 0.17\% peak-to-peak ripple over $r\le0.1a_1$ for the solenoid design, below the 1\% requirement (toroidal ripple not recomputed)
 \item \textbf{Thermal Stability}: 74.5~K operational margins validated for space conditions
 \item \textbf{Power Requirements}: Optimized current distribution minimizing resistive losses
 \end{itemize}
@@ -681,7 +687,7 @@ The successful integration of four major technological domains represents a sign
 The 40\% energy efficiency improvement through warp-bubble optimization directly enables plasma-based soliton experiments. Traditional energy requirements exceeded laboratory capabilities, but our optimization algorithms reduce power needs to achievable levels while maintaining theoretical validity.
 
 \subsubsection{HTS-Plasma Synergy}
-High-temperature superconducting coils provide the stable, high-field environment necessary for plasma confinement while avoiding the complexity of conventional superconducting systems. The validated 7.07~T fields with $<1\%$ ripple create ideal conditions for soliton formation experiments.
+High-temperature superconducting coils provide the stable, high-field environment necessary for plasma confinement while avoiding the complexity of conventional superconducting systems. Projected 6--7~T fields with $<1\%$ ripple would create favourable conditions for soliton formation experiments.
 
 \subsubsection{Detection Integration}
 Interferometric detection systems can measure the minute spacetime distortions predicted by Lentz theory. Our validation demonstrates that $10^{-18}$~m displacement sensitivity is achievable with advanced but available technology.
@@ -947,7 +953,7 @@ We present a computational framework for evaluating the performance of HTS magne
 
 \subsection{Computational Achievements and Projections}
 \begin{enumerate}
-\item \textbf{Magnetic Confinement}: 7.07~T HTS fields with 0.16\% ripple were demonstrated in simulation, suggesting that HTS coils can meet the stringent requirements for high-beta plasma stability.
+\item \textbf{Magnetic Confinement}: HTS fields of 6.4~T (single solenoid; 7.07~T assumed for the plasma runs) with sub-percent ripple were projected in simulation, suggesting that HTS coils can meet the stringent requirements for high-beta plasma stability.
 \item \textbf{Plasma Simulation}: Stable plasma confinement at $\beta=0.48$ was projected, indicating the potential for HTS magnets to enable operation in advanced, high-performance regimes.
 \end{enumerate}
 

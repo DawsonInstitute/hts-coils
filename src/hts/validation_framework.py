@@ -18,15 +18,20 @@ class ValidationFramework:
             'baseline_turns': {'value': 400, 'tolerance': 5, 'unit': ''},
             'baseline_radius': {'value': 0.2, 'tolerance': 0.001, 'unit': 'm'},
             
-            # High-field configuration (7.07T design)
-            'high_field': {'value': 7.07, 'tolerance': 0.01, 'unit': 'T'},
-            'high_field_ripple': {'value': 0.16, 'tolerance': 0.01, 'unit': '%'},
+            # High-field configuration: winding-pack model design (results/high_field_rederived.json,
+            # design 'feasible_1800A_2000t'). The earlier 7.07 T / 0.16 % / 74.5 K / 89-tape values
+            # were an inconsistent single-filament idealisation and are withdrawn.
+            # Ripple is peak-to-peak over a sphere r <= 0.1*a1; margin is to T_cs.
+            'high_field': {'value': 6.43, 'tolerance': 0.05, 'unit': 'T'},
+            'high_field_ripple': {'value': 0.17, 'tolerance': 0.03, 'unit': '%'},
             'high_field_current': {'value': 1800, 'tolerance': 20, 'unit': 'A'},
-            'high_field_turns': {'value': 1000, 'tolerance': 10, 'unit': ''},
-            'high_field_radius': {'value': 0.16, 'tolerance': 0.001, 'unit': 'm'},
-            'high_field_tapes_per_turn': {'value': 89, 'tolerance': 2, 'unit': ''},
-            'high_field_temperature': {'value': 15, 'tolerance': 1, 'unit': 'K'},
-            'high_field_thermal_margin': {'value': 74.5, 'tolerance': 1.5, 'unit': 'K'},
+            'high_field_turns': {'value': 2000, 'tolerance': 10, 'unit': ''},
+            'high_field_radius': {'value': 0.12, 'tolerance': 0.001, 'unit': 'm'},
+            'high_field_tapes_per_turn': {'value': 95, 'tolerance': 2, 'unit': ''},
+            'high_field_temperature': {'value': 20, 'tolerance': 1, 'unit': 'K'},
+            'high_field_thermal_margin': {'value': 38.3, 'tolerance': 1.5, 'unit': 'K'},
+            'high_field_radial_stress': {'value': 31.5, 'tolerance': 2.0, 'unit': 'MPa'},
+            'high_field_hoop_stress': {'value': 50.9, 'tolerance': 3.0, 'unit': 'MPa'},
             
             # Thermal analysis benchmarks
             'thermal_margin_baseline': {'value': 74.5, 'tolerance': 2.0, 'unit': 'K'},
@@ -595,6 +600,27 @@ def check_physics_constraints(temperature: float, magnetic_field: float,
     
     return all(checks)
 
+def model_high_field_config(I: float = 1800, N: int = 2000, R: float = 0.12, T: float = 20) -> Dict:
+    """High-field configuration COMPUTED by the winding-pack model (not hard-coded).
+
+    Use this, rather than literals, as the 'calculated' side of validate_high_field_config so the
+    benchmark comparison is a genuine regression check on the model.
+    """
+    from .high_field_scaling import validate_high_field_parameters
+    v = validate_high_field_parameters(I=I, N=N, R=R, T=T, B_target=5.0)
+    f = v['field_analysis']
+    return {
+        'field': float(f['B_magnitude']),
+        'ripple': float(f['ripple'] * 100.0),             # %
+        'current': I, 'turns': N, 'radius': R,
+        'tapes_per_turn': int(f['tapes_per_turn']),
+        'temperature': T,
+        'thermal_margin': float(v['thermal_margin_K']),
+        'radial_stress': float(v['radial_stress_est_MPa']),
+        'hoop_stress': float(v['hoop_stress_unreinforced_MPa']),
+    }
+
+
 def create_rebco_validation_example():
     """Create example validation data matching rebco paper results"""
     
@@ -608,16 +634,7 @@ def create_rebco_validation_example():
     }
     
     # Example high-field configuration  
-    high_field_config = {
-        'field': 7.07,           # T
-        'ripple': 0.16,          # %
-        'current': 1800,         # A
-        'turns': 1000,           # count
-        'radius': 0.16,          # m
-        'tapes_per_turn': 89,    # count
-        'temperature': 15,       # K
-        'thermal_margin': 74.5   # K
-    }
+    high_field_config = model_high_field_config()   # computed by the model, not literals
     
     # Example thermal results
     thermal_results = {
@@ -649,7 +666,7 @@ if __name__ == "__main__":
     # Example rebco paper validations
     print("\n📋 Testing Individual Parameter Validations:")
     validator.validate_against_paper(2.1, 'baseline_field', 'REBCO baseline field')
-    validator.validate_against_paper(7.07, 'high_field', 'REBCO high-field')
+    validator.validate_against_paper(model_high_field_config()['field'], 'high_field', 'REBCO high-field')
     validator.validate_against_paper(1171, 'baseline_current', 'REBCO baseline current')
     validator.validate_against_paper(1800, 'high_field_current', 'REBCO high-field current')
     
@@ -662,9 +679,11 @@ if __name__ == "__main__":
     print("\n")
     
     # Test high-field configuration  
+    _hf = model_high_field_config()
     validator.validate_high_field_config(
-        field=7.07, ripple=0.16, current=1800, turns=1000, radius=0.16,
-        tapes_per_turn=89, temperature=15, thermal_margin=74.5
+        field=_hf['field'], ripple=_hf['ripple'], current=_hf['current'], turns=_hf['turns'],
+        radius=_hf['radius'], tapes_per_turn=_hf['tapes_per_turn'],
+        temperature=_hf['temperature'], thermal_margin=_hf['thermal_margin']
     )
     
     print("\n📋 Testing Comprehensive Validation:")
@@ -682,7 +701,7 @@ if __name__ == "__main__":
     # Physical reasonableness checks
     print("\n📋 Physics Constraint Checks:")
     validator.check_physical_reasonableness(15, 'temperature', 'REBCO operating temperature')
-    validator.check_physical_reasonableness(7.07, 'magnetic_field', 'High-field design')
+    validator.check_physical_reasonableness(model_high_field_config()['field'], 'magnetic_field', 'High-field design')
     
     # Generate report
     print("\n📄 Validation Report:")

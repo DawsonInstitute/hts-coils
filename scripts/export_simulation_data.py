@@ -3,7 +3,7 @@
 Export simulation data for Zenodo archival.
 
 This script generates comprehensive simulation data packages including:
-- Field maps for both baseline (2.1 T) and high-field (7.07 T) configurations  
+- Field maps for both baseline (2.1 T) and high-field (6.43 T, winding-pack model) configurations  
 - Stress tensor components from FEA analysis
 - Monte Carlo sensitivity analysis results
 - Thermal model validation d        // Create coi        model.component("comp1").physics("mf").feature("cd1").set("Jconductor", new String[]{"0", "0", "N_turns*I_current/(0.04*0.04)"});       model.component("comp1").physics("mf").feature("cd1").set("Jconductor", new String[]{{"0", "0", "N_turns*I_current/(0.04*0.04)"}}); cross-section rectangle
@@ -64,22 +64,26 @@ def generate_field_maps(output_dir: Path):
                                  N=baseline_config['N'], R=baseline_config['R'])
             B_baseline[i, j] = B_vec
     
-    # High-field configuration (7.07 T) 
+    # High-field configuration (6.43 T, winding-pack model)
     highfield_config = {
-        'N': 1000,
+        'N': 2000,
         'I': 1800, 
-        'R': 0.16,
-        'T_op': 15
+        'R': 0.12,
+        'T_op': 20
     }
     
-    print("   Computing high-field map (7.07 T)...")
+    print("   Computing high-field map (6.43 T)...")
+    from hts.winding_pack import WindingPack, pack_field
+    _fr = scale_hts_coil_field(np.zeros(3), I=highfield_config['I'], N=highfield_config['N'],
+                               R=highfield_config['R'], T=highfield_config['T_op'])
+    _pack = WindingPack(_fr['pack_inner_radius'], _fr['pack_outer_radius'], _fr['pack_half_length'],
+                        highfield_config['N'], highfield_config['I'], _fr['tapes_per_turn'])
     B_highfield = np.zeros((len(z_grid), len(r_grid), 3))
     for i, z in enumerate(z_grid):
         for j, r in enumerate(r_grid):
             pos = np.array([r, 0, z])
-            B_vec = hts_coil_field(pos, I=highfield_config['I'],
-                                 N=highfield_config['N'], R=highfield_config['R'])
-            B_highfield[i, j] = B_vec
+            _bz, _br = pack_field(_pack, z, r)
+            B_highfield[i, j] = [float(_br), 0.0, float(_bz)]
     
     # Save data with metadata
     field_data = {
@@ -126,7 +130,8 @@ def generate_stress_data(output_dir: Path):
     
     configs = [
         {'name': 'baseline', 'B': 2.1, 'R': 0.2, 't': 0.004},
-        {'name': 'highfield', 'B': 7.07, 'R': 0.16, 't': 0.0178}  # Multi-tape
+        # High-field: Wilson estimate sigma = B_peak*J_e*r_mean from the winding-pack model (6.82 T peak)
+        {'name': 'highfield', 'B': 6.82, 'R': 0.315, 't': 0.39, 'Je': 23.68e6}
     ]
     
     stress_data = {'configurations': {}}
@@ -135,10 +140,13 @@ def generate_stress_data(output_dir: Path):
         mu_0 = 4 * np.pi * 1e-7
         
         # Analytical hoop stress
-        sigma_hoop = (config['B']**2 * config['R']) / (2 * mu_0 * config['t'])
+        if 'Je' in config:
+            sigma_hoop = config['B'] * config['Je'] * config['R']
+        else:
+            sigma_hoop = (config['B']**2 * config['R']) / (2 * mu_0 * config['t'])
         
         # Radial and axial components (analytical approximations)
-        sigma_radial = sigma_hoop * 0.01  # ~1% of hoop stress
+        sigma_radial = (config['B'] * config['Je'] * config['t'] / 2) if 'Je' in config else sigma_hoop * 0.01
         sigma_axial = sigma_hoop * 0.05   # ~5% of hoop stress
         
         stress_data['configurations'][config['name']] = {
@@ -268,7 +276,7 @@ def generate_thermal_validation_data(output_dir: Path):
         },
         'metadata': {
             'generated_date': time.strftime('%Y-%m-%d %H:%M:%S'),
-            'description': 'Thermal model sensitivity analysis for 7.07 T configuration'
+            'description': 'Thermal model sensitivity analysis for the 6.43 T configuration'
         }
     }
     
@@ -322,7 +330,7 @@ def generate_comsol_inputs(output_dir: Path):
     # Basic coil geometry parameters
     configs = {
         'baseline': {'N': 400, 'I': 1171, 'R': 0.2, 'name': 'baseline_2.1T'},
-        'highfield': {'N': 1000, 'I': 1800, 'R': 0.16, 'name': 'highfield_7.07T'}
+        'highfield': {'N': 2000, 'I': 1800, 'R': 0.12, 'name': 'highfield_6.43T'}
     }
     
     for config_name, params in configs.items():
@@ -359,7 +367,7 @@ public class {params['name']}_validation {{
         // Current density in coil
         model.component("comp1").physics("mf").create("cd1", "CurrentDensity", 2);
         model.component("comp1").physics("mf").feature("cd1").selection().set(1);
-        model.component("comp1").physics("mf").feature("cd1").set("Jconductor", new String[]{{{"0", "0", "N_turns*I_current/(0.04*0.04)"}});
+        model.component("comp1").physics("mf").feature("cd1").set("Jconductor", new String[]{{"0", "0", "N_turns*I_current/(0.04*0.04)"}});
         
         // Mesh
         model.component("comp1").mesh().create("mesh1");
@@ -382,6 +390,7 @@ public class {params['name']}_validation {{
 """
         
         comsol_file = output_dir / f"{params['name']}_comsol_script.java"
+        comsol_file.parent.mkdir(parents=True, exist_ok=True)
         with open(comsol_file, 'w') as f:
             f.write(comsol_script)
     
@@ -460,7 +469,7 @@ def reproduce_figure_1_field_maps():
     
     # High-field configuration  
     im2 = ax2.contourf(r_grid, z_grid, B_mag_highfield, levels=20, cmap='viridis')
-    ax2.set_title('High-Field Configuration (7.07 T)')
+    ax2.set_title('High-Field Configuration (6.43 T)')
     ax2.set_xlabel('Radial Position (m)')  
     ax2.set_ylabel('Axial Position (m)')
     plt.colorbar(im2, ax=ax2, label='|B| (T)')
@@ -474,7 +483,7 @@ def reproduce_figure_2_performance_comparison():
     # Configuration data
     configs = {
         'Baseline': {'field': 2.1, 'ripple': 0.01, 'thermal_margin': 70, 'stress': 28},
-        'High-Field': {'field': 7.07, 'ripple': 0.16, 'thermal_margin': 74.5, 'stress': 35}
+        'High-Field': {'field': 6.43, 'ripple': 0.17, 'thermal_margin': 38.3, 'stress': 31.5}
     }
     
     fig, axes = plt.subplots(2, 2, figsize=(10, 8))
@@ -572,7 +581,7 @@ High-Field Applications in Fusion and Antimatter Trapping"
 
 ### comsol_inputs/
 - `baseline_2.1T_comsol_script.java` - COMSOL script for baseline validation
-- `highfield_7.07T_comsol_script.java` - COMSOL script for high-field validation  
+- `highfield_6.43T_comsol_script.java` - COMSOL script for high-field validation  
 - `comsol_parameters.json` - Simulation parameters and settings
 
 ### figure_reproduction/
@@ -584,7 +593,7 @@ High-Field Applications in Fusion and Antimatter Trapping"
 ### Field Maps
 - Grid resolution: 50×40 points
 - Spatial range: r ∈ [0, 0.3] m, z ∈ [-0.2, 0.2] m
-- Configurations: Baseline (2.1 T) and High-field (7.07 T)
+- Configurations: Baseline (2.1 T) and High-field (6.43 T)
 
 ### Monte Carlo Analysis  
 - Total samples: {args.monte_carlo_samples:,}
