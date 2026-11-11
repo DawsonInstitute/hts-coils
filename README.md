@@ -1,12 +1,14 @@
 # HTS Coils — REBCO Optimization Framework for Fusion & Antimatter Applications
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![notebooks](https://github.com/DawsonInstitute/hts-coils/actions/workflows/notebooks.yml/badge.svg)](https://github.com/DawsonInstitute/hts-coils/actions/workflows/notebooks.yml)
 [![Tested on WSL2 Ubuntu 24.04](https://img.shields.io/badge/tested-WSL2%20Ubuntu%2024.04-orange.svg)](https://docs.microsoft.com/en-us/windows/wsl/)
 
-**Comprehensive computational framework for REBCO HTS coils and plasma physics applications. Features validated 7.07T superconducting magnet designs, Lentz soliton simulation with interferometric detection, high-beta plasma confinement analysis, and multi-physics FEA integration. Open-source Python implementation with interactive Jupyter notebooks.**
+**Comprehensive computational framework for REBCO HTS coils and plasma physics applications. Features a self-consistent winding-pack model for 6+ T REBCO magnet designs (6.4 T, all electromagnetic/thermal/mechanical gates passing), Lentz soliton simulation with interferometric detection, high-beta plasma confinement analysis, and multi-physics FEA integration. Open-source Python implementation with interactive Jupyter notebooks.**
 
 > **Platform Note**: This framework has been tested on WSL2 (Ubuntu 24.04) on Windows 11. While the core functionality should work on other Linux distributions, macOS, and native Windows, some features (especially GPU acceleration and FEniCSx integration) may require platform-specific adjustments. See the installation sections below for details.
+
+> **Correction notice (2026-11-11).** Earlier versions of this README and the paper reported a "validated 7.07 T" design (1800 A, 1000 turns, R=0.16 m, 89 tapes/turn, 0.16% ripple, 74.5 K margin, 35 MPa reinforced stress). That figure was the field of all turns on one thin loop, which is inconsistent with the conductor the same design requires; the ripple, stress and margin were placeholder/circular. With one self-consistent winding-pack geometry (`src/hts/winding_pack.py`) the same current and turns give **3.95 T**, and the best design passing every gate found so far reaches **6.43 T** (1800 A, 2000 turns, inner radius 0.12 m, 20 K, 95 tapes/turn, 0.17% ripple over r ≤ 0.1·a₁, 38 K margin to the current-sharing temperature, 31.5 MPa radial / 50.9 MPa hoop stress). Regenerate with `python scripts/rederive_high_field_numbers.py` (writes `results/high_field_rederived.json`). Other papers/docs in this repository that quote 7.07 T have not yet been updated; see `docs/TODO.ndjson`. The baseline 2.1 T Helmholtz case uses a different field model and has not been cross-validated against the winding-pack model.
 
 ## Project Overview
 
@@ -81,15 +83,15 @@ The following notebooks are available:
 
 ### REBCO Paper Validation Results
 - ✅ **Baseline Configuration (2.1T):** 0.01% ripple, 1171A current, 400 turns
-- ✅ **High-Field Configuration (7.07T):** 0.16% ripple, 1800A current, 89-tape design  
-- ✅ **Thermal Analysis:** 74.5K margin validation at 15K operating temperature
-- ✅ **Stress Analysis:** 35 MPa reinforced design limit verification
+- ✅ **High-Field Configuration (6.43T centre, 6.82T peak):** 0.17% ripple (p-p, r ≤ 0.1·a₁), 1800A, 2000 turns, 95 tapes/turn, 20 K
+- ✅ **Thermal Analysis:** 38 K margin to the current-sharing temperature (T_cs = 58.7 K), assumed R_th = 0.5 K/W
+- ✅ **Stress Analysis:** radial 31.5 MPa (< 35 MPa delamination limit), hoop 50.9 MPa (< assumed 400 MPa allowable)
 - ✅ **Performance:** <27MB memory usage, <0.01s execution time per validation
 
 ### HTS Plasma Confinement Results (hts_plasma_confinement.tex)
-- ✅ **HTS Magnetic System Validation:** 7.07T field with 0.16% ripple using validated REBCO design (see `src/hts/`)
-- ✅ **Thermal Performance:** 74.5K operational margins with liquid nitrogen cooling at 15K
-- ✅ **Mechanical Stress Analysis:** Validated stress reduction from 175 MPa to 35 MPa with reinforcement
+- ✅ **HTS Magnetic System:** 6.43T design from the winding-pack model (see `src/hts/`); `hts_plasma_confinement.tex` still quotes the withdrawn 7.07T figure and is pending update
+- ✅ **Thermal Performance:** 38 K margin to T_cs at 20 K operation (model result)
+- ✅ **Mechanical Stress Analysis:** radial 31.5 MPa, hoop 50.9 MPa for the 6.43T design
 - ✅ **Computational Validation:** 23/23 validation tests passed (see `validation_results.json`)
 - ✅ **Uncertainty Quantification:** Monte Carlo analysis quantifies field (±2.7%), temperature (±5.9%), and current uncertainties
 
@@ -273,9 +275,9 @@ This will output the validation results for the baseline and high-field configur
 **Expected Output:**
 The script will print the results of the validation tests. You should expect to see output similar to the following, confirming that the simulations match the paper's results:
 - Baseline: 2.1T field, 0.01% ripple, 1171A current
-- High-field: 7.07T field, 0.16% ripple, 89-tape architecture
-- Thermal: 74.5K margin, 150W cryocooler requirement
-- Mechanical: 35 MPa reinforced stress (vs 175 MPa baseline)
+- High-field (`python scripts/rederive_high_field_numbers.py`): 6.43T centre / 6.82T peak, 0.17% ripple, 95 tapes/turn
+- Thermal: 38.3K margin to T_cs, 150W cryocooler
+- Mechanical: radial 31.5 MPa (limit 35), hoop 50.9 MPa (assumed allowable 400)
 
 ### Basic Usage
 
@@ -290,14 +292,17 @@ python scripts/realistic_optimization.py
 python scripts/generate_ieee_figures.py
 ```
 
-### Reproducing High-Field Results (7.07 T)
+### Reproducing High-Field Results (6.4 T)
 
 ```bash
-# Run complete high-field simulation
-python run_high_field_simulation.py --verbose --output results/high_field_7T.json
+# Regenerate the headline numbers (writes results/high_field_rederived.json)
+python scripts/rederive_high_field_numbers.py
 
-# With COMSOL validation (requires COMSOL installation)
-python run_high_field_simulation.py --validate-comsol --verbose
+# Full high-field simulation (optionally with COMSOL validation)
+python scripts/run_high_field_simulation.py
+
+# Test suite
+pytest tests -q
 ```
 
 ### Docker Support
@@ -309,7 +314,7 @@ For reproducible execution with exact dependencies:
 docker build -t hts-coils .
 
 # Run high-field simulation in container
-docker run -v $(pwd)/results:/workspace/results hts-coils python run_high_field_simulation.py --verbose
+docker run -v $(pwd)/results:/workspace/results hts-coils python scripts/run_high_field_simulation.py
 
 # Interactive development
 docker run -it -v $(pwd):/workspace hts-coils bash
@@ -335,7 +340,7 @@ The optimization framework shows:
 - **146 A/mm² Current Density**: Operating at 50% critical current for thermal safety
 - **28 MPa Reinforced Stress**: Below 35 MPa delamination threshold with steel bobbin support
 - **70K Thermal Margin**: Stable operation with practical 150W cryocooler systems
-- **60% Cost Reduction**: Versus equivalent NbTi systems ($402k vs $2-5M)
+- **Cost**: earlier estimates (e.g. "60% reduction vs NbTi") predate the winding-pack correction and are not currently supported
 
 ### Validation Results
 
@@ -354,7 +359,7 @@ This repository now includes comprehensive integration of Lentz hyperfast solito
 
 Our warp soliton research investigates:
 - **Plasma Confinement**: High-precision magnetic field requirements for exotic plasma states
-- **Field Enhancement**: Scaling HTS coil designs beyond 7.07 T for soliton applications  
+- **Field Enhancement**: Scaling HTS coil designs beyond ~6.4 T for soliton applications  
 - **Hyperfast Dynamics**: Integration of relativistic plasma physics with superconducting field control
 - **Energy Optimization**: Successfully integrated ~40% energy reduction algorithms from warp-bubble-optimizer
 - **Experimental Pathways**: Feasibility studies for laboratory-scale warp field demonstrations
@@ -676,7 +681,7 @@ Contributions welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for develo
 
 ---
 
-**Research Status**: This framework provides validated simulation tools and optimization methods for HTS coil design. Reported performance metrics (field strength, ripple, stress) are based on electromagnetic modeling and should be validated experimentally before deployment in critical applications.
+**Research Status**: This framework provides validated simulation tools and optimization methods for HTS coil design. Reported performance metrics (field strength, ripple, stress) are model results (see the correction notice at the top) based on electromagnetic modeling and should be validated experimentally before deployment in critical applications.
 
 **Uncertainty Notes**: All numerical results include quantified uncertainties. Manufacturing tolerances, material property variations, and model assumptions affect reported feasibility rates. See `docs/UQ-TODO.ndjson` for detailed uncertainty analysis.
 

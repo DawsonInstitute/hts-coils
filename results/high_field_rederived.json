@@ -1,0 +1,102 @@
+{
+  "legacy_1800A_1000t": {
+    "parameters": {
+      "I": 1800,
+      "N": 1000,
+      "R": 0.16,
+      "T": 15,
+      "B_target": 5.0
+    },
+    "B_center_T": 3.9487636238738895,
+    "B_peak_T": 4.923313656270828,
+    "B_filament_idealised_T": 7.0685834705770345,
+    "tapes_per_turn": 66,
+    "Jc_at_Bpeak_MA_m2": 115.43156554353976,
+    "current_utilisation": 0.2953343734911947,
+    "Je_MA_m2": 34.09090909090908,
+    "pack_inner_outer_radius_m": [
+      0.16,
+      0.3897825058615212
+    ],
+    "pack_half_length_m": 0.11489125293076058,
+    "ripple_pp_fraction_ROI_0p1R": 0.006281281020096454,
+    "thermal_margin_Tcs_K": 41.27884996938366,
+    "margin_basis": "T_cs",
+    "T_final_K": 15.46,
+    "hoop_stress_bare_MPa": 46.13781339352539,
+    "radial_stress_est_MPa": 19.28337526841179,
+    "t_reinf_required_m": 0.0,
+    "magnetic_pressure_MPa": 9.644398570548969,
+    "all_gates_pass": false
+  },
+  "feasible_1800A_2000t": {
+    "parameters": {
+      "I": 1800,
+      "N": 2000,
+      "R": 0.12,
+      "T": 20,
+      "B_target": 5.0
+    },
+    "B_center_T": 6.4263481429771145,
+    "B_peak_T": 6.824307287645048,
+    "B_filament_idealised_T": 18.84955592153876,
+    "tapes_per_turn": 95,
+    "Jc_at_Bpeak_MA_m2": 79.31325168238776,
+    "current_utilisation": 0.2986160575178522,
+    "Je_MA_m2": 23.684210526315788,
+    "pack_inner_outer_radius_m": [
+      0.12,
+      0.5098717737923586
+    ],
+    "pack_half_length_m": 0.19493588689617927,
+    "ripple_pp_fraction_ROI_0p1R": 0.0017221865979466287,
+    "thermal_margin_Tcs_K": 38.266716757811515,
+    "margin_basis": "T_cs",
+    "T_final_K": 20.46,
+    "hoop_stress_bare_MPa": 50.90256161257626,
+    "radial_stress_est_MPa": 31.507161952953485,
+    "t_reinf_required_m": 0.0,
+    "magnetic_pressure_MPa": 18.530079760257106,
+    "all_gates_pass": true
+  },
+  "feasible_3500A_1000t": {
+    "parameters": {
+      "I": 3500,
+      "N": 1000,
+      "R": 0.16,
+      "T": 10,
+      "B_target": 5.0
+    },
+    "B_center_T": 6.120081349573712,
+    "B_peak_T": 6.887038615119679,
+    "B_filament_idealised_T": 13.744467859455344,
+    "tapes_per_turn": 152,
+    "Jc_at_Bpeak_MA_m2": 96.08610152545636,
+    "current_utilisation": 0.2995531536807805,
+    "Je_MA_m2": 28.782894736842106,
+    "pack_inner_outer_radius_m": [
+      0.16,
+      0.5087119154832539
+    ],
+    "pack_half_length_m": 0.17435595774162693,
+    "ripple_pp_fraction_ROI_0p1R": 0.003499214215675248,
+    "thermal_margin_Tcs_K": 43.72437085708298,
+    "margin_basis": "T_cs",
+    "T_final_K": 10.46,
+    "hoop_stress_bare_MPa": 66.27901622176546,
+    "radial_stress_est_MPa": 34.562391020556404,
+    "t_reinf_required_m": 0.0,
+    "magnetic_pressure_MPa": 18.872314983274254,
+    "all_gates_pass": true
+  },
+  "_assumptions": {
+    "hoop_allowable_MPa": 400,
+    "radial_limit_MPa": 35,
+    "R_th_K_per_W": 0.5,
+    "fill_factor": 1.0,
+    "util_target": 0.3,
+    "ripple_ROI": "sphere r=0.1*R_inner",
+    "Q_AC_W": 0.92,
+    "T_env_K": 4
+  }
+}
